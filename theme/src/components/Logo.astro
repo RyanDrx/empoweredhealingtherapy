@@ -1,10 +1,14 @@
 ---
-import EmpoweredHealingLogo from './assets/images/EmpoweredHealingLogo.png';
-
 import { Image } from '@astrojs/image/components';
 ---
 
-<Image class="ehc-logo" src={EmpoweredHealingLogo} alt="EHC Logo" />
+<Image
+	class="ehc-logo"
+	width={300}
+	height={175}
+	src="./assets/images/EmpoweredHealingLogo.png"
+	alt="EHC Logo"
+/>
 
 <style>
 	.ehc-logo {
@@ -19,5 +23,4 @@ import { Image } from '@astrojs/image/components';
 		text-decoration: underline;
 		cursor: pointer;
 	}
-
 </style>
