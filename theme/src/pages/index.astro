@@ -7,7 +7,23 @@ import HomeHeroSection from '../components/sections/heros/HomeHeroSection.astro'
 
 <Layout>
 	<HomeHeroSection />
-	<Container>
+
+    <Container>
+		<section class="feature-card__section">
+			<h2>Landing Pages</h2>
+			<p>
+				Use one of our landing pages to jumpstart your website or
+				ad campaign.
+			</p>
+			<div class="feature-card__grid">
+				<FeatureCard href="/landing-pages/landing-1" title="Rates & Insurance" imgSrc="/assets/images/home/screenshots/landing-1">
+				</FeatureCard>
+				<FeatureCard href="/landing-pages/landing-2" title="Somatic Experiencing" imgSrc="/assets/images/home/screenshots/landing-2">
+				</FeatureCard>
+			</div>
+		</section>
+	</Container>
+	<!-- <Container>
 		<section class="feature-card__section">
 			<h2>Landing Pages</h2>
 			<p>
@@ -72,7 +88,7 @@ import HomeHeroSection from '../components/sections/heros/HomeHeroSection.astro'
 				</FeatureCard>
 			</div>
 		</section>
-	</Container>
+	</Container> -->
 </Layout>
 
 <style>

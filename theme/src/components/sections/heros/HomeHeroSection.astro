@@ -1,37 +1,35 @@
 ---
+import { Button, Container } from '@littlesticks/odyssey-theme-components';
 import { Icon } from 'astro-icon';
-import { Container, Button } from '@littlesticks/odyssey-theme-components';
 import settings from '../../../config/settings.js';
-import {ThemeSwitcher} from '../../theme-switcher/theme-switcher';
+import { ThemeSwitcher } from '../../theme-switcher/theme-switcher';
 ---
 
 <Container>
-	<section class="hero-section__section">
+	
+	    <section class="hero-section__section">
 		<div class="hero-section__text">
-				<h1>Welcome to Odyssey</h1>
+				<h1>
+                  You Are Not Alone
+                </h1>
 				<p>
-					A marketing website theme built with <a
-						href="https://astro.build"
-						target="_blank"
-						rel="noreferrer">Astro</a
-					> and carefully crafted for startups and businesses.
+				 Empowering You to Overcome Life's Challenges
 				</p>
 				<div class="hero-btns__container">
-					<Button href="/theme/get-started" customIcon
-						>Get Started
-            <Fragment slot="icon">
-              <Icon name="ic:baseline-chevron-right"/>
-            </Fragment>
-            </Button
-					>
-					<Button href="/theme/style-guide" unelevated>Style Guide</Button>
-				</div>
+					<Button href="/theme/get-started" customIcon>Get Started
+                        <Fragment slot="icon">
+                            <Icon name="ic:baseline-chevron-right"/>
+                        </Fragment>
+                    </Button>
+                        
+                <Button href="/theme/style-guide" unelevated>Style Guide</Button>
+		    </div>
         {settings.enableThemeSwitcher && <ThemeSwitcher client:load/>}
 		</div>
 		<div class="hero-section__image">
 				<picture>
 					<img
-						src="/assets/images/home/classic-hero.jpg"
+						src="/assets/images/home/classic-hero.png"
 						alt="Astro Odyssey"
 						id="home-hero-image"
 					/>
