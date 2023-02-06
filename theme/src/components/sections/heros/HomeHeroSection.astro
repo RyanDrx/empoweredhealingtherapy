@@ -3,6 +3,7 @@ import { Button, Container } from '@littlesticks/odyssey-theme-components';
 import { Icon } from 'astro-icon';
 import settings from '../../../config/settings.js';
 import { ThemeSwitcher } from '../../theme-switcher/theme-switcher';
+import { Image } from '@astrojs/image/components';
 ---
 
 <Container>
@@ -28,11 +29,16 @@ import { ThemeSwitcher } from '../../theme-switcher/theme-switcher';
 		</div>
 		<div class="hero-section__image">
 				<picture>
-					<img
+					<!-- <img
 						src="/assets/images/home/classic-hero.png"
 						alt="Astro Odyssey"
 						id="home-hero-image"
-					/>
+					/> -->
+                    <Image
+                    width={690}
+                    height={670}
+                    src="/assets/images/home/classic-hero.png"
+                    alt="Empowered Healing Therapy Depression Anxiety"/>
 				</picture>
 		</div>
 	</section>
