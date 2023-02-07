@@ -1,6 +1,7 @@
 ---
-import {Button, Footer } from '@littlesticks/odyssey-theme-components';
 import Header from '../components/Header.astro';
+import Button from '../components/buttons/Button.astro';
+import Footer from '../components/Footer.astro';
 import Layout from './Base.astro';
 import type { Props as BaseHeadProps } from '../components/head/BaseHead.astro';
 import Logo from '../components/Logo.astro';
@@ -21,7 +22,7 @@ const { seo } = Astro.props as Props;
 		<span slot="logo">
 			<Logo />
 		</span>
-		<!-- <Button slot="action-item" href="/">Get Started</Button> -->
+		<Button slot="action-item" href="/">Get Started</Button> 
 	</Header>
 	<div id="page">
 		<slot />

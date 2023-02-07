@@ -58,13 +58,15 @@ import { Icon } from 'astro-icon';
   </div>
   <div class="header-nav__container">
     <slot name="nav">
-      {navData && <nav>
+      {
+      navData && <nav>
         <ul>
           {navData.map(navItem => (
             (<li><a href={navItem.slug} >{navItem.title}</a></li>)
           ))}
         </ul>
-      </nav>}
+      </nav>
+      }
     </slot>
   </div>
   <div class="header-action-item__container">
@@ -77,6 +79,7 @@ import { Icon } from 'astro-icon';
   header {
     width: 100%;
     padding: 1rem 0.5rem;
+    padding-bottom: .2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
