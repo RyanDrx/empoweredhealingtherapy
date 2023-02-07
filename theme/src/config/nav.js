@@ -4,6 +4,14 @@ export const nav = [
 		slug: '/',
 	},
 	{
+		title: 'Rates & Insurance',
+		slug: '/',
+	},
+	{
+		title: 'Somatic Experiencing',
+		slug: '/',
+	},
+	{
 		title: 'About',
 		slug: '/company/about',
 	},

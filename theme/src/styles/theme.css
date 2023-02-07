@@ -22,7 +22,7 @@
 	--theme-transition: 0.2s ease-in-out;
 
 	/* Theme Layout */
-	--section-margin: 3rem;
+	--section-margin: 2rem;
 	--theme-grid-gap: 1rem;
 	--container-max-width: 1440px;
 	--container-max-width-narrow: 960px;
@@ -45,13 +45,15 @@
 	--theme-on-primary: #fff;
 
 	--theme-bg: #fff;
-	--theme-on-bg: #000;
 
 	--theme-surface-1: #f2f2f2;
 	--theme-on-surface-1: #000;
 
 	--theme-surface-2: #cce6d0;
 	--theme-on-surface-2: #000;
+
+      /* --theme-bg: linear-gradient(315deg,#A7727D 40%,#F9F5E7 100%); */
+	--theme-on-bg: #000;
 
 	/* Theme Shape */
 	/* Set this to 0 if you want all of the rounded cards, images, etc to be straight edges */
@@ -62,7 +64,7 @@
 	--theme-transition: 0.2s ease-in-out;
 
 	/* Theme Layout */
-	--section-margin: 3rem;
+	--section-margin: 2rem;
 	--theme-grid-gap: 1rem;
 	--container-max-width: 1440px;
 	--container-max-width-narrow: 960px;
@@ -99,6 +101,7 @@
 	--theme-on-primary: hsl(0, 0%, 100%);
 
 	--theme-bg: #eeeff1;
+    /* --theme-bg: linear-gradient(315deg,#A7727D 40%,#F9F5E7 100%); */
 	--theme-on-bg: #272f27;
 
 	--theme-surface-1: #e6e4e0;
