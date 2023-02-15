@@ -17,23 +17,26 @@ import Button from '../components/buttons/Button.astro';
 		customerName={homeContent.quoteAuthor}
 	/>
 
-    <StickyTextImageSection>
-		<div slot="text-container">
-			<h2>{homeContent.introTitle}</h2>
-			<p style="white-space: pre-line;">
-				{homeContent.introDescription}
-			</p>
-			<div class="intro_button">
-                <Button href="/about">About Me</Button>
-            </div>
-		</div>
-		<picture slot="image-container">
+    <StickyTextImageSection reversed>
+        <picture slot="image-container">
 			<img
 				src="/assets/images/landing-1/landing-sticky.jpg"
 				alt="Astro Odyssey"
 				loading="lazy"
 			/>
 		</picture>
+		<div slot="text-container">
+			<h2>{homeContent.introTitle}</h2>
+			<p style="white-space: pre-line;">
+				{homeContent.introDescription}
+			</p>
+			<div class="intro_button">
+                <Button href="/about">
+                    About Me
+                </Button>
+            </div>
+		</div>
+		
 	</StickyTextImageSection>
 	<Container>
 		<section class="feature-card__section">

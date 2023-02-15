@@ -6,9 +6,10 @@ import aboutContent from '../cms/about.json';
 import Icon from 'astro-icon';
 import ThreeColumnTextSection from '../components/sections/ThreeColumnTextSection.astro';
 import Button from '../components/buttons/Button.astro';
+import CtaGeneral from '../components/CtaGeneral.astro';
 
 const seo = {
-	title: 'About | Astro Odyssey Theme',
+	title: 'About | Empowered Healing Counseling',
 	description: 'About Page',
 };
 ---
@@ -61,6 +62,9 @@ const seo = {
 			{aboutContent.aboutContent}
 		</p>
 	</TextSection>
+
+    <CtaGeneral />
+
 </Layout>
 
 <style>

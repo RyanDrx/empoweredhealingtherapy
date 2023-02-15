@@ -7,7 +7,7 @@ import { Icon } from 'astro-icon';
 <script type="module">
   const bodyElement = document.querySelector('body');
   const menuButton = document.querySelector('#menuButton')
-  const navHeader = document.querySelector('#odysseyNavHeader');
+  const navHeader = document.querySelector('#navHeader');
   const menuButtonIconHam = document.querySelector('#menuButtonIconHam');
   const menuButtonIconClose = document.querySelector('#menuButtonIconClose');
   let scrollPosition = 0;
@@ -40,7 +40,7 @@ import { Icon } from 'astro-icon';
   }
 </script>  
 
-<header id="odysseyNavHeader2" class={`${rightMenu ? "header--right" : ``.trim()}`}>
+<header id="navHeader" class={`${rightMenu ? "header--right" : ``.trim()}`}>
   <div class="header-logo-menu__container">
 
   <button id="menuButton" title="Open Main Menu">
@@ -61,7 +61,7 @@ import { Icon } from 'astro-icon';
       {
       navData && <nav>
         <ul>
-          {navData.map(navItem => (
+          {navData.map((navItem: { slug: string | URL; title: unknown; }) => (
             (<li><a href={navItem.slug} >{navItem.title}</a></li>)
           ))}
         </ul>
@@ -104,6 +104,12 @@ import { Icon } from 'astro-icon';
   }
   .header-action-item__container {
     z-index: 100;
+  }
+
+  @media screen and (max-width: 600px) {
+    .header-action-item__container {
+    display: none;
+    }
   }
   #menuButton {
     outline: none;

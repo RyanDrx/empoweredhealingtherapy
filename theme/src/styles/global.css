@@ -6,8 +6,8 @@ body {
 body {
 	max-width: 1920px;
 	margin: 0 auto;
-	/* background-color: var(--theme-bg); */
-    background: linear-gradient(315deg,#A7727D 40%,#F9F5E7 100%);
+	background-color: var(--theme-bg); 
+    /* background: linear-gradient(315deg,#B89B96 40%,#EBDFC5 100%); */
 	position: relative;
     /* background: linear-gradient(to bottom, rgba(3,75, 82, 1) 0%, rgba(3,75, 82, 0) 100%); */
     height: 100%;

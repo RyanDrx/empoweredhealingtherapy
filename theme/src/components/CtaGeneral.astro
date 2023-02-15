@@ -1,0 +1,18 @@
+---
+import { Icon } from 'astro-icon';
+import Button from './buttons/Button.astro';
+import CtaCardSection from './sections/CtaCardSection.astro';
+---
+
+<CtaCardSection
+	background="var(--theme-surface-2)"
+	color="var(--theme-on-surface-2)"
+>
+	<h2>Start Your Journey Today</h2>
+
+	<Button href="/theme/get-started" customIcon
+		>Get Started <Fragment slot="icon">
+			<Icon name="ic:baseline-chevron-right" />
+		</Fragment></Button
+	>
+</CtaCardSection>
