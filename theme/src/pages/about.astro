@@ -1,0 +1,70 @@
+---
+import { TextSection } from '@littlesticks/odyssey-theme-components';
+import Layout from '../layouts/Page.astro';
+import HeroSection from '../components/sections/heros/HeroSection.astro';
+import aboutContent from '../cms/about.json';
+import Icon from 'astro-icon';
+import ThreeColumnTextSection from '../components/sections/ThreeColumnTextSection.astro';
+import Button from '../components/buttons/Button.astro';
+
+const seo = {
+	title: 'About | Astro Odyssey Theme',
+	description: 'About Page',
+};
+---
+
+<Layout {seo}>
+	<HeroSection>
+		<div slot="text-container">
+			<h1>About</h1>
+			<p>
+				{aboutContent.aboutBlurb}
+			</p>
+		</div>
+		<picture slot="image-container">
+			<img
+				src="/assets/images/home/somatic-experiencing.webp"
+				alt="Astro Odyssee"
+				id="home-hero-image"
+			/>
+		</picture>
+	</HeroSection>
+    <ThreeColumnTextSection>
+		<div slot="column-1-body">
+            <Icon name="ic:outline-school"/>
+			<h2>Education</h2>
+			<p>
+                {aboutContent.education}
+			</p>
+		</div>
+		<div slot="column-2-body">
+            <Icon name="clarity:license-solid"/>
+			<h2>License</h2>
+			<p>
+				I am a Washington State Licensed Therapist:
+                {aboutContent.licenseNumber}
+			</p>
+		</div>
+		<div slot="column-3-body">
+            <Icon name="ri:psychotherapy-line"/>
+			<h2>Training</h2>
+			<p>
+                {aboutContent.training}
+			</p>
+		</div>
+	</ThreeColumnTextSection>
+	<TextSection narrow>
+        <h2>
+            I've been in a similar position
+        </h2>
+		<p style="white-space: pre-line;">
+			{aboutContent.aboutContent}
+		</p>
+	</TextSection>
+</Layout>
+
+<style>
+    [astro-icon] {
+        height: 3rem;
+    }
+</style>

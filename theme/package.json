@@ -26,5 +26,8 @@
 		"lit": "^2.3.1",
 		"prettier": "^2.8.3",
 		"prettier-plugin-astro": "^0.0.12"
+	},
+	"dependencies": {
+		"astro-netlify-cms": "^0.5.3"
 	}
 }

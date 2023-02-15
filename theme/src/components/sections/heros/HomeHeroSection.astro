@@ -4,6 +4,7 @@ import { Icon } from 'astro-icon';
 import settings from '../../../config/settings.js';
 import { ThemeSwitcher } from '../../theme-switcher/theme-switcher';
 import { Image } from '@astrojs/image/components';
+import homeContent from '../../../cms/home.json';
 ---
 
 <Container>
@@ -11,10 +12,12 @@ import { Image } from '@astrojs/image/components';
 	    <section class="hero-section__section">
 		<div class="hero-section__text">
 				<h1>
-                  You Are Not Alone
+                  <!-- You Are Not Alone -->
+                  {homeContent.title}
                 </h1>
 				<p>
-				 Empowering You to Overcome Life's Challenges
+                    {homeContent.description}
+				 <!-- Empowering You to Overcome Life's Challenges -->
 				</p>
 				<div class="hero-btns__container">
 					<Button href="/" customIcon>Get Started
