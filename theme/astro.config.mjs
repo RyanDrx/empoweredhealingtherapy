@@ -99,6 +99,19 @@ export default defineConfig({
 									},
 								],
 							},
+							{
+								name: 'ratesAndInsurance',
+								label: 'Rates and Insurance',
+								file: 'src/cms/ratesandinsurance.json',
+								description: 'Rates and Insurance Content',
+								fields: [
+									{
+										name: 'paymentOptions',
+										widget: 'string',
+										label: 'Payment Options',
+									},
+								],
+							},
 						],
 					},
 				],

@@ -5,7 +5,7 @@ export const nav = [
 	},
 	{
 		title: 'Rates & Insurance',
-		slug: '/',
+		slug: '/rates-and-insurance',
 	},
 	{
 		title: 'Somatic Experiencing',

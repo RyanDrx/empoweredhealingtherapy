@@ -26,7 +26,12 @@ import homeContent from '../../../cms/home.json';
                         </Fragment>
                     </Button>
                         
-                <Button href="/theme/style-guide" unelevated>Style Guide</Button>
+                <Button href="/theme/style-guide" unelevated customIcon>
+                    Client Portal 
+                    <Fragment slot="icon">
+                            <Icon name="la:external-link-alt"/>
+                        </Fragment>
+                </Button>
 		    </div>
         {settings.enableThemeSwitcher && <ThemeSwitcher client:load/>}
 		</div>

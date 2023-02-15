@@ -1,0 +1,72 @@
+---
+import Layout from '../layouts/Page.astro';
+import HeroSection from '../components/sections/heros/HeroSection.astro';
+//import raiContent from '../cms/ratesandinsurance.json';
+import CtaGeneral from '../components/CtaGeneral.astro';
+import raiContent from '../cms/ratesandinsurance.json';
+import ThreeColumnTextSection from '../components/sections/ThreeColumnTextSection.astro';
+import { Icon } from 'astro-icon';
+
+const seo = {
+	title: 'Rates and Insurance | Empowered Healing Counseling',
+	description: 'Rates and Insurance Page',
+};
+---
+
+<Layout {seo}>
+	<HeroSection>
+		<!-- <div slot="text-container">
+			<h1>Rates and Insurance</h1>
+			<p>
+				{raiContent.payme}
+			</p>
+		</div> -->
+		<picture slot="image-container">
+			<img
+				src="/assets/images/home/somatic-experiencing.webp"
+				alt="Astro Odyssee"
+				id="home-hero-image"
+			/>
+		</picture>
+	</HeroSection>
+	<ThreeColumnTextSection>
+		<div slot="column-1-body">
+			<Icon name="ci:pie-chart-25" />
+			<h2>50 minute</h2>
+			<p>
+				$130
+				<!-- {raiContent.paymentOptions} -->
+			</p>
+		</div>
+		<div slot="column-2-body">
+			<Icon name="ci:pie-chart-50" />
+			<h2>75 minute</h2>
+			<p>$145</p>
+		</div>
+		<div slot="column-3-body">
+			<Icon name="ci:pie-chart-75" />
+			<h2>90 minute</h2>
+			<p>
+				$175
+				<br />
+				<i> All intake sessions</i>
+			</p>
+		</div>
+	</ThreeColumnTextSection>
+	<!-- <TextSection narrow>
+        <h2>
+            I've been in a similar position
+        </h2>
+		<p style="white-space: pre-line;">
+			{aboutContent.aboutContent}
+		</p>
+	</TextSection> -->
+
+	<CtaGeneral />
+</Layout>
+
+<style>
+	[astro-icon] {
+		height: 3rem;
+	}
+</style>
