@@ -18,15 +18,16 @@ export default defineConfig({
 		mdx(),
 		image(),
 		lit(),
-		// critters(),
-		// compress(),
+		critters(),
+		compress(),
 		NetlifyCMS({
 			config: {
 				backend: {
 					name: 'git-gateway',
 					branch: 'main',
 				},
-
+				media_folder: 'public/assets/cms/images',
+				public_folder: '/assets/cms/',
 				collections: [
 					{
 						name: 'pageContent',
@@ -39,7 +40,7 @@ export default defineConfig({
 							{
 								name: 'home',
 								label: 'Home',
-								file: '/assets/cms/home.json',
+								file: '/public/cms/home.json',
 								description: 'Home Page Content',
 								fields: [
 									{
@@ -82,7 +83,7 @@ export default defineConfig({
 							{
 								name: 'about',
 								label: 'About',
-								file: '/assets/cms/about.json',
+								file: '/public/cms/about.json',
 								description: 'Home Page Content',
 								fields: [
 									{
@@ -115,7 +116,7 @@ export default defineConfig({
 							{
 								name: 'ratesAndInsurance',
 								label: 'Rates and Insurance',
-								file: '/assets/cms/ratesandinsurance.json',
+								file: '/public/cms/ratesandinsurance.json',
 								description: 'Rates and Insurance Content',
 								fields: [
 									{
@@ -153,7 +154,7 @@ export default defineConfig({
 							{
 								name: 'somaticExperiencing',
 								label: 'Somatic Experiencing',
-								file: '/assets/cms/somaticExperiencing.json',
+								file: '/public/cms/somaticExperiencing.json',
 								description: 'Rates and Insurance Content',
 								fields: [
 									{
