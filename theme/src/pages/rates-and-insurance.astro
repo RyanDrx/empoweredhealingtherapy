@@ -7,7 +7,7 @@ import ThreeColumnTextSection from '../components/sections/ThreeColumnTextSectio
 import { Icon } from 'astro-icon';
 import InfoCard from '../components/InfoCard.astro';
 import CustomerQuoteSection from '../components/sections/CustomerQuoteSection.astro';
-import ca from 'date-fns/locale/ca';
+import { Image } from '@astrojs/image/components';
 
 const seo = {
 	title: 'Rates and Insurance | Empowered Healing Counseling',
@@ -21,15 +21,17 @@ const seo = {
 			<h1>Rates & Insurance</h1>
 		</div>
 		<picture slot="image-container">
-			<img
+			<Image
+				width={1348}
+				height={674}
+				id="rai-hero"
 				src="./assets/images/mountainforest.webp"
 				alt="Rates and Insurance"
-				id="home-hero-image"
 			/>
 		</picture>
 	</HeroSection>
 
-    <CustomerQuoteSection
+	<CustomerQuoteSection
 		quoteText={raiContent.quote}
 		customerName={raiContent.quoteAuthor}
 	/>

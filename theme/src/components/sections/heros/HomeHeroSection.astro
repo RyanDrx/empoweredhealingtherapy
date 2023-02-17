@@ -18,13 +18,13 @@ import homeContent from '../../../cms/home.json';
                     {homeContent.description}
 				</p>
 				<div class="hero-btns__container">
-					<Button href="/contact" customIcon>Get Started
+					<Button href="/contact"  customIcon>Get Started
                         <Fragment slot="icon">
                             <Icon name="ic:baseline-chevron-right"/>
                         </Fragment>
                     </Button>
                         
-                <Button href="/theme/style-guide" unelevated customIcon>
+                <Button href="https://www.therapyportal.com/p/empowered98403/" target="_blank" unelevated customIcon>
                     Client Portal 
                     <Fragment slot="icon">
                             <Icon name="la:external-link-alt"/>
@@ -34,7 +34,6 @@ import homeContent from '../../../cms/home.json';
         {settings.enableThemeSwitcher && <ThemeSwitcher client:load/>}
 		</div>
 		<div class="hero-section__image">
-				<picture>
 					<!-- <img
 						src="/assets/images/home/classic-hero.png"
 						alt="Astro Odyssey"
@@ -45,8 +44,9 @@ import homeContent from '../../../cms/home.json';
                     height={670}
                     id="home-hero-image"
                     src="/assets/images/home/classic-hero.webp"
-                    alt="Empowered Healing Counseling Depression Anxiety Therapy"/>
-				</picture>
+                    alt="Empowered Healing Counseling Depression Anxiety Therapy"
+                    loading={}
+                    />
 		</div>
 	</section>
 </Container>

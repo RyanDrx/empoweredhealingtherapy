@@ -8,6 +8,7 @@ import CustomerQuoteSection from '../components/sections/CustomerQuoteSection.as
 import StickyTextImageSection from '../components/sections/StickyTextImageSection.astro';
 import Button from '../components/buttons/Button.astro';
 import TextSection from '../components/sections/TextSection.astro';
+import { Image } from '@astrojs/image/components';
 ---
 
 <Layout>
@@ -20,10 +21,13 @@ import TextSection from '../components/sections/TextSection.astro';
 
 	<StickyTextImageSection reversed>
 		<picture slot="image-container">
-			<img
-				src="/assets/images/landing-1/landing-sticky.jpg"
-				alt="Astro Odyssey"
-				loading="lazy"
+			<Image
+				width={400}
+				height={520}
+				id="ahout-me-home"
+				src="./assets/images/home-portrait.webp"
+				alt="Empowered Healing Counseling Depression Anxiety Therapy"
+				loading={}
 			/>
 		</picture>
 		<div slot="text-container">

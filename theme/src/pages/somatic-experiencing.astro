@@ -9,6 +9,7 @@ import InfoCard from '../components/InfoCard.astro';
 import CustomerQuoteSection from '../components/sections/CustomerQuoteSection.astro';
 import StickyTextImageSection from '../components/sections/StickyTextImageSection.astro';
 import TextCardSection from '../components/sections/TextCardSection.astro';
+import { Image } from '@astrojs/image/components';
 
 const seo = {
 	title: 'Somatic Experiencing | Empowered Healing Counseling',
@@ -25,11 +26,15 @@ const seo = {
 			</p> -->
 		</div>
 		<picture slot="image-container">
-			<img
+
+            <Image
+				width={960}
+				height={540}
 				src="./assets/images/somatic-experiencing.webp"
 				alt="Somatic Experiencing"
-				id="home-hero-image"
+				id="se-hero-image"
 			/>
+			
 		</picture>
 	</HeroSection>
 
@@ -40,11 +45,14 @@ const seo = {
 
 	<StickyTextImageSection reversed>
 		<picture slot="image-container">
-			<img
+
+            <Image
+				width={508}
+				height={508}
 				src="./assets/images/somatic-experiencing-masks.webp"
 				alt="Somatic Experiencing Masks"
-				loading="lazy"
 			/>
+            
 		</picture>
 		<div slot="text-container">
 			<h2>What is Somatic Experiencing?</h2>
