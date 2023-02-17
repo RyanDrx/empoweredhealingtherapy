@@ -18,8 +18,8 @@ export default defineConfig({
 		mdx(),
 		image(),
 		lit(),
-		critters(),
-		compress(),
+		// critters(),
+		// compress(),
 		NetlifyCMS({
 			config: {
 				backend: {
