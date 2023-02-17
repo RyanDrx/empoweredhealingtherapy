@@ -110,6 +110,16 @@ export default defineConfig({
 										widget: 'string',
 										label: 'Payment Options',
 									},
+									{
+										name: 'quote',
+										widget: 'string',
+										label: 'Quote',
+									},
+									{
+										name: 'quoteAuthor',
+										widget: 'string',
+										label: 'Quote Author',
+									},
 								],
 							},
 						],

@@ -1,9 +1,15 @@
 ---
 import Container from '../../Container.astro';
+const { reversed } = Astro.props;
 ---
 
 <Container>
-	<section class="hero-section__section">
+	<!-- <section class="hero-section__section"> -->
+	<section
+		class={`hero-section__section ${
+			reversed && `hero-section__section--reversed`
+		}`}
+	>
 		<div class="hero-section__text">
 			<slot name="text-container" />
 		</div>
@@ -21,6 +27,14 @@ import Container from '../../Container.astro';
 		grid-template-columns: 1fr 1fr;
 		align-items: center;
 		gap: 1rem;
+	}
+
+	.hero-section__section--reversed {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.hero-section__section--reversed .hero-section__text {
+		order: 2;
 	}
 	.hero-section__text {
 		justify-self: center;

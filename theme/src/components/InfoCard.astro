@@ -1,0 +1,40 @@
+---
+import Container from '../components/Container.astro';
+import { Icon } from 'astro-icon';
+const { iconName } = Astro.props;
+---
+
+<Container>
+	<section class="card__section">
+		<div>
+            <!-- <div class="card__icon"> -->
+                <Icon name={iconName} />
+            <!-- </div> -->
+			<!-- <Icon name="mdi:credit-card-check-outline" /> -->
+            <slot name="card__title" />
+            <slot name="card__body" />
+			
+		</div>
+	</section>
+</Container>
+
+<style>
+	.card__section {
+		text-align: center;
+		max-width: 40rem;
+		margin: calc(var(--section-margin) * 2) auto;
+	}
+
+    .card__icon {
+        height: 4rem;
+        /* color: var(--color-primary); */
+       
+    }
+
+    [astro-icon] {
+		height: 3.5rem;
+        margin-bottom: 1rem;
+         /* padding: 3rem;
+        vertical-align: center; */
+	}
+</style>
