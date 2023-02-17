@@ -40,7 +40,7 @@ export default defineConfig({
 							{
 								name: 'home',
 								label: 'Home',
-								file: '/public/cms/home.json',
+								file: '/theme/public/cms/home.json',
 								description: 'Home Page Content',
 								fields: [
 									{
@@ -83,7 +83,7 @@ export default defineConfig({
 							{
 								name: 'about',
 								label: 'About',
-								file: '/public/cms/about.json',
+								file: '/theme/public/cms/about.json',
 								description: 'Home Page Content',
 								fields: [
 									{
@@ -116,7 +116,7 @@ export default defineConfig({
 							{
 								name: 'ratesAndInsurance',
 								label: 'Rates and Insurance',
-								file: '/public/cms/ratesandinsurance.json',
+								file: '/theme/public/cms/ratesandinsurance.json',
 								description: 'Rates and Insurance Content',
 								fields: [
 									{
@@ -154,7 +154,7 @@ export default defineConfig({
 							{
 								name: 'somaticExperiencing',
 								label: 'Somatic Experiencing',
-								file: '/public/cms/somaticExperiencing.json',
+								file: '/theme/public/cms/somaticExperiencing.json',
 								description: 'Rates and Insurance Content',
 								fields: [
 									{
