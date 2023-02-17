@@ -26,8 +26,7 @@ export default defineConfig({
 					name: 'git-gateway',
 					branch: 'main',
 				},
-				media_folder: 'public/assets/cms/images',
-				public_folder: '/assets/cms',
+
 				collections: [
 					{
 						name: 'pageContent',
