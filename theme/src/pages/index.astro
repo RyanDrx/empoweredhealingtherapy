@@ -7,6 +7,7 @@ import homeContent from '../cms/home.json';
 import CustomerQuoteSection from '../components/sections/CustomerQuoteSection.astro';
 import StickyTextImageSection from '../components/sections/StickyTextImageSection.astro';
 import Button from '../components/buttons/Button.astro';
+import TextSection from '../components/sections/TextSection.astro';
 ---
 
 <Layout>
@@ -17,8 +18,8 @@ import Button from '../components/buttons/Button.astro';
 		customerName={homeContent.quoteAuthor}
 	/>
 
-    <StickyTextImageSection reversed>
-        <picture slot="image-container">
+	<StickyTextImageSection reversed>
+		<picture slot="image-container">
 			<img
 				src="/assets/images/landing-1/landing-sticky.jpg"
 				alt="Astro Odyssey"
@@ -31,15 +32,23 @@ import Button from '../components/buttons/Button.astro';
 				{homeContent.introDescription}
 			</p>
 			<div class="intro_button">
-                <Button href="/about">
-                    About Me
-                </Button>
-            </div>
+				<Button href="/about">About Me</Button>
+			</div>
 		</div>
-		
 	</StickyTextImageSection>
+
+	<TextSection>
+		<h2>Telehealth Counseling</h2>
+		<p style="white-space: pre-line;">
+			{homeContent.telehealth}
+		</p>
+	</TextSection>
+
 	<Container>
 		<section class="feature-card__section">
+			<TextSection>
+				<h2>Explore</h2>
+			</TextSection>
 			<div class="feature-card__grid">
 				<FeatureCard
 					href="/rates-and-insurance"
@@ -47,14 +56,13 @@ import Button from '../components/buttons/Button.astro';
 					imgSrc="/assets/images/home/rates-and-insurance"
 				/>
 				<FeatureCard
-					href="/"
+					href="/somatic-experiencing"
 					title="Somatic Experiencing"
 					imgSrc="/assets/images/home/somatic-experiencing"
 				/>
 			</div>
 		</section>
 	</Container>
-	
 </Layout>
 
 <style>
@@ -67,10 +75,10 @@ import Button from '../components/buttons/Button.astro';
 		gap: var(--theme-grid-gap);
 	}
 
-    .intro_button{
-        padding-top: 2rem;
-        padding-bottom: 2rem;
-    }
+	.intro_button {
+		padding-top: 2rem;
+		padding-bottom: 2rem;
+	}
 	@media (max-width: 768px) {
 		.feature-card__grid {
 			grid-template-columns: 1fr;

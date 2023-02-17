@@ -9,7 +9,7 @@ export const nav = [
 	},
 	{
 		title: 'Somatic Experiencing',
-		slug: '/',
+		slug: '/somatic-experiencing',
 	},
 	{
 		title: 'About',

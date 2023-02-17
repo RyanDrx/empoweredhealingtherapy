@@ -64,6 +64,12 @@ export default defineConfig({
 										widget: 'text',
 										label: 'Intro Description',
 									},
+
+									{
+										name: 'telehealth',
+										widget: 'text',
+										label: 'Telehealth Description',
+									},
 								],
 							},
 							{
@@ -106,9 +112,24 @@ export default defineConfig({
 								description: 'Rates and Insurance Content',
 								fields: [
 									{
-										name: 'paymentOptions',
-										widget: 'string',
-										label: 'Payment Options',
+										name: 'phoneConsultation',
+										widget: 'text',
+										label: 'Phone Consultation',
+									},
+									{
+										name: 'medicalInsurance',
+										widget: 'text',
+										label: 'Medical Insurance',
+									},
+									{
+										name: 'payments',
+										widget: 'text',
+										label: 'Credit Card & HSAs',
+									},
+									{
+										name: 'cancelationPolicy',
+										widget: 'text',
+										label: 'Cancelation Policy',
 									},
 									{
 										name: 'quote',
@@ -119,6 +140,34 @@ export default defineConfig({
 										name: 'quoteAuthor',
 										widget: 'string',
 										label: 'Quote Author',
+									},
+								],
+							},
+							{
+								name: 'somaticExperiencing',
+								label: 'Somatic Experiencing',
+								file: 'src/cms/somaticExperiencing.json',
+								description: 'Rates and Insurance Content',
+								fields: [
+									{
+										name: 'quote',
+										widget: 'string',
+										label: 'Quote',
+									},
+									{
+										name: 'quoteAuthor',
+										widget: 'string',
+										label: 'Quote Author',
+									},
+									{
+										name: 'whatIsSE',
+										widget: 'text',
+										label: 'What is Somatic Experiencing?',
+									},
+									{
+										name: 'whySE',
+										widget: 'text',
+										label: 'Why Somatic Experiencing?',
 									},
 								],
 							},

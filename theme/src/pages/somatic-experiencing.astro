@@ -1,0 +1,94 @@
+---
+import Layout from '../layouts/Page.astro';
+import HeroSection from '../components/sections/heros/HeroSection.astro';
+import seContent from '../cms/somaticExperiencing.json';
+import CtaGeneral from '../components/CtaGeneral.astro';
+import ThreeColumnTextSection from '../components/sections/ThreeColumnTextSection.astro';
+import { Icon } from 'astro-icon';
+import InfoCard from '../components/InfoCard.astro';
+import CustomerQuoteSection from '../components/sections/CustomerQuoteSection.astro';
+import StickyTextImageSection from '../components/sections/StickyTextImageSection.astro';
+import TextCardSection from '../components/sections/TextCardSection.astro';
+
+const seo = {
+	title: 'Somatic Experiencing | Empowered Healing Counseling',
+	description: 'Somatic Experiencing Page',
+};
+---
+
+<Layout {seo}>
+	<HeroSection>
+		<div slot="text-container">
+			<h1>Somatic Experiencing</h1>
+			<!-- <p>
+				{raiContent.payme}
+			</p> -->
+		</div>
+		<picture slot="image-container">
+			<img
+				src="./assets/images/somatic-experiencing.webp"
+				alt="Somatic Experiencing"
+				id="home-hero-image"
+			/>
+		</picture>
+	</HeroSection>
+
+	<CustomerQuoteSection
+		quoteText={seContent.quote}
+		customerName={seContent.quoteAuthor}
+	/>
+
+	<StickyTextImageSection reversed>
+		<picture slot="image-container">
+			<img
+				src="./assets/images/somatic-experiencing-masks.webp"
+				alt="Somatic Experiencing Masks"
+				loading="lazy"
+			/>
+		</picture>
+		<div slot="text-container">
+			<h2>What is Somatic Experiencing?</h2>
+			<p style="white-space: pre-line;">
+				{seContent.whatIsSE}
+			</p>
+			<!-- <div class="intro_button">
+                <Button href="/about">
+                    About Me
+                </Button>
+            </div> -->
+		</div>
+	</StickyTextImageSection>
+
+	<TextCardSection>
+		
+
+			<h2>Why Somatic Experiencing?</h2>
+			<p style="white-space: pre-line;">
+				{seContent.whySE}
+			</p>
+			<!-- <div class="intro_button">
+                <Button href="/about">
+                    About Me
+                </Button>
+            </div> -->
+
+	</TextCardSection>
+
+	<CtaGeneral />
+</Layout>
+
+<style>
+	.rates-card__section {
+		text-align: center;
+		max-width: 50rem;
+		margin: calc(var(--section-margin) * 2) auto;
+	}
+
+	[astro-icon] {
+		height: 3.5rem;
+	}
+
+	[astro-icon='bi:circle-fill'] {
+		height: 3rem;
+	}
+</style>
