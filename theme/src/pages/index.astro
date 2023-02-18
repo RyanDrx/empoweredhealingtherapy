@@ -9,6 +9,7 @@ import StickyTextImageSection from '../components/sections/StickyTextImageSectio
 import Button from '../components/buttons/Button.astro';
 import TextSection from '../components/sections/TextSection.astro';
 import { Image } from '@astrojs/image/components';
+import CtaGeneral from '../components/CtaGeneral.astro';
 ---
 
 <Layout>
@@ -67,11 +68,16 @@ import { Image } from '@astrojs/image/components';
 			</div>
 		</section>
 	</Container>
+
+    <CtaGeneral />
+
 </Layout>
 
 <style>
 	.feature-card__section {
 		margin: var(--section-margin) auto;
+        margin-left: 2rem;
+        margin-right: 2rem;
 	}
 	.feature-card__grid {
 		display: grid;
