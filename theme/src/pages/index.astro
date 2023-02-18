@@ -69,15 +69,14 @@ import CtaGeneral from '../components/CtaGeneral.astro';
 		</section>
 	</Container>
 
-    <CtaGeneral />
-
+	<CtaGeneral />
 </Layout>
 
 <style>
 	.feature-card__section {
 		margin: var(--section-margin) auto;
-        margin-left: 2rem;
-        margin-right: 2rem;
+		margin-left: 2rem;
+		margin-right: 2rem;
 	}
 	.feature-card__grid {
 		display: grid;
@@ -92,6 +91,17 @@ import CtaGeneral from '../components/CtaGeneral.astro';
 	@media (max-width: 768px) {
 		.feature-card__grid {
 			grid-template-columns: 1fr;
+		}
+
+		.intro_button {
+            display: flex;
+            justify-content: center;
+		}
+
+		.feature-card__section {
+			margin: var(--section-margin) auto;
+			margin-left: 0;
+			margin-right: 0;
 		}
 	}
 </style>

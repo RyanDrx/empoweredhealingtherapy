@@ -23,8 +23,8 @@ const {reversed} = Astro.props;
     grid-template-columns: 6fr 4fr;
     position: relative;
     gap: 2rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
   }
   .sticky-text-image__section--reversed {
     grid-template-columns: 4fr 6fr;
@@ -46,6 +46,8 @@ const {reversed} = Astro.props;
   @media (max-width: 768px) {
     .sticky-text-image__section {
       grid-template-columns: 1fr;
+      margin-left: 0;
+      margin-right: 0;
     }
   }
 </style>

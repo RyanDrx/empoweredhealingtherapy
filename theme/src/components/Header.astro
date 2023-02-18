@@ -39,7 +39,14 @@ import { Icon } from 'astro-icon';
     navHeader.toggleAttribute('mobile-menu-open');
   }
 </script>  
-
+  <button id="menuButton" title="Open Main Menu">
+    <span id="menuButtonIconHam">
+      <Icon name="ic:baseline-menu" width="50px" height="50px" />
+    </span>
+    <span id="menuButtonIconClose" hidden>
+      <Icon name="ic:baseline-close" width="50px" height="50px" />
+    </span>
+  </button>
 <header id="navHeader" class={`${rightMenu ? "header--right" : ``.trim()}`}>
   <div class="header-logo-menu__container">
     <a class="header-logo__link" href="/">
@@ -48,14 +55,6 @@ import { Icon } from 'astro-icon';
     </a>
   </div>
 
-   <button id="menuButton" title="Open Main Menu">
-    <span id="menuButtonIconHam">
-      <Icon name="ic:baseline-menu" width="50px" height="50px" />
-    </span>
-    <span id="menuButtonIconClose" hidden>
-      <Icon name="ic:baseline-close" width="50px" height="50px" />
-    </span>
-  </button>
   <div class="header-nav__container">
     <slot name="nav">
       {
@@ -122,8 +121,9 @@ import { Icon } from 'astro-icon';
         align-items: center;
         z-index: 100;
         justify-content: space-around;
-        margin-left: 4rem;
-  }
+        width: 100%;
+        margin-left: 0;
+    }
 
     .header-nav__container__contact {
         display: block;
@@ -133,10 +133,15 @@ import { Icon } from 'astro-icon';
     outline: none;
     border: none;
     background-color: transparent;
-    margin-right: 1.5rem;
+    margin-right: .5rem;
     display: none;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 1rem;
+
   }
   #menuButton > span {
     color: var(--theme-on-bg);
@@ -164,7 +169,7 @@ import { Icon } from 'astro-icon';
   @media(max-width: 930px) {
     #menuButton {
       display: block;  
-      z-index: 100;
+      z-index: 999;
     }
     .header-nav__container {
       width: 100%;
