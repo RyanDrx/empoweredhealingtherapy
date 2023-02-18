@@ -19,7 +19,7 @@ export default defineConfig({
 		image(),
 		lit(),
 		critters(),
-		compress(),
+		// compress(),
 		NetlifyCMS({
 			config: {
 				backend: {
