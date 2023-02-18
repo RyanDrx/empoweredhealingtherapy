@@ -1,19 +1,19 @@
 export const footerSocials = [
-    {
-        name: 'Twitter',
-        url: 'https://twitter.com/',
-        icon: "mdi:twitter",
-    },
-    {
-        name: 'Youtube',
-        url: 'https://youtube.com/c/',
-        icon: "mdi:youtube",
-    },
-    {
-        name: 'Github',
-        url: 'https://github.com/',
-        icon: "mdi:github",
-    },
+	{
+		name: 'Twitter',
+		url: 'https://twitter.com/',
+		icon: 'mdi:twitter',
+	},
+	{
+		name: 'Youtube',
+		url: 'https://youtube.com/c/',
+		icon: 'mdi:youtube',
+	},
+	{
+		name: 'Facebook',
+		url: 'https://facebook.com/',
+		icon: 'mdi:facebook',
+	},
 ];
 
 export const footerLists = [
@@ -28,48 +28,45 @@ export const footerLists = [
 	// 	// 		title: 'Landing Page 2',
 	// 	// 		slug: '/landing-pages/landing-2',
 	// 	// 	},
-    //   // {
+	//   // {
 	// 		// 	title: 'Landing Page 3',
 	// 		// 	slug: '/landing-pages/landing-3',
 	// 		// },
 	// 	],
 	// },
 	{
-		title: 'Company',
+		title: 'Navigation',
 		items: [
 			{
+				title: 'Home',
+				slug: '/',
+			},
+			{
 				title: 'About',
-				slug: '/',
-			},
-			{
-				title: 'Blog',
-				slug: '/',
-			},
-			{
-				title: 'Contact',
-				slug: '/',
+				slug: '/about',
 			},
 		],
 	},
-	// {
-	// 	title: 'Theme',
-	// 	items: [
-	// 		{
-	// 			title: 'Get Started',
-	// 			slug: '/theme/get-started',
-	// 		},
-	// 		{
-	// 			title: 'Style Guide',
-	// 			slug: '/theme/style-guide',
-	// 		},
-    //   {
-    //     title: 'Theme Setup',
-    //     slug: '/theme/theme-setup',
-    //   },
-    //   {
-    //     title: 'Customizing Odyssey',
-    //     slug: '/theme/customizing-odyssey',
-    //   }
-	// 	],
-	// },
+	{
+		title: '',
+		items: [
+			{
+				title: 'Rates & Insurance',
+				slug: '/rates-and-insurance',
+			},
+			{
+				title: 'Somatic Experiencing',
+				slug: '/somatic-experiencing',
+			},
+		],
+	},
+	{
+		title: '',
+		items: [
+			{
+				title: 'Contact',
+				slug: '/contact',
+			},
+		],
+	},
 ];
