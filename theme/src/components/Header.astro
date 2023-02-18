@@ -42,20 +42,20 @@ import { Icon } from 'astro-icon';
 
 <header id="navHeader" class={`${rightMenu ? "header--right" : ``.trim()}`}>
   <div class="header-logo-menu__container">
+    <a class="header-logo__link" href="/">
+        <slot name="logo">
+        </slot>
+    </a>
+  </div>
 
-  <button id="menuButton" title="Open Main Menu">
+   <button id="menuButton" title="Open Main Menu">
     <span id="menuButtonIconHam">
-      <Icon name="ic:baseline-menu" width="24px" height="24px" />
+      <Icon name="ic:baseline-menu" width="50px" height="50px" />
     </span>
     <span id="menuButtonIconClose" hidden>
-      <Icon name="ic:baseline-close" width="24px" height="24px" />
+      <Icon name="ic:baseline-close" width="50px" height="50px" />
     </span>
   </button>
-  <a class="header-logo__link" href="/">
-    <slot name="logo">
-    </slot>
-  </a>
-  </div>
   <div class="header-nav__container">
     <slot name="nav">
       {
@@ -64,6 +64,7 @@ import { Icon } from 'astro-icon';
           {navData.map((navItem: { slug: string | URL; title: unknown; }) => (
             (<li><a href={navItem.slug} >{navItem.title}</a></li>)
           ))}
+          <li><a class='header-nav__container__contact' href='/contact' >Contact</a></li>
         </ul>
       </nav>
       }
@@ -100,24 +101,37 @@ import { Icon } from 'astro-icon';
     display: flex;
     align-items: center;
     z-index: 100;
-    justify-content: space-around;
-    /* padding-right: 8rem; */
-    /* margin-left: 1rem; */
+    margin-left: 1rem;
   }
   .header-action-item__container {
     z-index: 100;
   }
 
+  .header-nav__container__contact {
+    display: none;
+  }
   @media screen and (max-width: 930px) {
     .header-action-item__container {
         display: none;
+    }
+
+     .header-logo-menu__container {
+        display: flex;
+        align-items: center;
+        z-index: 100;
+        justify-content: space-around;
+        margin-left: 4rem;
+  }
+
+    .header-nav__container__contact {
+        display: block;
     }
   }
   #menuButton {
     outline: none;
     border: none;
     background-color: transparent;
-    margin-right: 0.5rem;
+    margin-right: 1.5rem;
     display: none;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;

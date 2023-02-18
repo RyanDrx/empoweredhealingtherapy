@@ -63,12 +63,13 @@ import homeContent from '../../../public/cms/home.json';
 	}
 	.hero-section__text {
 		justify-self: center;
-		max-width: 25rem;
+		max-width: 30rem;
 	}
 	.hero-btns__container {
 		display: flex;
 		align-items: center;
 		gap: 1rem;
+        justify-self: center;
 	}
 	.hero-btns__container {
 		margin-right: 1rem;
@@ -87,5 +88,11 @@ import homeContent from '../../../public/cms/home.json';
 		.hero-section__section {
 			grid-template-columns: 1fr;
 		}
+
+        .hero-btns__container {
+		    margin-right: 0;
+            align-items: center;
+            justify-content: center;
+	    }
 	}
 </style>
