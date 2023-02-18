@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Page.astro';
 import HeroSection from '../components/heros/HeroSection.astro';
-import seContent from '../../public/cms/somaticExperiencing.json'
+import seContent from '../../public/cms/somaticExperiencing.json';
 import CtaGeneral from '../components/CtaGeneral.astro';
 import CustomerQuoteSection from '../components/sections/CustomerQuoteSection.astro';
 import StickyTextImageSection from '../components/sections/StickyTextImageSection.astro';
@@ -23,16 +23,14 @@ const seo = {
 			</p> -->
 		</div>
 		<picture slot="image-container">
-
-            <Image
+			<Image
 				width={960}
 				height={540}
 				src="./assets/images/somatic-experiencing.webp"
 				alt="Somatic Experiencing"
 				id="se-hero-image"
-                loading="eager"
+				loading="eager"
 			/>
-			
 		</picture>
 	</HeroSection>
 
@@ -43,14 +41,12 @@ const seo = {
 
 	<StickyTextImageSection reversed>
 		<picture slot="image-container">
-
-            <Image
+			<Image
 				width={508}
 				height={508}
 				src="./assets/images/somatic-experiencing-masks.webp"
 				alt="Somatic Experiencing Masks"
 			/>
-
 		</picture>
 		<div slot="text-container">
 			<h2>What is Somatic Experiencing?</h2>
@@ -66,18 +62,15 @@ const seo = {
 	</StickyTextImageSection>
 
 	<TextCardSection>
-		
-
-			<h2>Why Somatic Experiencing?</h2>
-			<p style="white-space: pre-line;">
-				{seContent.whySE}
-			</p>
-			<!-- <div class="intro_button">
+		<h2>Why Somatic Experiencing?</h2>
+		<p style="white-space: pre-line;">
+			{seContent.whySE}
+		</p>
+		<!-- <div class="intro_button">
                 <Button href="/about">
                     About Me
                 </Button>
             </div> -->
-
 	</TextCardSection>
 
 	<CtaGeneral />
