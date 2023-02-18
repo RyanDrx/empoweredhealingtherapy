@@ -6,6 +6,7 @@ import aboutContent from '../../public/cms/about.json';
 import Icon from 'astro-icon';
 import ThreeColumnTextSection from '../components/sections/ThreeColumnTextSection.astro';
 import CtaGeneral from '../components/CtaGeneral.astro';
+import { Image } from '@astrojs/image/components';
 
 const seo = {
 	title: 'About | Empowered Healing Counseling',
@@ -14,7 +15,7 @@ const seo = {
 ---
 
 <Layout {seo}>
-	<HeroSection reversed={true}>
+	<HeroSection>
 		<div slot="text-container">
 			<h1>About</h1>
 			<p>
@@ -22,11 +23,20 @@ const seo = {
 			</p>
 		</div>
 		<picture slot="image-container">
-			<img
+
+            <Image
+				width={1348}
+				height={674}
+				src="/assets/images/home/somatic-experiencing.webp"
+				alt="About Me - Empowered Healing Counseling"
+				id="about-hero-image"
+                loading="eager"
+			/>
+			<!-- <img
 				src="/assets/images/home/somatic-experiencing.webp"
 				alt="Astro Odyssee"
 				id="home-hero-image"
-			/>
+			/> -->
 		</picture>
 	</HeroSection>
     <ThreeColumnTextSection>
