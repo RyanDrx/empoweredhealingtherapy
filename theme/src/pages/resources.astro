@@ -1,0 +1,82 @@
+---
+import Layout from '../layouts/Page.astro';
+import HeroSection from '../components/heros/HeroSection.astro';
+import resourceContent from '../../public/cms/resources.json';
+import CtaGeneral from '../components/CtaGeneral.astro';
+import CustomerQuoteSection from '../components/sections/CustomerQuoteSection.astro';
+import { Image } from '@astrojs/image/components';
+import { Resource } from '../models/resource';
+import Container from '../components/Container.astro';
+import TextSection from '../components/sections/TextSection.astro';
+
+const resources = await Astro.glob<Resource>('../../public/cms/ResourceLinks/*.json');
+
+const seo = {
+	title: 'Resources | Empowered Healing Counseling',
+	description: 'Resources and links for depression anxiety and drama',
+};
+---
+
+<Layout {seo}>
+	<HeroSection>
+		<div slot="text-container">
+			<h1>Resources</h1>
+		</div>
+		<picture slot="image-container">
+			<Image
+				width={1348}
+				height={674}
+				id="rai-hero"
+				src="./assets/images/helpful-resources.webp"
+				alt="Helpful resources for depression, anxiety, and trauma"
+				loading="eager"
+			/>
+		</picture>
+	</HeroSection>
+
+	<CustomerQuoteSection
+		quoteText={resourceContent.quote}
+		customerName={resourceContent.quoteAuthor}
+	/>
+   <TextSection narrow>
+        <div class="resource-container-section">
+            {
+                resources.map((resource: Resource) => {
+                    return <>
+                        <div>
+                            <h3>{resource.title}</h3>
+                            <p>{resource.description}</p>
+                            <a href={resource.resourceLink} target="_blank">
+                                Link
+                            </a>
+                        </div>
+                    </>
+                    
+                })
+            }
+        </div>
+	</TextSection>
+       
+	<CtaGeneral />
+</Layout>
+
+<style>
+    .resource-container-section {
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+        justify-content: center;
+        gap: 2rem;
+        margin: 0 auto;
+        max-width: var(--container-max-width);
+        padding: var(--container-padding);  
+    }
+
+	[astro-icon] {
+		height: 3.5rem;
+	}
+
+	[astro-icon='bi:circle-fill'] {
+		height: 3rem;
+	}
+</style>

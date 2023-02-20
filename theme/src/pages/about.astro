@@ -7,6 +7,7 @@ import Icon from 'astro-icon';
 import ThreeColumnTextSection from '../components/sections/ThreeColumnTextSection.astro';
 import CtaGeneral from '../components/CtaGeneral.astro';
 import { Image } from '@astrojs/image/components';
+import CustomerQuoteSection from '../components/sections/CustomerQuoteSection.astro';
 
 const seo = {
 	title: 'About | Empowered Healing Counseling',
@@ -38,6 +39,12 @@ const seo = {
 			/> -->
 		</picture>
 	</HeroSection>
+
+    <CustomerQuoteSection
+		quoteText={aboutContent.quote}
+		customerName={aboutContent.quoteAuthor}
+	/>
+
 	<ThreeColumnTextSection>
 		<div slot="column-1-body">
 			<Icon name="ic:outline-school" />
