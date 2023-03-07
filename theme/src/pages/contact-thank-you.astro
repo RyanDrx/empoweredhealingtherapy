@@ -1,0 +1,105 @@
+---
+import ContactForm from '../components/forms/ContactForm.astro';
+import Layout from '../layouts/Page.astro';
+import { Container } from '@littlesticks/odyssey-theme-components';
+
+const seo = {
+	title: 'Contact | Astro Odyssey Theme',
+	description: 'Contact Page',
+};
+---
+
+<Layout {seo}>
+	<Container>
+		<section class="contact-hero__section">
+			<div class="contact-hero__text-section">
+				<h1>Contact</h1>
+				<p>
+					Get in touch for any inquiries, scheduling, or concerns.
+					<br />
+					<strong>I'd love to hear from you!</strong>
+				</p>
+				<div>
+					<p>
+						•
+						<em>
+							<a href="tel:8008675309">(123) 456-7890</a>
+						</em>
+						•
+						<em>
+							<a href="mailto:empoweredHealingCounseling@gmail.com">
+								EmpoweredHealingCounseling@gmail.com
+							</a>
+						</em>
+					</p>
+				</div>
+			</div>
+			<div class="col-2__container">
+				<h2>Thank You!</h2>
+				<p>
+					<strong>I will reach out to you as soon as possible.</strong>
+					<br />
+				</p>
+				<br /><br />
+				<h4>Suicide Hotlines in The United States</h4>
+				<p>If you are experiencing an emergency call 911 immediately.</p>
+				<table>
+					<tr>
+						<td>Crisis Text Line</td>
+						<td>Text HOME to 741741</td>
+					</tr>
+					<tr>
+						<td>Suicide Prevention Lifeline</td>
+						<td> <a href="tel:18002738255"> 1-800-273-8255 </a> </td>
+					</tr>
+					<tr>
+						<td>Trans Lifeline</td>
+						<td>
+							<a href="tel:18775658860">
+								1-877-565-8860
+							</a>
+						</td>
+					</tr>
+					<tr>
+						<td>TrevorLifeline</td>
+						<td>
+							<a href="tel:18664887386"> 1-866-488-7386 (for LGBTQ youth) </a>
+						</td>
+					</tr>
+					<tr>
+						<td>Veterans Crisis Line</td>
+						<td> <a href="tel:18002738255"> 1-800-273-8255  (Press 1) </a> </td>
+					</tr>
+				</table>
+			</div>
+		</section>
+	</Container>
+</Layout>
+
+<style>
+	.contact-hero__section {
+		margin: var(--section-margin) auto;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		min-height: calc(90vh - var(--navbar-height));
+		gap: 3rem;
+	}
+	.contact-hero__text-section {
+		padding: 2rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		background-color: var(--theme-surface-1);
+		border-radius: var(--theme-shape-radius);
+	}
+	.col-2__container {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+	@media (max-width: 768px) {
+		.contact-hero__section {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

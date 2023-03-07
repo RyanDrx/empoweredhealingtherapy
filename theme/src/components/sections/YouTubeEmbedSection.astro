@@ -2,10 +2,10 @@
 import Container from '../Container.astro';
 import YouTubeEmbed from '../core/YouTubeEmbed.astro';
 
-const {url, rounded} = Astro.props;
+const {url, rounded, hidden} = Astro.props;
 ---
 
-<Container>
+<Container hidden={hidden}>
   <section class="youtube-embed__section">
     <YouTubeEmbed url={url} rounded={rounded} />
   </section>

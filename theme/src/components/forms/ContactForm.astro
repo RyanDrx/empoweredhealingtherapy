@@ -5,25 +5,39 @@ import FormTextarea from '../form-fields/FormTextarea.astro';
 import Button from '../buttons/Button.astro';
 
 const selectOptions = [
-  "Google Search",
-  "Social Media",
-  "Email",
-]
-
+	'Google Search',
+	'Social Media',
+	'Personal Recommendation',
+	'Psychology Today',
+	'Other',
+];
 ---
 
-<form name="Contact Form" method="POST" action="/contact-thank-you">
-  <FormInput type="text" label="Name" name="Name" placeholder="John Doe" />
-  <FormInput type="email" label="Email" name="Email" placeholder="hello@example.com" />
-  <FormSelect label="How Did You Hear About Us?" options={selectOptions} />
-  <FormTextarea label="Message" name="Message" placeholder="Your message here..." />
-  <Button>Submit</Button>
+<form name="Contact Form" method="POST" action="/contact-thank-you" data-netlify="true">
+    <input type="hidden" name="subject" value="New Inquiry from EmpoweredHealingWa.com!"/>
+	<FormInput type="text" label="Name" name="Name" placeholder="John Doe" required />
+    <FormInput type="tel" label="Phone" name="Phone" placeholder="123-456-7890" required />
+	<FormInput
+		type="email"
+		label="Email"
+		name="Email"
+		placeholder="hello@example.com"
+        required
+	/>
+	<FormInput type="date" label="Date of Birth" name="DOB" placeholder="" required/>
+	<FormSelect label="How Did You Hear About Me?" options={selectOptions} required/>
+	<FormTextarea
+		label="Message"
+		name="Message"
+		placeholder="Your secure message here..."
+	/>
+	<Button>Submit</Button>
 </form>
 
 <style>
-  form {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
+	form {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 1rem;
+	}
 </style>

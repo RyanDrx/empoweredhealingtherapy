@@ -1,19 +1,19 @@
 export const footerSocials = [
-	{
-		name: 'Twitter',
-		url: 'https://twitter.com/',
-		icon: 'mdi:twitter',
-	},
-	{
-		name: 'Youtube',
-		url: 'https://youtube.com/c/',
-		icon: 'mdi:youtube',
-	},
-	{
-		name: 'Facebook',
-		url: 'https://facebook.com/',
-		icon: 'mdi:facebook',
-	},
+	// {
+	// 	name: 'Twitter',
+	// 	url: 'https://twitter.com/',
+	// 	icon: 'mdi:twitter',
+	// },
+	// {
+	// 	name: 'Youtube',
+	// 	url: 'https://youtube.com/c/',
+	// 	icon: 'mdi:youtube',
+	// },
+	// {
+	// 	name: 'Facebook',
+	// 	url: 'https://facebook.com/',
+	// 	icon: 'mdi:facebook',
+	// },
 ];
 
 export const footerLists = [
