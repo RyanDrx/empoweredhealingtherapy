@@ -7,22 +7,10 @@ import { Image } from '@astrojs/image/components';
 	<a class="feature-card__link" {href}>
 		<div class="featured-card__content">
 			<h3 class="feature-card__title">{title}</h3>
-			<!-- I would like to swap this out with Astro's Image integration soon but was having some issues with it at the moment so we're going old school here. -->
-			<!-- <picture>
-				<source srcset={`${imgSrc}.webp`} type="image/webp" /> -->
-				<!-- <img
-					class="feature-card__img"
-					src={`${imgSrc}.png`}
-					alt={title}
-					loading="lazy"
-					width="780"
-					height="585"
-					decoding="async"
-				/> -->
-
+			
 				<Image
-					width={780}
-					height={585}
+					width={468}
+					aspectRatio="4:3"
 					class="feature-card__img"
                     format="webp"
 					src={`${imgSrc}.webp`}
