@@ -6,8 +6,8 @@ import lit from '@astrojs/lit';
 import NetlifyCMS from 'astro-netlify-cms';
 import critters from 'astro-critters';
 import compress from 'astro-compress';
-
-import robotsTxt from "astro-robots-txt";
+import robotsTxt from 'astro-robots-txt';
+import partytown from '@astrojs/partytown';
 
 // https://astro.build/config
 export default defineConfig({
@@ -20,7 +20,14 @@ export default defineConfig({
 		mdx(),
 		image(),
 		lit(),
-		critters(), // compress(),
+		critters(),
+		robotsTxt(),
+		partytown({
+			// Adds dataLayer.push as a forwarding-event.
+			config: {
+				forward: ['dataLayer.push'],
+			},
+		}),
 		NetlifyCMS({
 			config: {
 				backend: {
@@ -242,7 +249,6 @@ export default defineConfig({
 				],
 			},
 		}),
-		robotsTxt(),
 	],
 	// Add renderers to the config
 	// This is for the astro-icon package. You can find more about the package here: https://www.npmjs.com/package/astro-icon

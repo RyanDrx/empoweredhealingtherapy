@@ -28,6 +28,7 @@
 		"prettier-plugin-astro": "^0.0.12"
 	},
 	"dependencies": {
+		"@astrojs/partytown": "^1.1.0",
 		"astro-analytics": "^2.6.0",
 		"astro-compress": "^1.1.33",
 		"astro-critters": "^1.1.29",
