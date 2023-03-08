@@ -13,7 +13,7 @@ const { seo } = Astro.props;
 <html lang="en">
 	<head>
 		<!-- Google tag (gtag.js) -->
-		<!-- <script
+		<script
 			type="text/partytown"
 			src="https://www.googletagmanager.com/gtag/js?id=G-55CF6WPZQ4"></script>
 		<script type="text/partytown">
@@ -24,8 +24,8 @@ const { seo } = Astro.props;
 			gtag('js', new Date());
 
 			gtag('config', 'G-55CF6WPZQ4');
-            <BaseHead {...seo} />
-		</script> -->
+		</script>
+		<BaseHead {...seo} />
 	</head>
 	<body>
 		<SkipLink />
