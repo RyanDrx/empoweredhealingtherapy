@@ -22,12 +22,12 @@ export default defineConfig({
 		lit(),
 		critters(),
 		robotsTxt(),
-		partytown({
-			// Adds dataLayer.push as a forwarding-event.
-			config: {
-				forward: ['dataLayer.push'],
-			},
-		}),
+		// partytown({
+		// 	// Adds dataLayer.push as a forwarding-event.
+		// 	config: {
+		// 		forward: ['dataLayer.push'],
+		// 	},
+		// }),
 		NetlifyCMS({
 			config: {
 				backend: {
