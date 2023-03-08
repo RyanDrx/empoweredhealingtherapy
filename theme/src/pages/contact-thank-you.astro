@@ -1,7 +1,7 @@
 ---
-import ContactForm from '../components/forms/ContactForm.astro';
 import Layout from '../layouts/Page.astro';
 import { Container } from '@littlesticks/odyssey-theme-components';
+import ContactHero from '../components/ContactHero.astro';
 
 const seo = {
 	title: 'Contact | Astro Odyssey Theme',
@@ -12,28 +12,7 @@ const seo = {
 <Layout {seo}>
 	<Container>
 		<section class="contact-hero__section">
-			<div class="contact-hero__text-section">
-				<h1>Contact</h1>
-				<p>
-					Get in touch for any inquiries, scheduling, or concerns.
-					<br />
-					<strong>I'd love to hear from you!</strong>
-				</p>
-				<div>
-					<p>
-						•
-						<em>
-							<a href="tel:8008675309">(123) 456-7890</a>
-						</em>
-						•
-						<em>
-							<a href="mailto:empoweredHealingCounseling@gmail.com">
-								EmpoweredHealingCounseling@gmail.com
-							</a>
-						</em>
-					</p>
-				</div>
-			</div>
+			<ContactHero />
 			<div class="col-2__container">
 				<div class="contact-thank">
 					<h2>Thank You!</h2>
@@ -87,14 +66,7 @@ const seo = {
 		min-height: calc(90vh - var(--navbar-height));
 		gap: 3rem;
 	}
-	.contact-hero__text-section {
-		padding: 2rem;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		background-color: var(--theme-surface-1);
-		border-radius: var(--theme-shape-radius);
-	}
+	
 	.contact-thank {
 		border-bottom: 1px solid var(--theme-on-bg);
 		padding-bottom: 2rem;

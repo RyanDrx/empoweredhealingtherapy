@@ -1,0 +1,49 @@
+---
+import { Icon } from 'astro-icon';
+---
+
+<div class="contact-hero__text-section">
+	<h1>Contact</h1>
+	<p>
+		Get in touch for any inquiries, scheduling, or concerns.
+		<br />
+		<strong>I'd love to hear from you!</strong>
+	</p>
+	<div>
+		<p>
+			<em>
+				<Icon name="ic:baseline-local-phone" />
+				<a href="tel:8008675309">(123) 456-7890</a>
+			</em>
+			<br />
+			<em>
+				<Icon name="mdi:alternate-email" />
+				<a class="email" href="mailto:empoweredHealingCounseling@gmail.com">
+					EmpoweredHealingCounseling@gmail.com
+				</a>
+			</em>
+		</p>
+	</div>
+</div>
+
+<style>
+	.email {
+		text-decoration: none;
+		color: var(--theme-text-1);
+		font-size: 0.7rem;
+	}
+
+	[astro-icon] {
+		height: 1rem;
+		transform: translateY(3px);
+	}
+
+    .contact-hero__text-section {
+		padding: 2rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		background-color: var(--theme-surface-1);
+		border-radius: var(--theme-shape-radius);
+	}
+</style>
