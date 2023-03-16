@@ -13,8 +13,9 @@ const selectOptions = [
 ];
 ---
 
-<form name="Contact Form" method="POST" action="/contact-thank-you" data-netlify="true">
+<form name="Contact Form" method="POST" action="/contact-thank-you" data-netlify="true" netlify-honeypot="bot-field">
     <input type="hidden" name="subject" value="New Inquiry from EmpoweredHealingWa.com!"/>
+    <input type="hidden" style="display:none" name="bot-field" />
 	<FormInput type="text" label="Name" name="Name" placeholder="John Doe" required />
     <FormInput type="tel" label="Phone" name="Phone" placeholder="123-456-7890" required />
 	<FormInput
