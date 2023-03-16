@@ -13,25 +13,60 @@ const selectOptions = [
 ];
 ---
 
-<form name="Contact Form" method="POST" action="/contact-thank-you" data-netlify="true" netlify-honeypot="bot-field">
-    <input type="hidden" name="subject" value="New Inquiry from EmpoweredHealingWa.com!"/>
-    <input type="hidden" style="display:none" name="bot-field" />
-	<FormInput type="text" label="Name" name="Name" placeholder="John Doe" required />
-    <FormInput type="tel" label="Phone" name="Phone" placeholder="123-456-7890" required />
+<form
+	name="Contact Form"
+	method="POST"
+	action="/contact-thank-you"
+	data-netlify="true"
+	netlify-honeypot="bot-field"
+	data-netlify-recaptcha="true"
+>
+	<input
+		type="hidden"
+		name="subject"
+		value="New Inquiry from EmpoweredHealingWa.com!"
+	/>
+	<input type="hidden" style="display:none" name="bot-field" />
+	<FormInput
+		type="text"
+		label="Name"
+		name="Name"
+		placeholder="John Doe"
+		required
+	/>
+	<FormInput
+		type="tel"
+		label="Phone"
+		name="Phone"
+		placeholder="123-456-7890"
+		required
+	/>
 	<FormInput
 		type="email"
 		label="Email"
 		name="Email"
 		placeholder="hello@example.com"
-        required
+		required
 	/>
-	<FormInput type="date" label="Date of Birth" name="DOB" placeholder="" required/>
-	<FormSelect label="How Did You Hear About Me?" name="Lead Source" options={selectOptions} required/>
+	<FormInput
+		type="date"
+		label="Date of Birth"
+		name="DOB"
+		placeholder=""
+		required
+	/>
+	<FormSelect
+		label="How Did You Hear About Me?"
+		name="Lead Source"
+		options={selectOptions}
+		required
+	/>
 	<FormTextarea
 		label="Message"
 		name="Message"
 		placeholder="Your secure message here..."
 	/>
+    <div data-netlify-recaptcha="true"></div>
 	<Button>Submit</Button>
 </form>
 
