@@ -21,12 +21,17 @@ const selectOptions = [
 	netlify-honeypot="bot-field"
 	data-netlify-recaptcha="true"
 >
+	<p style="display:none">
+		<label>
+			Don’t fill this out if you’re human: <input name="bot-field" />
+		</label>
+	</p>
 	<input
 		type="hidden"
 		name="subject"
 		value="New Inquiry from EmpoweredHealingWa.com!"
 	/>
-	<input type="hidden" style="display:none" name="bot-field" />
+
 	<FormInput
 		type="text"
 		label="Name"
@@ -66,7 +71,7 @@ const selectOptions = [
 		name="Message"
 		placeholder="Your secure message here..."
 	/>
-    <div data-netlify-recaptcha="true"></div>
+	<div data-netlify-recaptcha="true"></div>
 	<Button>Submit</Button>
 </form>
 
