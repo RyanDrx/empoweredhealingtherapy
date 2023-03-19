@@ -21,7 +21,9 @@ export default defineConfig({
 		image(),
 		lit(),
 		critters(),
-		robotsTxt(),
+		robotsTxt({
+			sitemapBaseFileName: 'sitemap',
+		}),
 		partytown({
 			// Adds dataLayer.push as a forwarding-event.
 			config: {
