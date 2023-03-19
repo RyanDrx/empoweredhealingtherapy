@@ -11,7 +11,7 @@ import partytown from '@astrojs/partytown';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://zingy-torte-ea249e.netlify.app/',
+	site: 'https://www.empoweredhealingwa.com',
 	// Your public domain, e.g.: https://my-site.dev/. Used to generate sitemaps and canonical URLs.
 	sitemap: true,
 	// Generate sitemap (set to "false" to disable)
