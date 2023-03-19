@@ -35,7 +35,7 @@ export const footerLists = [
 	// 	],
 	// },
 	{
-		title: 'Navigation',
+		title: '',
 		items: [
 			{
 				title: 'Home',
