@@ -66,11 +66,8 @@ const pathname = new URL(Astro.request.url).pathname;
           {navData.map((navItem: { slug: string | URL; title: unknown; }) => (
             (
             <li 
-                class={pathname == navItem.slug ? "active-nav-item" : "WTF"}
+                class={pathname.replace('/', '') == (navItem.slug as string).replace('/', '') ? "active-nav-item" : ""}
             >
-                <span style="display:none">
-                    {`${pathname} ${navItem.slug}`}
-                </span>
                 <a href={navItem.slug}>
                 {navItem.title}
                 </a>
