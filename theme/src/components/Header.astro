@@ -4,6 +4,7 @@ const { navData, rightMenu } = Astro.props;
 import { Icon } from 'astro-icon';
 
 const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.slice(1).replace('/', '');
 ---
 
 <script type="module">
@@ -66,10 +67,10 @@ const pathname = new URL(Astro.request.url).pathname;
           {navData.map((navItem: { slug: string | URL; title: unknown; }) => (
             (
             <li 
-                class={pathname.trim().replace('/', '') == (navItem.slug as string).trim().replace('/', '') ? "active-nav-item" : ""}
+                class={currentPath.trim().replace('/', '') == (navItem.slug as string).trim().replace('/', '') ? "active-nav-item" : ""}
             >
                 <span style="display:none">
-                    {`${pathname.trim().replace('/', '')} ${(navItem.slug as string).trim().replace('/', '')}`}
+                    {`${currentPath.trim().replace('/', '')} ${(navItem.slug as string).trim().replace('/', '')}`}
                 </span>
                 <a href={navItem.slug}>
                 {navItem.title}
