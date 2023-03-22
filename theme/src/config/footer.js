@@ -45,11 +45,19 @@ export const footerLists = [
 				title: 'About',
 				slug: '/about',
 			},
+			{
+				title: 'Contact',
+				slug: '/contact',
+			},
 		],
 	},
 	{
 		title: '',
 		items: [
+			{
+				title: 'Resources',
+				slug: '/resources',
+			},
 			{
 				title: 'Rates & Insurance',
 				slug: '/rates-and-insurance',
@@ -58,19 +66,6 @@ export const footerLists = [
 				title: 'Somatic Experiencing',
 				slug: '/somatic-experiencing',
 			},
-		],
-	},
-	{
-		title: '',
-		items: [
-			{
-				title: 'Contact',
-				slug: '/contact',
-            },
-            {
-                title: 'Resources',
-                slug: '/resources',
-            }
 		],
 	},
 ];

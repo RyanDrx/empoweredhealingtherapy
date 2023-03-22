@@ -18,10 +18,28 @@ const {
             <div class='footer-brand__container'>
                 <div>
                     <slot name='logo' />
+                    <p class="contact-info">
+                        <em>
+                            <Icon name="ic:baseline-local-phone" />
+                            <a href="tel:3602075773"> (360) 207-5773</a>
+                        </em>
+                        <br />
+                        <em>
+                            <Icon name="mdi:alternate-email" />
+                            <a class="email" href="mailto:empoweredHealingCounseling@gmail.com">
+                                EmpoweredHealingCounseling@gmail.com
+                            </a>
+                        </em>
+                        <br />
+                        <em>
+                            <Icon name="mdi:address-marker" />
+                            Tacoma, Washington 98403
+                        </em>
+		            </p>
                 </div>
                 <ul class='footer-socials__list'>
                     {
-                        footerSocials.map((social) => (
+                        footerSocials.map((social: { url: string | URL; name: string; icon: string; }) => (
                             <li class='footer-socials__item'>
                                 <a
                                     href={social.url}
@@ -37,23 +55,40 @@ const {
                     }
                 </ul>
             </div>
-            {
-                footerLists.map((list) => (
-                    <div>
-                        <p>
-                            <strong>{list.title}</strong>
-                        </p>
-                        <ul class='footer-link__list'>
-                            {list.items.map((item) => (
-                                <li>
-                                    <a href={item.slug}>{item.title}</a>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                ))
-            }
+            <div class="footer-nav">
+                {
+                    footerLists.map((list: { title: string; items: { slug: string | URL; title: string; }[]; }) => (
+                        <div class="footer-link_container">
+                            <p>
+                                <strong>{list.title}</strong>
+                            </p>
+                            <ul class='footer-link__list'>
+                                {list.items.map((item: { slug: string | URL; title: string; }) => (
+                                    <li>
+                                        <a href={item.slug}>{item.title}</a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))
+                }
+            </div>
+        <div class="footer-nav__mobile">
+
+                {
+                    footerLists.map((list) => 
+                    <>
+                        {
+                            list.items.map((item) => (
+                                <a href={item.slug}>{item.title}</a>
+                            ))
+                        }
+                    </>
+                    )
+                }
         </div>
+        </div>
+
         <div class='footer-copyright__container'>
             <p> Copyright &copy; {new Date().getFullYear()} {copyrightName}</p>
         </div>
@@ -70,10 +105,30 @@ const {
         border-top-left-radius: var(--theme-shape-radius);
         border-top-right-radius: var(--theme-shape-radius);
     }
+    .footer-nav__mobile{
+        display: none;
+    }
     .footer-grid__container {
         padding: 10vh 0 1rem 0;
         display: grid;
-        grid-template-columns: 2fr 1fr 1fr 1fr;
+        grid-template-columns: 4fr 4fr;
+    }
+    .footer-nav {
+        display: grid;
+        padding-left: 4rem;
+        flex-direction: row;
+        justify-content: space-between;
+        border-left: 2px solid var(--theme-on-bg);
+        grid-template-columns: 2fr 2fr 1fr;
+        margin-top: 2rem;
+        font-size: var(--font-size-sm);
+    }
+
+    .footer-link_container {
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+        justify-content: center;
     }
     .footer-socials__list {
         margin: 1rem 0;
@@ -101,34 +156,72 @@ const {
     .footer-copyright__container {
         display: flex;
         flex-direction: column;
-        /* justify-content: space-between; */
+        align-items: center;
     }
     .footer-copyright__container p {
         font-size: var(--font-size-sm);
     }
-    @media (max-width: 768px) {
+    .contact-info {
+        font-size: var(--font-size-xs);
+        display: flex;
+        align-items: left;
+        flex-direction: column;
+        padding-top: 1rem;
+        padding-left: 1rem;
+        text-decoration: ;
+    }
+    .contact-info a {
+        text-decoration: none;
+    }
+
+    [astro-icon] {
+		height: 1rem;
+		transform: translateY(3px);
+	}
+    @media (max-width: 800px) {
+    
+         .footer-nav {
+            display: none;
+        }
+        .footer-nav__mobile{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: .5rem;
+            font-size: var(--font-size-sm);
+        }
+        a{
+            text-decoration: none;
+        }
 
         .footer-brand__container {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            padding-left: 0;
         }
         .footer-grid__container :first-child {
             grid-column: 1/-1;
         }
+         .footer-grid__container :nth-child(2) {
+            grid-column: 2/-1;
+         }
+
         .footer-grid__container {
             padding: 5vh 0;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
+            grid-template-columns:1fr;
+            gap: 0rem;
         }
+        
     }
     @media (max-width: 600px) {
-        .footer-grid__container {
+        /* .footer-grid__container {
             padding: 5vh 0;
             grid-template-columns: 1fr;
             gap: 1rem;
-        }
+        } */
         .footer-copyright__container {
             flex-direction: column;
         }

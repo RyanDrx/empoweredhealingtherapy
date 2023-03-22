@@ -64,6 +64,7 @@
        url('/assets/fonts/lato-v23-latin-700italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 :root {
+  --font-size-xs: clamp(12px, 0.05vw + 12.5px, 13px);
   --font-size-sm: clamp(14.4px, 0.07vw + 14.13px, 15px);
   --font-size-base: clamp(18px, 0.23vw + 17.09px, 20px);
   --font-size-md: clamp(22.5px, 0.47vw + 20.61px, 26.66px);
