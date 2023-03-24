@@ -45,10 +45,21 @@ const image = new URL(Astro.props.image || './social.png', Astro.site);
 <!-- For Demonstration of the themes -->
 {settings.enableThemeSwitcher && <ThemeProvider />}
 
-<!-- Google Analytics -->
-<script>
-  var host = window.location.hostname;
-  if(host != 'localhost') {
-    // Place Google Analytics code here.
-  }
+<script type="application/ld+json">
+             {
+                "@context": "https://schema.org",
+                "@type": "Corporation",
+                "name": "Empowered Healing Counseling",
+                "alternateName": "Meghan Trezza, LMHC",
+                "url": "https://www.empoweredhealingwa.com",
+                "logo": "https://www.empoweredhealingwa.com/assets/EmpoweredHealingLogo_Vx9Es.png",
+                "contactPoint": {
+                    "@type": "ContactPoint",
+                    "telephone": "(360) 207-5773",
+                    "contactType": "customer service",
+                    "contactOption": "TollFree",
+                    "areaServed": "US",
+                    "availableLanguage": "en"
+                }
+            }
 </script>
