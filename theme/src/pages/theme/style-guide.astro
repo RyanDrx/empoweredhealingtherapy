@@ -1,5 +1,5 @@
 ---
-import {Icon} from 'astro-icon'
+import { Icon } from 'astro-icon';
 import {
 	TextCardSection,
 	Container,
@@ -8,21 +8,16 @@ import {
 	FormSelect,
 	FormTextarea,
 } from '@littlesticks/odyssey-theme-components';
+import { Image } from '@astrojs/image/components';
 import Layout from '../../layouts/Page.astro';
-
-const seo = {
-	title: 'Astro Odyssey Theme Style Guide',
-	description: 'Get started on how to setup and use this Astro theme.',
-};
 
 const selectOptions = ['Option 1', 'Option 2', 'Option 3'];
 ---
 
-<Layout {seo}>
+<Layout>
 	<Container>
 		<TextCardSection>
 			<h1>Style Guide</h1>
-			
 		</TextCardSection>
 		<section class="style-guide__section">
 			<div class="style-guide__title-container">
@@ -31,12 +26,25 @@ const selectOptions = ['Option 1', 'Option 2', 'Option 3'];
 			<div>
 				<div class="style-guide-color__card">
 					<h3>Primary</h3>
+					rgb(129, 129, 133) <br /> #818185
 				</div>
 				<div class="style-guide-color__card style-guide-color__card--surface-1">
 					<h3>Surface 1</h3>
+					rgb(242, 242, 242)
+					<br />#f2f2f2
 				</div>
 				<div class="style-guide-color__card style-guide-color__card--surface-2">
 					<h3>Surface 2</h3>
+					rgb(232, 170, 140)
+					<br />#e8aa8c
+				</div>
+				<div
+					class="style-guide-color__card style-guide-color__card--surface-1"
+					style="background-color: rgb(235, 223, 197);"
+				>
+					<h3>Background</h3>
+					rgb(235, 223, 197)
+					<br />#ebdfc5
 				</div>
 			</div>
 		</section>
@@ -45,17 +53,72 @@ const selectOptions = ['Option 1', 'Option 2', 'Option 3'];
 				<h2>Typography</h2>
 			</div>
 			<div>
-				<h1>Heading 1</h1>
-				<h2>Heading 2</h2>
-				<h3>Heading 3</h3>
-				<h4>Heading 4</h4>
-				<h5>Heading 5</h5>
-				<h6>Heading 6</h6>
-				<p>Body Text</p>
+				<div></div>
+
+				<h1>Roboto Serif</h1>
+				<h2>Roboto Serif</h2>
+				<h3>Roboto Serif</h3>
+				<h4>Lato Sans</h4>
+				<h5>Lato Sans</h5>
+				<h6>Lato Sans</h6>
+				<p>
+					Default Text - Lato Sans
+					<br />
+					The quick brown fox jumps over the lazy dog.
+				</p>
 				<blockquote>
-					“Don’t settle for what life gives you; make life better and build
-					something.” — Ashton Kutcher
+					"25% of quotes are missattributed." — John Lennon
 				</blockquote>
+			</div>
+		</section>
+		<section class="style-guide__section">
+			<div class="style-guide__title-container">
+				<h2>Logo</h2>
+			</div>
+
+			<div>
+				Full Size
+				<div class="lrgImage">
+					<Image
+						class="ehc-logo"
+						width={1250}
+						height={563}
+						src="./assets/images/EmpoweredHealingLogo.png"
+						alt="EHC Logo"
+						loading="lazy"
+					/>
+				</div>
+
+				Medium
+				<Image
+					class="ehc-logo"
+					width={625}
+					aspectRatio="144:65"
+					src="./assets/images/EmpoweredHealingLogo.webp"
+					alt="EHC Logo"
+					loading="eager"
+				/>
+				Small
+				<Image
+					class="ehc-logo"
+					width={300}
+					aspectRatio="144:65"
+					src="./assets/images/EmpoweredHealingLogo.webp"
+					alt="EHC Logo"
+					loading="eager"
+				/>
+
+				Social Media
+				<div class="lrgImage">
+					<Image
+						class="ehc-logo"
+						width={2560}
+						height={1440}
+						src="./assets/images/social.png"
+						alt="EHC Logo"
+						loading="eager"
+					/>
+				</div>
 			</div>
 		</section>
 		<section class="style-guide__section">
@@ -76,11 +139,12 @@ const selectOptions = ['Option 1', 'Option 2', 'Option 3'];
 					<Button outlined>Button 3</Button>
 				</p>
 				<p>Button With Custom Icon</p>
-				<Button customIcon>Launch Page
-          <Fragment slot="icon">
-            <Icon name="ic:baseline-launch" />
-          </Fragment>
-        </Button>
+				<Button customIcon
+					>Launch Page
+					<Fragment slot="icon">
+						<Icon name="ic:baseline-launch" />
+					</Fragment>
+				</Button>
 			</div>
 		</section>
 		<section class="style-guide__section">
@@ -111,15 +175,20 @@ const selectOptions = ['Option 1', 'Option 2', 'Option 3'];
 </Layout>
 
 <style>
+	.lrgImage img {
+		object-fit: contain;
+		width: 100%;
+        max-height: 400px;
+	}
 	.style-guide__section {
 		margin: var(--section-margin) auto;
 		display: grid;
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: 1fr 2fr;
 	}
-  .style-guide__title-container h2 {
-    position: sticky;
-    top: 0;
-  }
+	.style-guide__title-container h2 {
+		position: sticky;
+		top: 0;
+	}
 	.style-guide-forms__container {
 		display: grid;
 		gap: 1rem;
