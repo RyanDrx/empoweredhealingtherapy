@@ -26,8 +26,8 @@ const {
                         <br />
                         <em>
                             <Icon name="mdi:alternate-email" />
-                            <a class="email" href="mailto:Meaghan@EmpoweredHealingWa.com">
-                                Meaghan@EmpoweredHealingWa.com
+                            <a class="email" href="mailto:Meaghan@EmpoweredHealingWA.com">
+                                Meaghan@EmpoweredHealingWA.com
                             </a>
                         </em>
                         <br />
@@ -118,7 +118,7 @@ const {
         padding-left: 4rem;
         flex-direction: row;
         justify-content: space-between;
-        border-left: 2px solid var(--theme-on-bg);
+        /* border-left: 2px solid var(--theme-on-bg); */
         grid-template-columns: 2fr 2fr 1fr;
         margin-top: 2rem;
         font-size: var(--font-size-sm);
@@ -173,10 +173,13 @@ const {
     .contact-info a {
         text-decoration: none;
     }
-
+    em{
+        padding: .3rem;
+    }
     [astro-icon] {
-		height: 1rem;
-		transform: translateY(3px);
+		height: 1.2rem;
+		transform: translateY(7px);
+        margin-right: .2rem;
 	}
     @media (max-width: 800px) {
     
