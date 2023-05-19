@@ -10,15 +10,16 @@ import Button from '../components/buttons/Button.astro';
 import TextSection from '../components/sections/TextSection.astro';
 import { Image } from '@astrojs/image/components';
 import CtaGeneral from '../components/CtaGeneral.astro';
+import CtaNewClients from '../components/CtaNewClients.astro';
 
 const seo = {
-	title: 'Home | Empowered Healing Counseling - Meaghan Trezza, LMHC',
+	title: 'Empowered Healing Counseling - Meaghan Trezza, LMHC',
 	description: 'Empowered Healing Counseling is a private practice Tacoma Washington, specializing in depression, anxiety, and trauma. Empowered Healing Counseling - Meaghan Trezza, LMHC',
 };
 
 ---
 
-<Layout>
+<Layout seo={seo}>
 	<HomeHeroSection />
 
 	<CustomerQuoteSection
@@ -34,11 +35,11 @@ const seo = {
 				id="ahout-me-home"
 				src="./assets/images/home-portrait.webp"
 				alt="Empowered Healing Counseling Depression Anxiety Therapy"
-				loading={}
-			/>
+                >
 		</picture>
 		<div slot="text-container">
 			<h2>{homeContent.introTitle}</h2>
+
 			<p style="white-space: pre-line;">
 				{homeContent.introDescription}
 			</p>
@@ -48,12 +49,25 @@ const seo = {
 		</div>
 	</StickyTextImageSection>
 
-	<TextSection>
-		<h2>Telehealth Counseling</h2>
-		<p style="white-space: pre-line;">
-			{homeContent.telehealth}
-		</p>
-	</TextSection>
+    <CtaNewClients />
+
+    <Container>
+         <TextSection>
+            <h2>Telehealth Counseling</h2>
+            <p style="white-space: pre-line;">
+                {homeContent.telehealth}
+            </p>
+        </TextSection>
+
+        <TextSection>
+            <h2>In-Person Counseling </h2>
+            <p style="white-space: pre-line;">
+                {homeContent.inPerson}
+            </p>
+            
+        </TextSection>
+       
+    </Container>
 
 	<Container>
 		<section class="feature-card__section">

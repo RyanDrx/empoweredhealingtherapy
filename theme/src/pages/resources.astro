@@ -11,12 +11,16 @@ import YouTubeEmbedSection from '../components/sections/YouTubeEmbedSection.astr
 import Button from '../components/buttons/Button.astro';
 import { Icon } from 'astro-icon';
 
-const resources = await Astro.glob<Resource>('../../public/cms/ResourceLinks/*.json');
+//const resourceLinks = await Astro.glob<Resource>('../../public/cms/ResourceLinks/*.json');
 
 const seo = {
 	title: 'Resources | Empowered Healing Counseling - Meaghan Trezza, LMHC',
 	description: 'Resources and links for depression anxiety and drama. Meaghan Trezza, LMHC, is a Somatic Experiencing Practitioner in Tacoma, WA.',
 };
+
+const resources =  await Astro.glob<Resource>('../../public/cms/ResourceLinks/*.json');
+
+
 ---
 
 <Layout {seo}>
@@ -49,7 +53,8 @@ const seo = {
                     return <div>
                                 <h3>{resource.title}</h3>
                                 <p>{resource.description}</p>
-                                <YouTubeEmbedSection url={resource.resourceLink} rounded hidden={!resource.youtubeLink}></YouTubeEmbedSection>
+                                <YouTubeEmbedSection url={resource.resourceLink} rounded hidden={!resource.resourceLink.includes('youtube')}>
+                                </YouTubeEmbedSection>
                                 <Button href={resource.resourceLink} target="_blank" unelevated customIcon newTab>
                                     Link
                                     <Fragment slot="icon">
