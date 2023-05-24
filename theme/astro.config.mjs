@@ -88,6 +88,11 @@ export default defineConfig({
 										widget: 'text',
 										label: 'Telehealth Description',
 									},
+									{
+                                        name: 'inPerson',
+                                        widget: 'text',
+                                        label: 'In Person Description',
+									},
 								],
 							},
 							{
