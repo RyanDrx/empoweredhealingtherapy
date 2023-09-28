@@ -31,7 +31,6 @@
 		"@astrojs/partytown": "^1.1.0",
 		"astro-analytics": "^2.6.0",
 		"astro-compress": "^1.1.33",
-		"astro-critters": "^1.1.29",
 		"astro-netlify-cms": "^0.5.3",
 		"astro-robots-txt": "^0.4.0"
 	}
