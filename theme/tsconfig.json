@@ -4,7 +4,8 @@
 		"module": "ESNext",
 		"moduleResolution": "node",
 		"experimentalDecorators": true,
-    "useDefineForClassFields": false,
+		"allowSyntheticDefaultImports": true,
+		"useDefineForClassFields": false,
 		// Add type definitions for our Vite runtime.
 		"types": ["vite/client"]
 	}

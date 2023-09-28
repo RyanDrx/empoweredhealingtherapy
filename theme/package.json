@@ -8,7 +8,7 @@
 	},
 	"scripts": {
 		"dev": "astro dev",
-		"start": "astro dev",
+		"start": "astro denpx astro devv",
 		"build": "astro build",
 		"preview": "astro preview",
 		"format": "npx prettier -w ."
@@ -31,6 +31,7 @@
 		"@astrojs/partytown": "^1.1.0",
 		"astro-analytics": "^2.6.0",
 		"astro-compress": "^1.1.33",
+		"astro-critters": "^2.0.11",
 		"astro-netlify-cms": "^0.5.3",
 		"astro-robots-txt": "^0.4.0"
 	}

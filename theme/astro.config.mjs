@@ -4,8 +4,6 @@ import mdx from '@astrojs/mdx';
 import image from '@astrojs/image';
 import lit from '@astrojs/lit';
 import NetlifyCMS from 'astro-netlify-cms';
-import critters from 'astro-critters';
-import compress from 'astro-compress';
 import robotsTxt from 'astro-robots-txt';
 import partytown from '@astrojs/partytown';
 
@@ -20,7 +18,7 @@ export default defineConfig({
 		mdx(),
 		image(),
 		lit(),
-		critters(),
+		//critters(),
 		robotsTxt({
 			sitemapBaseFileName: 'sitemap',
 		}),
