@@ -30,7 +30,7 @@
 	"dependencies": {
 		"@astrojs/partytown": "^1.1.0",
 		"astro-analytics": "^2.6.0",
-		"astro-compress": "^1.1.33",
+		"astro-compress": "^2.0.15",
 		"astro-critters": "^2.0.11",
 		"astro-netlify-cms": "^0.5.3",
 		"astro-robots-txt": "^0.4.0"
