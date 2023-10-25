@@ -3,7 +3,7 @@ import Layout from '../layouts/Page.astro';
 import HeroSection from '../components/heros/HeroSection.astro';
 import raiContent from '../../public/cms/ratesandinsurance.json';
 import CtaGeneral from '../components/CtaGeneral.astro';
-import ThreeColumnTextSection from '../components/sections/ThreeColumnTextSection.astro';
+import TwoColumnTextSection from '../components/sections/TwoColumnTextSection.astro';
 import { Icon } from 'astro-icon';
 import InfoCard from '../components/InfoCard.astro';
 import CustomerQuoteSection from '../components/sections/CustomerQuoteSection.astro';
@@ -44,7 +44,7 @@ const seo = {
 		</p>
 	</InfoCard>
 
-	<ThreeColumnTextSection>
+	<TwoColumnTextSection>
 		<h2 slot="section-title">Sessions Rates</h2>
 		<div slot="column-1-body">
 			<Icon name="ci:pie-chart-50" />
@@ -68,7 +68,7 @@ const seo = {
 				<li>Initial intake session</li>
 			</ul>
 		</div>
-	</ThreeColumnTextSection>
+	</TwoColumnTextSection>
 
 	<InfoCard iconName="uil:file-medical-alt">
 		<h2 slot="card__title">Medical Insurance</h2>

@@ -1,0 +1,62 @@
+---
+import Container from '../Container.astro';
+---
+
+<Container>
+	<div class="two-col-text__title">
+		<slot name="section-title" />
+	</div>
+
+	<section class="two-col-text__section">
+		<div class="two-col-text__column">
+			<slot name="column-1-body" />
+			<slot name="column-1-cta" />
+		</div>
+		<div class="two-col-text__column">
+			<slot name="column-2-body" />
+			<slot name="column-2-cta" />
+		</div>
+	</section>
+</Container>
+
+<style>
+	.two-col-text__section {
+		--column-count: 2;
+		--column-width: calc(100% / var(--column-count));
+		margin: var(--section-margin) auto;
+		display: flex;
+		flex-wrap: wrap;
+		text-align: center;
+		justify-content: space-evenly;
+	}
+
+	.two-col-text__title {
+		text-align: center;
+		margin: 0 auto;
+		margin-bottom: 2rem;
+		display: flex;
+		flex-wrap: wrap;
+		text-align: center;
+		justify-content: space-evenly;
+	}
+	.two-col-text__column {
+		width: var(--column-width);
+		margin-bottom: 2rem;
+		padding: 1rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+
+	@media (max-width: 1200px) {
+		.two-col-text__section {
+			--column-count: 2;
+		}
+	}
+	@media (max-width: 768px) {
+		.two-col-text__section {
+			--column-count: 1;
+		}
+	}
+</style>

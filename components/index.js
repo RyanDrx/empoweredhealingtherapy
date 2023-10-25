@@ -18,6 +18,7 @@ export { default as TextSection } from './sections/TextSection.astro';
 export { default as TextCardSection } from './sections/TextCardSection.astro';
 export { default as CustomerQuoteSection } from './sections/CustomerQuoteSection.astro';
 export { default as ThreeColumnTextSection } from './sections/ThreeColumnTextSection.astro';
+export { default as TwoColumnTextSection } from './sections/TwoColumnTextSection.astro';
 export { default as YouTubeEmbedSection } from './sections/YouTubeEmbedSection.astro';
 export { default as StickyTextImageSection } from './sections/StickyTextImageSection.astro';
 export { default as CtaCardSection } from './sections/CtaCardSection.astro';
