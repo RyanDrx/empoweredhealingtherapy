@@ -73,7 +73,7 @@ const seo = {
 	<InfoCard iconName="uil:file-medical-alt">
 		<h2 slot="card__title">Medical Insurance</h2>
 		<p slot="card__body">
-			{raiContent.medicalInsurance}
+			{raiContent.medicalInsurance.replace(/\r\r/g, '<br />')}
 		</p>
 	</InfoCard>
 
