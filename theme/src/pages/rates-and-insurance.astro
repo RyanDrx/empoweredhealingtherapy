@@ -13,6 +13,8 @@ const seo = {
 	title: 'Rates and Insurance || Empowered Healing Counseling - Meaghan Trezza, LMHC',
 	description: 'Rates and Insurance for Empowered Healing Counseling - Meaghan Trezza, LMHC',
 };
+
+let medicalInsuranceLines = raiContent.medicalInsurance.split('\r\r');
 ---
 
 <Layout {seo}>
@@ -70,12 +72,10 @@ const seo = {
 		</div>
 	</TwoColumnTextSection>
 
-	<InfoCard iconName="uil:file-medical-alt">
-		<h2 slot="card__title">Medical Insurance</h2>
-		<p slot="card__body">
-			{raiContent.medicalInsurance.replace(/\r\r/g, '<br />')}
-		</p>
-	</InfoCard>
+    <InfoCard iconName="uil:file-medical-alt">
+        <h2 slot="card__title">Medical Insurance</h2>
+        {medicalInsuranceLines.map(line => <p slot="card__body">{line}</p>)}
+    </InfoCard>
 
 	<InfoCard iconName="mdi:credit-card-check-outline">
 		<h2 slot="card__title">Credit Cards & HSA</h2>
