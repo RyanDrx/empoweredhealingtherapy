@@ -74,7 +74,10 @@ let medicalInsuranceLines = raiContent.medicalInsurance.split('\r\r');
 
     <InfoCard iconName="uil:file-medical-alt">
         <h2 slot="card__title">Medical Insurance</h2>
-        {medicalInsuranceLines.map(line => <p slot="card__body">{line}</p>)}
+        <Fragment slot="card__body">
+            { medicalInsuranceLines.map(line => <p>{line}</p>) }
+        </Fragment>
+       
     </InfoCard>
 
 	<InfoCard iconName="mdi:credit-card-check-outline">
