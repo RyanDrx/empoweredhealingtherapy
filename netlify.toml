@@ -1,6 +1,6 @@
 [build]
   base = "theme/"
-  publish = "theme/dist"
+  publish = "dist"
   command = "npm run build"
 
 [build.environment]
