@@ -8,7 +8,7 @@ import {
 	FormSelect,
 	FormTextarea,
 } from '@littlesticks/odyssey-theme-components';
-import { Image } from '@astrojs/image/components';
+import { Image } from 'astro:assets';
 import Layout from '../../layouts/Page.astro';
 
 const selectOptions = ['Option 1', 'Option 2', 'Option 3'];
@@ -83,9 +83,8 @@ const selectOptions = ['Option 1', 'Option 2', 'Option 3'];
 						class="ehc-logo"
 						width={1250}
 						height={563}
-						src="./assets/images/EmpoweredHealingLogo.png"
+						src="/assets/images/EmpoweredHealingLogo.png"
 						alt="EHC Logo"
-						loading="lazy"
 					/>
 				</div>
 
@@ -93,19 +92,17 @@ const selectOptions = ['Option 1', 'Option 2', 'Option 3'];
 				<Image
 					class="ehc-logo"
 					width={625}
-					aspectRatio="144:65"
-					src="./assets/images/EmpoweredHealingLogo.webp"
+					height={282}
+					src="/assets/images/EmpoweredHealingLogo.webp"
 					alt="EHC Logo"
-					loading="eager"
 				/>
 				Small
 				<Image
 					class="ehc-logo"
 					width={300}
-					aspectRatio="144:65"
-					src="./assets/images/EmpoweredHealingLogo.webp"
+					height={135}
+					src="/assets/images/EmpoweredHealingLogo.webp"
 					alt="EHC Logo"
-					loading="eager"
 				/>
 
 				Social Media
@@ -114,9 +111,8 @@ const selectOptions = ['Option 1', 'Option 2', 'Option 3'];
 						class="ehc-logo"
 						width={2560}
 						height={1440}
-						src="./assets/images/social.png"
+						src="/assets/images/social.png"
 						alt="EHC Logo"
-						loading="eager"
 					/>
 				</div>
 			</div>

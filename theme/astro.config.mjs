@@ -1,7 +1,6 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
-import image from '@astrojs/image';
 import lit from '@astrojs/lit';
 import NetlifyCMS from 'astro-netlify-cms';
 import robotsTxt from 'astro-robots-txt';
@@ -16,9 +15,6 @@ export default defineConfig({
 	integrations: [
 		sitemap(),
 		mdx(),
-		image({
-			serviceEntryPoint: '@astrojs/image/squoosh'
-		}),
 		lit(),
 		//critters(),
 		robotsTxt({
@@ -262,6 +258,17 @@ export default defineConfig({
 	vite: {
 		ssr: {
 			external: ['svgo'],
+		},
+		build: {
+			rollupOptions: {
+				onwarn(warning, warn) {
+					// Suppress eval warnings from netlify-cms-app
+					if (warning.code === 'EVAL' && warning.id?.includes('netlify-cms-app')) {
+						return;
+					}
+					warn(warning);
+				},
+			},
 		},
 	},
 });
