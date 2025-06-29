@@ -3,17 +3,43 @@ import Container from '../Container.astro';
 const { reversed } = Astro.props;
 ---
 
+<script>
+	// Smooth image loading handler
+	document.addEventListener('DOMContentLoaded', () => {
+		const heroImages = document.querySelectorAll('.hero-section__image img');
+		
+		heroImages.forEach((element) => {
+			const img = element as HTMLImageElement;
+			
+			// If image is already loaded
+			if (img.complete && img.naturalHeight !== 0) {
+				img.classList.add('loaded');
+				return;
+			}
+			
+			// Handle image load event
+			img.addEventListener('load', () => {
+				img.classList.add('loaded');
+			});
+			
+			// Handle image error
+			img.addEventListener('error', () => {
+				img.classList.add('loaded'); // Show even if error
+			});
+		});
+	});
+</script>
+
 <Container>
-	<!-- <section class="hero-section__section"> -->
 	<section
 		class={`hero-section__section ${
 			reversed && `hero-section__section--reversed`
 		}`}
 	>
-		<div class="hero-section__text">
+		<div class="hero-section__text" data-animate="fade-in-left">
 			<slot name="text-container" />
 		</div>
-		<div class="hero-section__image">
+		<div class="hero-section__image" data-animate="fade-in-right">
 			<slot name="image-container" />
 		</div>
 	</section>
@@ -26,7 +52,8 @@ const { reversed } = Astro.props;
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		align-items: center;
-		gap: 1rem;
+		gap: clamp(2rem, 5vw, 4rem);
+		padding: 2rem 0;
 	}
 
 	.hero-section__section--reversed {
@@ -36,38 +63,171 @@ const { reversed } = Astro.props;
 	.hero-section__section--reversed .hero-section__text {
 		order: 2;
 	}
+
+	.hero-section__section--reversed .hero-section__text[data-animate="fade-in-left"] {
+		animation-name: fadeInRight;
+	}
+
+	.hero-section__section--reversed .hero-section__image[data-animate="fade-in-right"] {
+		animation-name: fadeInLeft;
+	}
+
 	.hero-section__text {
 		justify-self: center;
 		max-width: 30rem;
+		opacity: 0;
+		animation: fadeInLeft 0.8s ease-out 0.2s forwards;
 	}
-	.hero-btns__container {
-		display: flex;
-		align-items: center;
-		gap: 1rem;
-	}
-	.hero-btns__container {
-		margin-right: 1rem;
-	}
+
 	.hero-section__image {
 		display: flex;
+		opacity: 0;
+		animation: fadeInRight 0.8s ease-out 0.4s forwards;
 	}
+
 	.hero-section__image :global(img) {
 		width: 100%;
 		height: 100%;
 		max-height: 80vh;
 		object-fit: cover;
 		border-radius: var(--theme-shape-radius);
+		transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.6s ease;
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+		opacity: 0;
+		transform: scale(0.98);
 	}
+
+	.hero-section__image :global(img.loaded) {
+		opacity: 1;
+		transform: scale(1);
+		transition-delay: 0.8s;
+	}
+
+	.hero-section__image :global(img):hover {
+		transform: scale(1.02);
+		box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+	}
+
+	/* Text content animations */
+	.hero-section__text :global(h1),
+	.hero-section__text :global(h2) {
+		opacity: 0;
+		animation: fadeInUp 0.6s ease-out 0.6s forwards;
+	}
+
+	.hero-section__text :global(p) {
+		opacity: 0;
+		animation: fadeInUp 0.6s ease-out 0.8s forwards;
+	}
+
+	.hero-section__text :global(.hero-btns__container) {
+		opacity: 0;
+		animation: fadeInUp 0.6s ease-out 1s forwards;
+	}
+
+	.hero-btns__container {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		margin-top: 1.5rem;
+	}
+
+	.hero-btns__container {
+		margin-right: 1rem;
+	}
+
+	/* Animation keyframes */
+	@keyframes fadeInLeft {
+		0% {
+			opacity: 0;
+			transform: translateX(-30px);
+		}
+		100% {
+			opacity: 1;
+			transform: translateX(0);
+		}
+	}
+
+	@keyframes fadeInRight {
+		0% {
+			opacity: 0;
+			transform: translateX(30px);
+		}
+		100% {
+			opacity: 1;
+			transform: translateX(0);
+		}
+	}
+
+	@keyframes fadeInUp {
+		0% {
+			opacity: 0;
+			transform: translateY(20px);
+		}
+		100% {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	/* Responsive improvements */
 	@media (max-width: 768px) {
 		.hero-section__section {
 			margin: 2rem auto 0 auto;
 			grid-template-columns: 1fr;
+			gap: 2rem;
+			padding: 1rem 0;
 		}
 
 		.hero-section__text {
 			justify-self: center;
-            text-align: center;
+			text-align: center;
 			max-width: 35rem;
+			order: unset;
+		}
+
+		.hero-section__image {
+			order: unset;
+		}
+
+		/* Mobile-specific animations */
+		.hero-section__text,
+		.hero-section__image {
+			animation: fadeInUp 0.8s ease-out forwards;
+		}
+
+		.hero-section__text {
+			animation-delay: 0.2s;
+		}
+
+		.hero-section__image {
+			animation-delay: 0.4s;
+		}
+
+		.hero-section__image :global(img) {
+			max-height: 60vh;
+		}
+
+		.hero-section__image :global(img.loaded) {
+			transition-delay: 0.6s;
+		}
+	}
+
+	/* Reduced motion accessibility */
+	@media (prefers-reduced-motion: reduce) {
+		.hero-section__text,
+		.hero-section__image,
+		.hero-section__text :global(*),
+		.hero-section__image :global(img) {
+			animation: none !important;
+			opacity: 1 !important;
+			visibility: visible !important;
+			transform: none !important;
+			transition: none !important;
+		}
+
+		.hero-section__image :global(img):hover {
+			transform: none;
 		}
 	}
 </style>

@@ -4,7 +4,6 @@ import Container from '../Container.astro';
 import { Icon } from 'astro-icon';
 import settings from '../../config/settings.js';
 import { ThemeSwitcher } from '../theme-switcher/theme-switcher';
-import { Image } from '@astrojs/image/components';
 import homeContent from '../../../public/cms/home.json';
 ---
 
@@ -35,11 +34,11 @@ import homeContent from '../../../public/cms/home.json';
         {settings.enableThemeSwitcher && <ThemeSwitcher client:load/>}
 		</div>
 		<div class="hero-section__image">
-                    <Image
-                    width={780}
-                    aspectRatio="325:183"
+                    <img
+                    width="780"
+                    height="439"
                     id="home-hero-image"
-                    src="./assets/images/home-hero.webp"
+                    src="/assets/images/home-hero.webp"
                     alt="Empowered Healing Counseling Depression Anxiety Therapy"
                     loading="eager"
                     />

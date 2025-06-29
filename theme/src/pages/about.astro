@@ -6,7 +6,6 @@ import aboutContent from '../../public/cms/about.json';
 import Icon from 'astro-icon';
 import ThreeColumnTextSection from '../components/sections/ThreeColumnTextSection.astro';
 import CtaGeneral from '../components/CtaGeneral.astro';
-import { Image } from '@astrojs/image/components';
 import CustomerQuoteSection from '../components/sections/CustomerQuoteSection.astro';
 
 const seo = {
@@ -24,10 +23,10 @@ const seo = {
 			</p>
 		</div>
 		<picture slot="image-container">
-			<Image
-				width={828}
-                aspectRatio="2:1"
-				src="./assets/images/about-me-hero.webp"
+			<img
+				width="828"
+				height="414"
+				src="/assets/images/about-me-hero.webp"
 				alt="About Me - Empowered Healing Counseling"
 				id="about-hero-image"
 				loading="eager"
@@ -67,9 +66,30 @@ const seo = {
 	</ThreeColumnTextSection>
 	<TextSection narrow>
 		<h2>A little bit about me</h2>
-		<p style="white-space: pre-line;">
-			{aboutContent.aboutContent}
-		</p>
+		<div class="about-content">
+			{aboutContent.aboutContent.split('\n\n').map(paragraph => {
+				// Handle bullet point lists
+				if (paragraph.includes('\t•\t')) {
+					const [beforeList, ...rest] = paragraph.split('\n');
+					const listItems = rest.filter(item => item.includes('\t•\t'));
+					const afterListContent = rest.filter(item => !item.includes('\t•\t'));
+					
+					return (
+						<div>
+							{beforeList && <p>{beforeList}</p>}
+							<ul>
+								{listItems.map(item => 
+									<li>{item.replace('\t•\t', '').trim()}</li>
+								)}
+							</ul>
+							{afterListContent.map(content => content && <p>{content}</p>)}
+						</div>
+					);
+				} else {
+					return <p>{paragraph}</p>;
+				}
+			})}
+		</div>
 	</TextSection>
 
 	<CtaGeneral />
@@ -78,5 +98,24 @@ const seo = {
 <style>
 	[astro-icon] {
 		height: 3rem;
+	}
+
+	.about-content {
+		max-width: none;
+	}
+
+	.about-content p {
+		margin-bottom: 1.5rem;
+	}
+
+	.about-content ul {
+		margin: 2rem 0;
+		padding-left: 1rem;
+	}
+
+	.about-content ul li {
+		margin-bottom: 0.75rem;
+		font-size: 1.05rem;
+		font-weight: 500;
 	}
 </style>

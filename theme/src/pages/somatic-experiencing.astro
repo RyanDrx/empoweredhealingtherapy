@@ -6,7 +6,6 @@ import CtaGeneral from '../components/CtaGeneral.astro';
 import CustomerQuoteSection from '../components/sections/CustomerQuoteSection.astro';
 import StickyTextImageSection from '../components/sections/StickyTextImageSection.astro';
 import TextCardSection from '../components/sections/TextCardSection.astro';
-import { Image } from '@astrojs/image/components';
 
 const seo = {
 	title: 'Somatic Experiencing | Empowered Healing Counseling - Meaghan Trezza, LMHC',
@@ -23,10 +22,10 @@ const seo = {
 			</p> -->
 		</div>
 		<picture slot="image-container">
-			<Image
-				width={780}
-                aspectRatio="325:183"
-				src="./assets/images/somatic-experiencing.webp"
+			<img
+				width="780"
+				height="439"
+				src="/assets/images/somatic-experiencing.webp"
 				alt="Somatic Experiencing"
 				id="se-hero-image"
 				loading="eager"
@@ -41,10 +40,10 @@ const seo = {
 
 	<StickyTextImageSection reversed>
 		<picture slot="image-container">
-			<Image
-				width={508}
-				height={508}
-				src="./assets/images/somatic-experiencing-masks.webp"
+			<img
+				width="508"
+				height="508"
+				src="/assets/images/somatic-experiencing-masks.webp"
 				alt="Somatic Experiencing Masks"
 			/>
 		</picture>

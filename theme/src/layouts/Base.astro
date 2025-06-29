@@ -2,12 +2,14 @@
 import SkipLink from '../components/core/SkipLink.astro';
 import BaseHead from '../components/head/BaseHead.astro';
 import type { Props as BaseHeadProps } from '../components/head/BaseHead.astro';
+import settings from '../config/settings';
 
 export interface Props {
 	seo?: BaseHeadProps;
 }
 
 const { seo } = Astro.props;
+const canonical = seo?.canonicalURL || `${settings.url}${Astro.url.pathname}`;
 ---
 
 <html lang="en">

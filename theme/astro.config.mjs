@@ -16,7 +16,9 @@ export default defineConfig({
 	integrations: [
 		sitemap(),
 		mdx(),
-		image(),
+		image({
+			serviceEntryPoint: '@astrojs/image/squoosh'
+		}),
 		lit(),
 		//critters(),
 		robotsTxt({

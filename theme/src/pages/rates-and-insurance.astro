@@ -7,7 +7,6 @@ import TwoColumnTextSection from '../components/sections/TwoColumnTextSection.as
 import { Icon } from 'astro-icon';
 import InfoCard from '../components/InfoCard.astro';
 import CustomerQuoteSection from '../components/sections/CustomerQuoteSection.astro';
-import { Image } from '@astrojs/image/components';
 
 const seo = {
 	title: 'Rates and Insurance || Empowered Healing Counseling - Meaghan Trezza, LMHC',
@@ -23,11 +22,11 @@ let medicalInsuranceLines = raiContent.medicalInsurance.split('\n\n');
 			<h1>Rates & Insurance</h1>
 		</div>
 		<picture slot="image-container">
-			<Image
-				width={828}
-                aspectRatio="2:1"
+			<img
+				width="828"
+				height="414"
 				id="rai-hero"
-				src="./assets/images/mountainforest.webp"
+				src="/assets/images/mountainforest.webp"
 				alt="Rates and Insurance"
 				loading="eager"
 			/>
@@ -47,28 +46,33 @@ let medicalInsuranceLines = raiContent.medicalInsurance.split('\n\n');
 	</InfoCard>
 
 	<TwoColumnTextSection>
-		<h2 slot="section-title">Sessions Rates</h2>
-		<div slot="column-1-body">
-			<Icon name="ci:pie-chart-50" />
-			<h3>50 minute</h3>
-			<p>
-				$150
-			</p>
-			<ul>
-				<li>Somatic Experiencing</li>
-				<li>Flexible scheduling</li>
-			</ul>
+		<h2 slot="section-title">Session Rates</h2>
+		<div slot="column-1-body" class="rate-card">
+			<div class="rate-card__icon">
+				<Icon name="ci:pie-chart-50" />
+			</div>
+			<div class="rate-card__content">
+				<h3 class="rate-card__title">50 Minute Session</h3>
+				<div class="rate-card__price">$150</div>
+				<div class="rate-card__features">
+					<span class="feature-tag">Somatic Experiencing</span>
+					<span class="feature-tag">Flexible Scheduling</span>
+				</div>
+			</div>
 		</div>
 		
-		<div slot="column-2-body">
-			<Icon name="bi:circle-fill" />
-			<h3>90 minute</h3>
-			<p>
-				$200
-			</p>
-			<ul>
-				<li>Initial intake session</li>
-			</ul>
+		<div slot="column-2-body" class="rate-card">
+			<div class="rate-card__icon">
+				<Icon name="bi:circle-fill" />
+			</div>
+			<div class="rate-card__content">
+				<h3 class="rate-card__title">90 Minute Session</h3>
+				<div class="rate-card__price">$200</div>
+				<div class="rate-card__features">
+					<span class="feature-tag">Initial Intake Session</span>
+					<span class="feature-tag">Extended Assessment</span>
+				</div>
+			</div>
 		</div>
 	</TwoColumnTextSection>
 
@@ -98,21 +102,188 @@ let medicalInsuranceLines = raiContent.medicalInsurance.split('\n\n');
 </Layout>
 
 <style>
+	/* Rate cards */
+	.rate-card {
+		background: var(--theme-surface);
+		border-radius: var(--theme-shape-radius);
+		padding: 2rem;
+		text-align: center;
+		transition: all 0.3s ease;
+		border: 1px solid var(--theme-outline);
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+		opacity: 0;
+		transform: translateY(20px);
+		animation: fadeInUp 0.6s ease-out 0.3s forwards;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		min-height: 320px;
+	}
 
-    li {
-        text-align: left;
-    }
+	.rate-card:nth-child(2) {
+		animation-delay: 0.5s;
+	}
+
+	.rate-card:hover {
+		transform: translateY(-4px);
+		box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+	}
+
+	.rate-card__icon {
+		margin-bottom: 1.5rem;
+		opacity: 0.7;
+		flex-shrink: 0;
+	}
+
+	.rate-card__content {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		flex-grow: 1;
+		justify-content: center;
+	}
+
+	.rate-card__title {
+		font-size: 1.25rem;
+		font-weight: 600;
+		color: var(--theme-on-surface);
+		margin: 0;
+		letter-spacing: -0.025em;
+		line-height: 1.3;
+	}
+
+	.rate-card__price {
+		font-size: 2.5rem;
+		font-weight: 700;
+		color: var(--theme-primary);
+		margin: 0.5rem 0;
+		line-height: 1;
+	}
+
+	.rate-card__features {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		margin-top: auto;
+		padding-top: 1rem;
+	}
+
+	.feature-tag {
+		background: var(--theme-primary-container);
+		color: var(--theme-on-primary-container);
+		padding: 0.5rem 1rem;
+		border-radius: 2rem;
+		font-size: 0.875rem;
+		font-weight: 500;
+		letter-spacing: 0.025em;
+		transition: all 0.2s ease;
+	}
+
+	.feature-tag:hover {
+		background: var(--theme-primary);
+		color: var(--theme-on-primary);
+	}
+
+	@keyframes fadeInUp {
+		0% {
+			opacity: 0;
+			transform: translateY(20px);
+		}
+		100% {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	/* Icon styling */
+	[astro-icon] {
+		height: 3rem;
+		width: 3rem;
+		opacity: 0.8;
+		transition: opacity 0.3s ease;
+	}
+
+	.rate-card:hover [astro-icon] {
+		opacity: 1;
+	}
+
+	[astro-icon='bi:circle-fill'] {
+		height: 2.5rem;
+		width: 2.5rem;
+	}
+
+	/* Responsive adjustments */
+	@media (max-width: 768px) {
+		.rate-card {
+			padding: 1.5rem;
+			margin-bottom: 1rem;
+			min-height: 280px;
+		}
+
+		.rate-card__price {
+			font-size: 2rem;
+		}
+
+		.feature-tag {
+			font-size: 0.8rem;
+			padding: 0.4rem 0.8rem;
+		}
+	}
+
+	/* TwoColumnTextSection overrides for rate cards */
+	:global(.two-col-text__section) {
+		gap: 1.5rem !important;
+		align-items: stretch;
+		display: flex !important;
+		flex-wrap: wrap !important;
+		justify-content: space-evenly !important;
+	}
+
+	:global(.two-col-text__column) {
+		padding: 0 0.75rem !important;
+		display: flex !important;
+		align-items: stretch !important;
+		width: calc(50% - 1.5rem) !important;
+		min-width: 300px !important;
+	}
+
+	/* Ensure cards fill the column height */
+	:global(.two-col-text__column .rate-card) {
+		flex: 1;
+		width: 100%;
+		max-width: none;
+		margin: 0;
+	}
+
+	/* Mobile adjustments */
+	@media (max-width: 768px) {
+		:global(.two-col-text__column) {
+			width: 100% !important;
+			margin-bottom: 1rem;
+		}
+	}
+
+	/* Accessibility */
+	@media (prefers-reduced-motion: reduce) {
+		.rate-card,
+		.rate-card:hover,
+		.feature-tag {
+			animation: none !important;
+			transform: none !important;
+			transition: none !important;
+			opacity: 1 !important;
+		}
+	}
+
+	/* Legacy styles */
+	li {
+		text-align: left;
+	}
+
 	.rates-card__section {
 		text-align: center;
 		max-width: 50rem;
 		margin: calc(var(--section-margin) * 2) auto;
-	}
-
-	[astro-icon] {
-		height: 3.5rem;
-	}
-
-	[astro-icon='bi:circle-fill'] {
-		height: 3rem;
 	}
 </style>

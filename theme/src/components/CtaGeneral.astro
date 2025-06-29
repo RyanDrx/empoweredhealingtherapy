@@ -8,11 +8,147 @@ import CtaCardSection from './sections/CtaCardSection.astro';
 	background="var(--theme-surface-2)"
 	color="var(--theme-on-surface-2)"
 >
-	<h2>Start Your Journey Today</h2>
-
-	<Button href="/contact" customIcon
-		>Get Started <Fragment slot="icon">
-			<Icon name="ic:baseline-chevron-right" />
-		</Fragment></Button
-	>
+	<div class="cta-content">
+		<h2 class="cta-title">Start Your Journey Today</h2>
+		<p class="cta-subtitle">Take the first step towards healing and personal growth</p>
+		<div class="cta-button">
+			<Button href="/contact" customIcon
+				>Get Started <Fragment slot="icon">
+					<Icon name="ic:baseline-chevron-right" />
+				</Fragment></Button
+			>
+		</div>
+	</div>
 </CtaCardSection>
+
+<style>
+	.cta-content {
+		opacity: 0;
+		transform: translateY(30px);
+		animation: fadeInUp 1s ease-out 0.3s forwards;
+		max-width: 600px;
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	/* Respect user's motion preferences */
+	@media (prefers-reduced-motion: reduce) {
+		.cta-content,
+		.cta-title,
+		.cta-subtitle,
+		.cta-button {
+			animation: none;
+			opacity: 1;
+			transform: none;
+		}
+		
+		.cta-button :global(button),
+		.cta-button :global(a),
+		.cta-button :global([astro-icon]) {
+			transition: none;
+		}
+	}
+
+	.cta-title {
+		font-size: 2.5rem;
+		font-weight: 700;
+		margin: 0 0 1rem 0;
+		color: var(--theme-primary);
+		opacity: 0;
+		transform: translateY(20px);
+		animation: fadeInUp 0.8s ease-out 0.5s forwards;
+		text-align: center;
+		text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+	}
+
+	.cta-subtitle {
+		font-size: 1.25rem;
+		margin: 0 0 2.5rem 0;
+		line-height: 1.6;
+		color: #444444;
+		opacity: 0;
+		transform: translateY(20px);
+		animation: fadeInUp 0.8s ease-out 0.7s forwards;
+		text-align: center;
+		max-width: 500px;
+		font-weight: 500;
+	}
+
+	.cta-button {
+		opacity: 0;
+		transform: translateY(20px) scale(0.95);
+		animation: fadeInUpScale 0.8s ease-out 0.9s forwards;
+		display: flex;
+		justify-content: center;
+		width: 100%;
+	}
+
+	.cta-button :global(button),
+	.cta-button :global(a) {
+		transition: all 0.3s ease;
+		transform: perspective(1000px) rotateX(0deg);
+	}
+
+	.cta-button :global(button:hover),
+	.cta-button :global(a:hover) {
+		transform: perspective(1000px) rotateX(-5deg) translateY(-2px);
+		box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+	}
+
+	.cta-button :global(button:focus),
+	.cta-button :global(a:focus) {
+		outline: 2px solid var(--theme-primary);
+		outline-offset: 2px;
+		transform: perspective(1000px) rotateX(-5deg) translateY(-2px);
+		box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+	}
+
+	.cta-button :global([astro-icon]) {
+		transition: transform 0.3s ease;
+	}
+
+	.cta-button :global(button:hover [astro-icon]),
+	.cta-button :global(a:hover [astro-icon]),
+	.cta-button :global(button:focus [astro-icon]),
+	.cta-button :global(a:focus [astro-icon]) {
+		transform: translateX(4px);
+	}
+
+	@keyframes fadeInUp {
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@keyframes fadeInUpScale {
+		to {
+			opacity: 1;
+			transform: translateY(0) scale(1);
+		}
+	}
+
+	@media (max-width: 768px) {
+		.cta-title {
+			font-size: 2rem;
+		}
+
+		.cta-subtitle {
+			font-size: 1.1rem;
+			margin-bottom: 2rem;
+		}
+
+		.cta-content {
+			padding: 0 1rem;
+		}
+
+		.cta-button :global(button:hover),
+		.cta-button :global(a:hover),
+		.cta-button :global(button:focus),
+		.cta-button :global(a:focus) {
+			transform: perspective(1000px) rotateX(0deg) translateY(-1px);
+		}
+	}
+</style>

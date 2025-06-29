@@ -8,7 +8,6 @@ import CustomerQuoteSection from '../components/sections/CustomerQuoteSection.as
 import StickyTextImageSection from '../components/sections/StickyTextImageSection.astro';
 import Button from '../components/buttons/Button.astro';
 import TextSection from '../components/sections/TextSection.astro';
-import { Image } from '@astrojs/image/components';
 import CtaGeneral from '../components/CtaGeneral.astro';
 import CtaNewClients from '../components/CtaNewClients.astro';
 
@@ -29,21 +28,22 @@ const seo = {
 
 	<StickyTextImageSection reversed>
 		<picture slot="image-container">
-			<Image
-				width={800}
-				height={800}
-				id="ahout-me-home"
-				src="./assets/images/home-portrait.webp"
+			<img
+				width="800"
+				height="800"
+				id="about-me-home"
+				src="/assets/images/home-portrait.webp"
 				alt="Empowered Healing Counseling Depression Anxiety Therapy"
-                >
+                />
 		</picture>
-		<div slot="text-container">
-			<h2>{homeContent.introTitle}</h2>
-
-			<p style="white-space: pre-line;">
-				{homeContent.introDescription}
-			</p>
-			<div class="intro_button">
+		<div slot="text-container" class="intro-content">
+			<h2 class="intro-title">{homeContent.introTitle}</h2>
+			<div class="intro-description">
+				{homeContent.introDescription.split('\n\n').map(paragraph => 
+					<p>{paragraph}</p>
+				)}
+			</div>
+			<div class="intro-button">
 				<Button href="/about">About Me</Button>
 			</div>
 		</div>
@@ -52,28 +52,37 @@ const seo = {
     <CtaNewClients />
 
     <Container>
-         <TextSection>
-            <h2>Telehealth Counseling</h2>
-            <p style="white-space: pre-line;">
-                {homeContent.telehealth}
-            </p>
-        </TextSection>
+        <div class="services-section">
+            <div class="service-item">
+                <div class="service-content">
+                    <h3>Telehealth Counseling</h3>
+                    <div class="service-description">
+                        {homeContent.telehealth.split('\n\n').map(paragraph => 
+                            <p>{paragraph}</p>
+                        )}
+                    </div>
+                </div>
+            </div>
 
-        <TextSection>
-            <h2>In-Person Counseling </h2>
-            <p style="white-space: pre-line;">
-                {homeContent.inPerson}
-            </p>
-            
-        </TextSection>
-       
+            <div class="service-item">
+                <div class="service-content">
+                    <h3>In-Person Counseling</h3>
+                    <div class="service-description">
+                        {homeContent.inPerson.split('\n\n').map(paragraph => 
+                            <p>{paragraph}</p>
+                        )}
+                    </div>
+                </div>
+            </div>
+        </div>
     </Container>
 
 	<Container>
 		<section class="feature-card__section">
-			<TextSection>
-				<h2>Explore</h2>
-			</TextSection>
+			<div class="explore-header">
+				<h2 class="explore-title">Explore Services</h2>
+				<p class="explore-subtitle">Learn more about my approach to healing and wellness</p>
+			</div>
 			<div class="feature-card__grid">
 				<FeatureCard
 					href="/rates-and-insurance"
@@ -95,7 +104,6 @@ const seo = {
 					title="About Me"
 					imgSrc="./assets/images/about-home"
 				/>
-
 			</div>
 		</section>
 	</Container>
@@ -104,35 +112,182 @@ const seo = {
 </Layout>
 
 <style>
+	/* Intro Section Styles */
+	.intro-content {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+	}
+
+	.intro-title {
+		font-size: 2.25rem;
+		font-weight: 600;
+		color: var(--theme-primary);
+		margin: 0;
+		line-height: 1.2;
+	}
+
+	.intro-description {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.intro-description p {
+		margin: 0;
+		line-height: 1.7;
+		font-size: 1.1rem;
+		color: var(--theme-on-surface-1);
+	}
+
+	.intro-button {
+		margin-top: 1rem;
+	}
+
+	/* Services Section Styles */
+	.services-section {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 3rem;
+		margin: 4rem 0;
+	}
+
+	.service-item {
+		padding: 2.5rem;
+		background-color: var(--theme-surface-1);
+		border-radius: var(--theme-shape-radius);
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+		transition: all 0.3s ease;
+		border-left: 4px solid var(--theme-primary);
+	}
+
+	.service-item:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+		border-left-color: var(--theme-primary);
+	}
+
+	.service-content {
+		width: 100%;
+	}
+
+	.service-content h3 {
+		margin: 0 0 1rem 0;
+		font-size: 1.5rem;
+		font-weight: 600;
+		color: var(--theme-primary);
+	}
+
+	.service-description {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.service-description p {
+		margin: 0;
+		line-height: 1.6;
+		color: var(--theme-on-surface-1);
+	}
+
+	/* Feature Cards Section Styles */
 	.feature-card__section {
 		margin: var(--section-margin) auto;
 		margin-left: 2rem;
 		margin-right: 2rem;
 	}
+
+	.explore-header {
+		text-align: center;
+		margin-bottom: 3rem;
+	}
+
+	.explore-title {
+		font-size: 2.5rem;
+		font-weight: 600;
+		color: var(--theme-primary);
+		margin: 0 0 0.75rem 0;
+	}
+
+	.explore-subtitle {
+		font-size: 1.2rem;
+		color: var(--theme-on-surface-1);
+		opacity: 0.8;
+		margin: 0;
+		max-width: 600px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
 	.feature-card__grid {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		gap: var(--theme-grid-gap);
 	}
 
-	.intro_button {
-		padding-top: 2rem;
-		padding-bottom: 2rem;
+	/* Responsive Design */
+	@media (max-width: 1024px) {
+		.services-section {
+			gap: 2rem;
+		}
 	}
+
 	@media (max-width: 768px) {
-		.feature-card__grid {
-			grid-template-columns: 1fr;
+		.intro-title {
+			font-size: 1.875rem;
 		}
 
-		.intro_button {
-            display: flex;
-            justify-content: center;
+		.intro-description p {
+			font-size: 1rem;
+		}
+
+		.intro-button {
+			display: flex;
+			justify-content: center;
+		}
+
+		.services-section {
+			gap: 1.5rem;
+			margin: 2rem 0;
+		}
+
+		.service-item {
+			flex-direction: column;
+			text-align: left;
+			padding: 2rem;
+		}
+
+		.explore-title {
+			font-size: 2rem;
+		}
+
+		.explore-subtitle {
+			font-size: 1.1rem;
+		}
+
+		.feature-card__grid {
+			grid-template-columns: 1fr;
 		}
 
 		.feature-card__section {
 			margin: var(--section-margin) auto;
 			margin-left: 0;
 			margin-right: 0;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.service-item {
+			padding: 1rem;
+		}
+
+		.service-icon {
+			width: 56px;
+			height: 56px;
+		}
+
+		.service-content h3 {
+			font-size: 1.25rem;
 		}
 	}
 </style>

@@ -7,12 +7,237 @@ import CtaCardSection from './sections/CtaCardSection.astro';
 <CtaCardSection
 	background="var(--theme-surface-1)"
 	color="var(--theme-on-surface-2)"
+	class="cta-new-clients"
 >
-	<h2 style="color:var(--theme-on-surface-2)">Accepting New Clients</h2>
-
-	<Button href="/contact" customIcon
-		>Start Here <Fragment slot="icon">
-			<Icon name="ic:baseline-chevron-right" />
-		</Fragment></Button
-	>
+	<div class="cta-content">
+		<div class="cta-header">
+			<h2 class="cta-title">New Clients Welcome</h2>
+			<p class="cta-description">
+				Ready to start your healing journey? Schedule a free 15-minute consultation to see if we're a good fit.
+			</p>
+		</div>
+		
+		<div class="cta-actions">
+			<Button href="/contact" customIcon class="primary-cta">
+				Schedule Consultation
+				<Fragment slot="icon">
+					<Icon name="ic:baseline-chevron-right" />
+				</Fragment>
+			</Button>
+			<div class="cta-note">
+				<Icon name="ic:baseline-phone" />
+				<span>Free 15-minute consultation</span>
+			</div>
+		</div>
+	</div>
 </CtaCardSection>
+
+<style>
+	:global(.cta-new-clients) {
+		position: relative;
+		overflow: hidden;
+		border: 1px solid rgba(var(--theme-primary-rgb), 0.1);
+	}
+
+	.cta-content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		gap: 2rem;
+		position: relative;
+		z-index: 2;
+	}
+
+	.cta-header {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.75rem;
+	}
+
+	.cta-indicator {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		opacity: 0;
+		animation: fadeInUp 0.6s ease-out 0.2s forwards;
+	}
+
+	.pulse-dot {
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		background-color: #22c55e;
+		position: relative;
+		animation: pulse 2s infinite;
+	}
+
+	.pulse-dot::before {
+		content: '';
+		position: absolute;
+		top: -4px;
+		left: -4px;
+		right: -4px;
+		bottom: -4px;
+		border-radius: 50%;
+		background-color: #22c55e;
+		opacity: 0.3;
+		animation: pulseRing 2s infinite;
+	}
+
+	.status-text {
+		font-size: 0.875rem;
+		font-weight: 500;
+		color: #22c55e;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+	}
+
+	.cta-title {
+		font-size: 2rem;
+		font-weight: 600;
+		margin: 0;
+		color: var(--theme-primary);
+		opacity: 0;
+		animation: fadeInUp 0.6s ease-out 0.4s forwards;
+	}
+
+	.cta-description {
+		font-size: 1.1rem;
+		line-height: 1.6;
+		margin: 0;
+		max-width: 500px;
+		opacity: 0.9;
+		opacity: 0;
+		animation: fadeInUp 0.6s ease-out 0.6s forwards;
+	}
+
+	.cta-actions {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1rem;
+		opacity: 0;
+		animation: fadeInUp 0.6s ease-out 0.8s forwards;
+	}
+
+	:global(.cta-actions .primary-cta) {
+		transform: translateY(0);
+		transition: all 0.3s ease;
+		box-shadow: 0 4px 14px rgba(var(--theme-primary-rgb), 0.2);
+	}
+
+	:global(.cta-actions .primary-cta:hover) {
+		transform: translateY(-2px);
+		box-shadow: 0 8px 25px rgba(var(--theme-primary-rgb), 0.3);
+	}
+
+	.cta-note {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-size: 0.9rem;
+		color: var(--theme-primary);
+		opacity: 0.8;
+	}
+
+	.cta-note [astro-icon] {
+		width: 1rem;
+		height: 1rem;
+	}
+
+	/* Subtle background animation */
+	:global(.cta-new-clients)::before {
+		content: '';
+		position: absolute;
+		top: -50%;
+		left: -50%;
+		width: 200%;
+		height: 200%;
+		background: radial-gradient(
+			circle,
+			rgba(var(--theme-primary-rgb), 0.03) 0%,
+			transparent 70%
+		);
+		animation: rotateGlow 20s linear infinite;
+		pointer-events: none;
+	}
+
+	/* Animations */
+	@keyframes fadeInUp {
+		from {
+			opacity: 0;
+			transform: translateY(20px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@keyframes pulse {
+		0%, 100% {
+			transform: scale(1);
+		}
+		50% {
+			transform: scale(1.1);
+		}
+	}
+
+	@keyframes pulseRing {
+		0% {
+			transform: scale(0.8);
+			opacity: 0.8;
+		}
+		100% {
+			transform: scale(2);
+			opacity: 0;
+		}
+	}
+
+	@keyframes rotateGlow {
+		0% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+
+	/* Responsive design */
+	@media (max-width: 768px) {
+		.cta-title {
+			font-size: 1.75rem;
+		}
+		
+		.cta-description {
+			font-size: 1rem;
+		}
+		
+		.cta-content {
+			gap: 1.5rem;
+		}
+	}
+
+	/* Respect reduced motion preferences */
+	@media (prefers-reduced-motion: reduce) {
+		.pulse-dot,
+		.pulse-dot::before,
+		:global(.cta-new-clients)::before {
+			animation: none;
+		}
+		
+		.cta-indicator,
+		.cta-title,
+		.cta-description,
+		.cta-actions {
+			animation: none;
+			opacity: 1;
+		}
+		
+		:global(.cta-actions .primary-cta:hover) {
+			transform: none;
+		}
+	}
+</style>

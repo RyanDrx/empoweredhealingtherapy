@@ -8,6 +8,39 @@ const currentPath = pathname.slice(1).replace('/', '');
 ---
 
 <script type="module">
+  // Logo loading handler - prevent alt text flash
+  document.addEventListener('DOMContentLoaded', () => {
+    const logoImages = document.querySelectorAll('.header-logo__link img');
+    
+    logoImages.forEach((element) => {
+      const img = element;
+      
+      // Force hide initially
+      img.style.opacity = '0';
+      img.style.visibility = 'hidden';
+      
+      // If image is already loaded (cached)
+      if (img.complete && img.naturalHeight !== 0) {
+        img.style.visibility = 'visible';
+        img.style.animation = 'logoFadeIn 0.5s ease-out forwards';
+        return;
+      }
+      
+      // Handle image load event
+      img.addEventListener('load', () => {
+        img.style.visibility = 'visible';
+        img.style.animation = 'logoFadeIn 0.5s ease-out forwards';
+      });
+      
+      // Handle image error
+      img.addEventListener('error', () => {
+        img.style.visibility = 'visible';
+        img.style.opacity = '1';
+        console.warn('Logo image failed to load:', img.src);
+      });
+    });
+  });
+
   const bodyElement = document.querySelector('body');
   const menuButton = document.querySelector('#menuButton')
   const navHeader = document.querySelector('#navHeader');
@@ -81,7 +114,7 @@ const currentPath = pathname.slice(1).replace('/', '');
         </ul>
       </nav>
       }
-       <slot name="action-item">
+    
     </slot>
     </slot>
   </div>
@@ -101,10 +134,12 @@ const currentPath = pathname.slice(1).replace('/', '');
     display: flex;
     justify-content: space-between;
     align-items: center;
+    min-height: 80px; /* Ensure consistent header height */
   }
   header.header--right {
     display: grid;
-    grid-template-columns: 1fr auto auto;
+    grid-template-columns: auto 1fr auto; /* Better space distribution */
+    gap: 1rem;
   }
 
   .active-nav-item {
@@ -115,15 +150,42 @@ const currentPath = pathname.slice(1).replace('/', '');
     width: fit-content;
     color: inherit;
     text-decoration: none;
+    flex-shrink: 0; /* Prevent logo from shrinking */
+  }
+  
+  .header-logo__link :global(img) {
+    opacity: 0 !important;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    /* Prevent any flashing by completely hiding until loaded */
+    color: transparent;
+    text-indent: -9999px;
+  }
+  
+  @keyframes logoFadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
   }
   .header-logo-menu__container {
     display: flex;
     align-items: center;
     z-index: 100;
     margin-left: 1rem;
+    flex-shrink: 0; /* Prevent logo container from shrinking */
   }
+  .header-nav__container {
+    flex: 1; /* Take up available space */
+    display: flex;
+    justify-content: center; /* Center the navigation */
+  }
+
   .header-action-item__container {
     z-index: 100;
+    flex-shrink: 0; /* Prevent action items from shrinking */
   }
 
   .header-nav__container__contact {
@@ -138,9 +200,10 @@ const currentPath = pathname.slice(1).replace('/', '');
         display: flex;
         align-items: center;
         z-index: 100;
-        justify-content: space-around;
+        justify-content: space-between; /* Better space distribution */
         width: 100%;
         margin-left: 0;
+        padding-right: 4rem; /* Account for menu button */
     }
 
     .header-nav__container__contact {
@@ -178,11 +241,34 @@ const currentPath = pathname.slice(1).replace('/', '');
     text-decoration: none;
     margin-right: 1rem;
     color: inherit;
-    opacity: 0.72;
-    transition: opacity linear 150ms;
+    opacity: 0;
+    transition: all 0.3s ease;
+    position: relative;
+    animation: subtleFadeIn 0.4s ease-out forwards;
   }
+  
+  /* Subtle stagger animation delay for each menu item */
+  nav ul li:nth-child(1) a { animation-delay: 0.05s; }
+  nav ul li:nth-child(2) a { animation-delay: 0.1s; }
+  nav ul li:nth-child(3) a { animation-delay: 0.15s; }
+  nav ul li:nth-child(4) a { animation-delay: 0.2s; }
+  nav ul li:nth-child(5) a { animation-delay: 0.25s; }
+  nav ul li:nth-child(6) a { animation-delay: 0.3s; }
+
+  @keyframes subtleFadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(-5px);
+    }
+    100% {
+      opacity: 0.72;
+      transform: translateY(0);
+    }
+  }
+
   nav ul li a:hover {
     opacity: 1;
+    transform: translateY(-1px);
   }
   @media(max-width: 930px) {
     #menuButton {
@@ -192,7 +278,12 @@ const currentPath = pathname.slice(1).replace('/', '');
 
      nav ul li a {
         margin-right: 0;
+        /* Reset desktop animations for mobile */
+        animation: none;
+        opacity: 0.72;
+        transform: none;
     }
+    
     .header-nav__container {
       width: 100%;
       height: 100%;
@@ -205,10 +296,36 @@ const currentPath = pathname.slice(1).replace('/', '');
       inset: 0;
       z-index: 99;
     }
+    
     header[mobile-menu-open] .header-nav__container {
       display: flex;
       text-align: center;
     }
+    
+    /* Mobile menu item animations */
+    header[mobile-menu-open] nav ul li a {
+      animation: subtleMobileSlideIn 0.3s ease-out forwards;
+      opacity: 0;
+    }
+    
+    header[mobile-menu-open] nav ul li:nth-child(1) a { animation-delay: 0.05s; }
+    header[mobile-menu-open] nav ul li:nth-child(2) a { animation-delay: 0.1s; }
+    header[mobile-menu-open] nav ul li:nth-child(3) a { animation-delay: 0.15s; }
+    header[mobile-menu-open] nav ul li:nth-child(4) a { animation-delay: 0.2s; }
+    header[mobile-menu-open] nav ul li:nth-child(5) a { animation-delay: 0.25s; }
+    header[mobile-menu-open] nav ul li:nth-child(6) a { animation-delay: 0.3s; }
+    
+    @keyframes subtleMobileSlideIn {
+      0% {
+        opacity: 0;
+        transform: translateX(-10px);
+      }
+      100% {
+        opacity: 0.72;
+        transform: translateX(0);
+      }
+    }
+    
     header[mobile-menu-open] nav ul {
       align-items: center;
       flex-direction: column;
@@ -217,5 +334,16 @@ const currentPath = pathname.slice(1).replace('/', '');
        font-size: var(--font-size-lg);
        margin-bottom: 1rem;
      }
+  }
+  
+  /* Accessibility: Respect reduced motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .header-logo__link :global(img),
+    nav ul li a {
+      animation: none !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: none !important;
+    }
   }
 </style>

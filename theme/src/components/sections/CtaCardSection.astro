@@ -20,12 +20,31 @@ const { background, color } = Astro.props;
 		--section-bg: var(--theme-surface-1);
 		--section-color: var(--theme-on-surface-1);
 		margin: var(--section-margin) auto;
-		padding: 2rem;
+		padding: 3rem 2rem;
 		background-color: var(--section-bg);
 		color: var(--section-color);
 		border-radius: var(--theme-shape-radius);
 		margin-left: 2rem;
 		margin-right: 2rem;
+		box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+		border: 2px solid rgba(var(--theme-primary-rgb), 0.15);
+		position: relative;
+	}
+
+	.cta-card__section::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(135deg, 
+			rgba(255, 255, 255, 0.9) 0%, 
+			rgba(255, 255, 255, 0.95) 100%);
+		border-radius: var(--theme-shape-radius);
+		z-index: 1;
+	}
+
+	.cta-card__container {
+		position: relative;
+		z-index: 2;
 	}
 	.cta-card__container {
 		margin: 0 auto;
@@ -34,6 +53,8 @@ const { background, color } = Astro.props;
 		flex-direction: column;
 		align-items: center;
 		text-align: center;
+		position: relative;
+		z-index: 2;
 	}
 
     @media (max-width: 768px) {

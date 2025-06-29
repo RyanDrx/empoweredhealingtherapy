@@ -4,7 +4,6 @@ import HeroSection from '../components/heros/HeroSection.astro';
 import resourceContent from '../../public/cms/resources.json';
 import CtaGeneral from '../components/CtaGeneral.astro';
 import CustomerQuoteSection from '../components/sections/CustomerQuoteSection.astro';
-import { Image } from '@astrojs/image/components';
 import { Resource } from '../models/resource';
 import TextSection from '../components/sections/TextSection.astro';
 import YouTubeEmbedSection from '../components/sections/YouTubeEmbedSection.astro';
@@ -29,11 +28,11 @@ const resources =  await Astro.glob<Resource>('../../public/cms/ResourceLinks/*.
 			<h1>Resources</h1>
 		</div>
 		<picture slot="image-container">
-			<Image
-				width={828}
-                aspectRatio="2:1"
+			<img
+				width="828"
+				height="414"
 				id="rai-hero"
-				src="./assets/images/helpful-resources.webp"
+				src="/assets/images/helpful-resources.webp"
 				alt="Helpful resources for depression, anxiety, and trauma"
 				loading="eager"
 			/>

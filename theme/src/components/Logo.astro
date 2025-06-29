@@ -1,34 +1,31 @@
 ---
-import { Image } from '@astrojs/image/components';
+// Temporarily using regular img tag due to @astrojs/image issues
 ---
 
-<Image
-	class="ehc-logo"
-	width={625}
-    aspectRatio="144:65"
-	src="./assets/images/EmpoweredHealingLogo.webp"
-	alt="EHC Logo"
+<a href="/" aria-label="Empowered Healing Counseling - Home">
+  <img
+    class="ehc-logo"
+    width="625"
+    height="282"
+    src="/assets/images/EmpoweredHealingLogo.webp"
+    alt="Empowered Healing Counseling - Therapy services in Tacoma, WA"
     loading="eager"
-    
-/>
-
-<!-- <svg
-	src="./assets/images/EmpoweredHealingLogo.svg"
-	alt="EHC Logo"
-	loading="eager"></svg> -->
+  />
+</a>
 
 <style>
-	.ehc-logo {
-		width: fit-content;
-		background-color: transparent;
-		height: 6.5rem;
-		/* margin-left: 5rem; */
-		font-family: var(--theme-font-family-serif);
-		font-size: var(--font-size-md);
-		color: inherit;
-	}
-	.ehc-logo:hover {
-		text-decoration: underline;
-		cursor: pointer;
-	}
+  .ehc-logo {
+    width: fit-content;
+    background-color: transparent;
+    height: 6.5rem;
+    transition: transform 0.2s ease;
+  }
+  a:hover .ehc-logo {
+    transform: scale(1.02);
+  }
+  @media (max-width: 768px) {
+    .ehc-logo {
+      height: 5rem;
+    }
+  }
 </style>

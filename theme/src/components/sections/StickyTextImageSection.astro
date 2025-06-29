@@ -7,10 +7,14 @@ const {reversed} = Astro.props;
 <Container>
   <section class={`sticky-text-image__section ${reversed && `sticky-text-image__section--reversed`}`}>
     <div class="sticky-text-image__text">
-      <slot name="text-container"></slot>
+      <div class="text-content">
+        <slot name="text-container"></slot>
+      </div>
     </div>
     <div class="sticky-text-image__image">
-      <slot name="image-container"></slot>
+      <div class="image-wrapper">
+        <slot name="image-container"></slot>
+      </div>
     </div>
   </section>
 </Container>
@@ -22,32 +26,213 @@ const {reversed} = Astro.props;
     display: grid;
     grid-template-columns: 6fr 4fr;
     position: relative;
-    gap: 2rem;
+    gap: 4rem;
     margin-left: 2rem;
     margin-right: 2rem;
+    align-items: center;
+    min-height: 70vh;
   }
+  
   .sticky-text-image__section--reversed {
     grid-template-columns: 4fr 6fr;
   }
+  
   .sticky-text-image__section--reversed .sticky-text-image__text {
     order: 2;
   }
+  
+  .sticky-text-image__text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 0;
+  }
+  
+  .text-content {
+    max-width: 100%;
+    animation: fadeInSlide 0.8s ease-out;
+  }
+  
+  .sticky-text-image__image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .image-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    animation: fadeInScale 1s ease-out 0.3s both;
+  }
+  
+  .image-wrapper::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: linear-gradient(135deg, 
+      rgba(var(--theme-primary-rgb), 0.1) 0%, 
+      rgba(var(--theme-primary-rgb), 0.05) 50%,
+      transparent 100%);
+    border-radius: calc(var(--theme-shape-radius) + 10px);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .image-wrapper:hover::before {
+    opacity: 1;
+  }
+  
   .sticky-text-image__image :global(:first-child) {
     position: sticky;
-    top: 0;
+    top: 2rem;
+    transition: all 0.3s ease;
   }
+  
   .sticky-text-image__section :global(img) {
-    	width: 100%;
-		height: 100%;
-		max-height: 80vh;
-		object-fit: cover;
-		border-radius: var(--theme-shape-radius);
+    width: 100%;
+    height: auto;
+    max-height: 70vh;
+    object-fit: cover;
+    border-radius: var(--theme-shape-radius);
+    box-shadow: 
+      0 10px 40px rgba(0, 0, 0, 0.1),
+      0 4px 25px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s ease;
   }
+  
+  .sticky-text-image__section :global(img:hover) {
+    transform: scale(1.02);
+    box-shadow: 
+      0 20px 60px rgba(0, 0, 0, 0.15),
+      0 8px 35px rgba(0, 0, 0, 0.12);
+  }
+  
+  /* Enhanced typography for slotted content */
+  .text-content :global(h2) {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--theme-primary);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+  
+  .text-content :global(p) {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--theme-on-surface-1);
+    margin-bottom: 1.25rem;
+  }
+  
+  .text-content :global(.intro-button) {
+    margin-top: 2rem;
+  }
+  
+  /* Animations */
+  @keyframes fadeInSlide {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes fadeInScale {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .sticky-text-image__section {
+      gap: 3rem;
+      min-height: auto;
+    }
+    
+    .text-content :global(h2) {
+      font-size: 2.25rem;
+    }
+  }
+  
   @media (max-width: 768px) {
     .sticky-text-image__section {
       grid-template-columns: 1fr;
       margin-left: 0;
       margin-right: 0;
+      gap: 2rem;
+      padding: 0 1rem;
+    }
+    
+    .sticky-text-image__section--reversed .sticky-text-image__text {
+      order: 2;
+    }
+    
+    .sticky-text-image__image {
+      order: 1;
+    }
+    
+    .sticky-text-image__section--reversed .sticky-text-image__image {
+      order: 1;
+    }
+    
+    .text-content {
+      text-align: center;
+    }
+    
+    .text-content :global(h2) {
+      font-size: 2rem;
+    }
+    
+    .text-content :global(p) {
+      font-size: 1rem;
+    }
+    
+    .sticky-text-image__image :global(:first-child) {
+      position: static;
+    }
+    
+    .image-wrapper {
+      max-width: 400px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .text-content :global(h2) {
+      font-size: 1.75rem;
+    }
+    
+    .image-wrapper {
+      max-width: 300px;
+    }
+  }
+  
+  /* Accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .text-content,
+    .image-wrapper {
+      animation: none;
+    }
+    
+    .sticky-text-image__section :global(img:hover) {
+      transform: none;
+    }
+    
+    .image-wrapper::before {
+      transition: none;
     }
   }
 </style>
