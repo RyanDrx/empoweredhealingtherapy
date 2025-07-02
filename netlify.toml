@@ -8,3 +8,15 @@
 
 [functions]
   node_bundler = "esbuild"
+
+# Redirect sitemap.xml to sitemap-index.xml for compatibility
+[[redirects]]
+  from = "/sitemap.xml"
+  to = "/sitemap-index.xml"
+  status = 301
+
+# Optional: Also redirect /sitemap to /sitemap-index.xml
+[[redirects]]
+  from = "/sitemap"
+  to = "/sitemap-index.xml"
+  status = 301

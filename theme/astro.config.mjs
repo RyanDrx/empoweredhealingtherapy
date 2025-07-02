@@ -11,7 +11,11 @@ export default defineConfig({
 	site: 'https://www.empoweredhealingwa.com',
 	// Your public domain, e.g.: https://my-site.dev/. Used to generate sitemaps and canonical URLs.
 	integrations: [
-		sitemap(),
+		sitemap({
+			// Force single sitemap file instead of sitemap-index
+			entryLimit: 50000, // This sets a high limit to keep everything in one file
+			// OR you can set it to a lower number if you want multiple files
+		}),
 		mdx(),
 		lit(),
 		robotsTxt({
