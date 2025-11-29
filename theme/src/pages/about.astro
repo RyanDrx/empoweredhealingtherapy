@@ -7,6 +7,7 @@ import Icon from 'astro-icon';
 import ThreeColumnTextSection from '../components/sections/ThreeColumnTextSection.astro';
 import CtaGeneral from '../components/CtaGeneral.astro';
 import CustomerQuoteSection from '../components/sections/CustomerQuoteSection.astro';
+import StickyTextImageSection from '../components/sections/StickyTextImageSection.astro';
 
 const seo = {
 	title: 'About | Empowered Healing Counseling - Meaghan Trezza, LMHC',
@@ -40,14 +41,14 @@ const seo = {
 	/>
 
 	<ThreeColumnTextSection>
-		<div slot="column-1-body">
+		<div slot="column-1-body" class="col-card">
 			<Icon name="ic:outline-school" />
 			<h2>Education</h2>
 			<p>
 				{aboutContent.education}
 			</p>
 		</div>
-		<div slot="column-2-body">
+		<div slot="column-2-body" class="col-card">
 			<Icon name="clarity:license-solid" />
 			<h2>License</h2>
 			<p>
@@ -56,7 +57,7 @@ const seo = {
 				{aboutContent.licenseNumber}
 			</p>
 		</div>
-		<div slot="column-3-body">
+		<div slot="column-3-body" class="col-card">
 			<Icon name="ri:psychotherapy-line" />
 			<h2>Training</h2>
 			<p>
@@ -64,31 +65,62 @@ const seo = {
 			</p>
 		</div>
 	</ThreeColumnTextSection>
+	<StickyTextImageSection>
+		<div slot="text-container">
+			<h2>A little bit about me</h2>
+			<div class="about-content">
+				{aboutContent.aboutContent.split('\n\n').map(paragraph => {
+					// Handle bullet point lists
+					if (paragraph.includes('\t•\t')) {
+						const [beforeList, ...rest] = paragraph.split('\n');
+						const listItems = rest.filter(item => item.includes('\t•\t'));
+						const afterListContent = rest.filter(item => !item.includes('\t•\t'));
+						
+						return (
+							<div>
+								{beforeList && <p>{beforeList}</p>}
+								<ul>
+									{listItems.map(item => 
+										<li>{item.replace('\t•\t', '').trim()}</li>
+									)}
+								</ul>
+								{afterListContent.map(content => content && <p>{content}</p>)}
+							</div>
+						);
+					} else {
+						return <p>{paragraph}</p>;
+					}
+				})}
+			</div>
+		</div>
+		<picture slot="image-container">
+			<img
+				width="800"
+				height="800"
+				src="/assets/images/home-portrait.webp"
+				alt="Meaghan Trezza - Empowered Healing Counseling"
+			/>
+		</picture>
+	</StickyTextImageSection>
+
 	<TextSection narrow>
-		<h2>A little bit about me</h2>
-		<div class="about-content">
-			{aboutContent.aboutContent.split('\n\n').map(paragraph => {
-				// Handle bullet point lists
-				if (paragraph.includes('\t•\t')) {
-					const [beforeList, ...rest] = paragraph.split('\n');
-					const listItems = rest.filter(item => item.includes('\t•\t'));
-					const afterListContent = rest.filter(item => !item.includes('\t•\t'));
-					
-					return (
-						<div>
-							{beforeList && <p>{beforeList}</p>}
-							<ul>
-								{listItems.map(item => 
-									<li>{item.replace('\t•\t', '').trim()}</li>
-								)}
-							</ul>
-							{afterListContent.map(content => content && <p>{content}</p>)}
-						</div>
-					);
-				} else {
-					return <p>{paragraph}</p>;
-				}
-			})}
+		<div class="basil-section">
+			<h2>My Co-Therapist Basil</h2>
+			<div class="basil-content">
+				<div class="basil-image">
+					<img
+						src="/assets/images/basil.png"
+						alt="Basil the therapy dog"
+						width="400"
+						height="400"
+					/>
+				</div>
+				<div class="basil-text">
+					<p>
+						Basil often comes into the office with me to spend time with my in-person clients. She is currently undergoing training as a therapy dog and is a breath of fresh air on those challenging days. Basil enjoys belly rubs, long naps, and her beloved lamb chop toy.
+					</p>
+				</div>
+			</div>
 		</div>
 	</TextSection>
 
@@ -98,6 +130,27 @@ const seo = {
 <style>
 	[astro-icon] {
 		height: 3rem;
+		color: var(--theme-primary);
+		margin-bottom: 1rem;
+	}
+
+	.col-card {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		height: 100%;
+	}
+
+	.col-card h2 {
+		font-size: 1.5rem;
+		margin-bottom: 1rem;
+		color: var(--theme-primary);
+	}
+
+	.col-card p {
+		line-height: 1.6;
+		color: var(--theme-on-surface-1);
 	}
 
 	.about-content {
@@ -117,5 +170,68 @@ const seo = {
 		margin-bottom: 0.75rem;
 		font-size: 1.05rem;
 		font-weight: 500;
+	}
+
+	/* Basil Section Styles */
+	.basil-section {
+		margin-top: 3rem;
+		padding: 2.5rem;
+		background-color: var(--theme-surface-1);
+		border-radius: var(--theme-shape-radius);
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+	}
+
+	.basil-section h2 {
+		text-align: center;
+		margin-bottom: 2rem;
+		color: var(--theme-primary);
+	}
+
+	.basil-content {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 2rem;
+		align-items: center;
+	}
+
+	.basil-image {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.basil-image img {
+		width: 100%;
+		max-width: 400px;
+		height: auto;
+		border-radius: var(--theme-shape-radius);
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+		object-fit: cover;
+	}
+
+	.basil-text p {
+		font-size: 1.1rem;
+		line-height: 1.7;
+		color: var(--theme-on-surface-1);
+		margin: 0;
+	}
+
+	@media (max-width: 768px) {
+		.basil-section {
+			padding: 1.5rem;
+		}
+
+		.basil-content {
+			grid-template-columns: 1fr;
+			gap: 1.5rem;
+		}
+
+		.basil-image img {
+			max-width: 100%;
+		}
+
+		.basil-text p {
+			font-size: 1rem;
+		}
 	}
 </style>

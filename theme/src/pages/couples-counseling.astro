@@ -1,0 +1,181 @@
+---
+import Layout from '../layouts/Page.astro';
+import TextAndImageHero from '../components/heros/TextAndImageHero.astro';
+import TextSection from '../components/sections/TextSection.astro';
+import StickyTextImageSection from '../components/sections/StickyTextImageSection.astro';
+import CtaGeneral from '../components/CtaGeneral.astro';
+import { Icon } from 'astro-icon';
+import Container from '../components/Container.astro';
+
+const seo = {
+	title: 'Couples Counseling | Empowered Healing Counseling - Meaghan Trezza, LMHC',
+	description: 'Rebuild communication, restore connection, and strengthen your relationship. Integrating the Gottman Method and Emotionally Focused Therapy (EFT).',
+};
+---
+
+<Layout {seo}>
+	<TextAndImageHero>
+		<div slot="text-container">
+			<h1>Rebuild Communication. Restore Connection.</h1>
+			<p class="hero-subheadline">
+				Integrating the Gottman Method and Emotionally Focused Therapy (EFT).
+			</p>
+		</div>
+		<picture slot="image-container">
+			<img
+				width="780"
+				height="520"
+				src="/assets/images/couples-counseling-hero.webp"
+				alt="Couple seated in a warmly lit therapy room"
+				id="couples-counseling-hero-image"
+				loading="eager"
+			/>
+		</picture>
+	</TextAndImageHero>
+
+	<TextSection>
+		<h2>Supporting Your Journey Together</h2>
+		<p>
+			Couples often seek therapy when they feel stuck in painful cycles—arguing about the same issues, feeling emotionally distant, or struggling to rebuild trust. Working with a therapist who integrates the Gottman Method and Emotionally Focused Therapy (EFT) offers the best of two highly researched and effective approaches to help couples create lasting change in both communication and connection.
+		</p>
+	</TextSection>
+
+	<Container>
+		<section class="key-outcomes-section">
+			<h3 class="key-outcomes-title">Key Outcomes</h3>
+			<ul class="key-outcomes-list">
+				<li>
+					<Icon name="ph:check-circle" />
+					<span>Break painful cycles of conflict</span>
+				</li>
+				<li>
+					<Icon name="ph:check-circle" />
+					<span>Rebuild trust and emotional safety</span>
+				</li>
+				<li>
+					<Icon name="ph:check-circle" />
+					<span>Deepen emotional connection</span>
+				</li>
+				<li>
+					<Icon name="ph:check-circle" />
+					<span>Improve communication skills</span>
+				</li>
+			</ul>
+		</section>
+	</Container>
+
+	<div class="therapeutic-orientation-wrapper">
+		<TextSection>
+			<div class="therapeutic-orientation-content">
+				<h2>Therapeutic Orientation</h2>
+				<p>
+					My theoretical orientation as a couple's therapist is grounded in both the Gottman Method and Emotionally Focused Therapy (EFT), integrating empirically supported strategies with an attachment-based, emotionally attuned framework. This blended approach allows me to address both the behavioral and emotional dimensions of relational distress while fostering sustainable, secure connection between partners.
+				</p>
+			</div>
+		</TextSection>
+	</div>
+
+	<StickyTextImageSection>
+		<picture slot="image-container">
+			<img
+				width="600"
+				height="600"
+				src="/assets/images/couples-gottman-method.webp"
+				alt="Illustration representing the Gottman Method approach"
+				class="gottman-image"
+			/>
+		</picture>
+		<div slot="text-container">
+			<h2>The Gottman Method</h2>
+			<p>
+				From the Gottman perspective, I focus on building a solid foundation of relational health through assessment and skill-building. I use Gottman interventions to help couples reduce conflict, improve communication, and strengthen friendship and shared meaning. The structured nature of this model provides partners with concrete tools to recognize destructive patterns—such as criticism, defensiveness, contempt, and stonewalling—and replace them with behaviors that promote mutual understanding and respect.
+			</p>
+		</div>
+	</StickyTextImageSection>
+
+	<CtaGeneral />
+</Layout>
+
+<style>
+	.hero-subheadline {
+		font-size: 1.25rem;
+		line-height: 1.6;
+		color: var(--theme-on-surface-1);
+		margin-top: 1rem;
+		opacity: 0.9;
+	}
+
+	@media (max-width: 768px) {
+		.hero-subheadline {
+			font-size: 1.1rem;
+		}
+	}
+
+	/* Key Outcomes Section */
+	.key-outcomes-section {
+		margin: 2rem auto 4rem auto;
+		max-width: 800px;
+	}
+
+	.key-outcomes-title {
+		text-align: center;
+		font-size: 1.5rem;
+		color: var(--theme-primary);
+		margin-bottom: 2rem;
+	}
+
+	.key-outcomes-list {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 1.5rem;
+		list-style: none;
+		padding: 0;
+	}
+
+	.key-outcomes-list li {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		font-size: 1.1rem;
+		color: var(--theme-on-surface-1);
+		background-color: var(--theme-surface-1);
+		padding: 1rem 1.5rem;
+		border-radius: var(--theme-shape-radius);
+		transition: transform 0.2s ease;
+	}
+
+	.key-outcomes-list li:hover {
+		transform: translateX(5px);
+	}
+
+	.key-outcomes-list [astro-icon] {
+		width: 1.5rem;
+		height: 1.5rem;
+		color: var(--theme-primary);
+		flex-shrink: 0;
+	}
+
+	/* Therapeutic Orientation Section */
+	.therapeutic-orientation-wrapper {
+		background-color: var(--theme-surface-2); /* Subtle background */
+		padding: 2rem 0;
+		margin: var(--section-margin) 0;
+	}
+
+	.therapeutic-orientation-content {
+		text-align: center;
+		max-width: 800px;
+		margin: 0 auto;
+	}
+
+	.therapeutic-orientation-content h2 {
+		margin-top: 0; /* Reset margin since wrapper handles spacing */
+	}
+
+	/* Gottman Image Styling */
+	.gottman-image {
+		border-radius: var(--theme-shape-radius);
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+		border: 1px solid rgba(0, 0, 0, 0.05);
+	}
+</style>

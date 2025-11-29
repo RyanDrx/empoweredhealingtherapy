@@ -49,23 +49,22 @@ import homeContent from '../../../public/cms/home.json';
 <style>
 	.hero-section__section {
 		margin: var(--section-margin) auto;
-        margin-left: 2rem;
-        margin-right: 2rem;
-		min-height: clamp(90vh, 100vw, calc(100vh - var(--navbar-height)));
+		min-height: calc(90vh - var(--navbar-height));
 		display: grid;
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: 1.2fr 1fr;
 		align-items: center;
-		gap: 1rem;
+		gap: clamp(2rem, 6vw, 5rem);
+		padding: 2rem 0;
 	}
 	.hero-section__text {
-		justify-self: center;
-		max-width: 30rem;
+		justify-self: start;
+		max-width: 42rem;
 	}
 	.hero-btns__container {
 		display: flex;
 		align-items: center;
 		gap: 1rem;
-        justify-self: center;
+		margin-top: 1.5rem;
 	}
 	.hero-btns__container {
 		margin-right: 1rem;
@@ -82,9 +81,17 @@ import homeContent from '../../../public/cms/home.json';
 	}
 	@media (max-width: 768px) {
 		.hero-section__section {
+			margin: 2rem auto 0 auto;
+			min-height: auto;
 			grid-template-columns: 1fr;
-            margin-left: 0;
-            margin-right: 0;
+			gap: 2rem;
+			padding: 1rem 0;
+		}
+
+		.hero-section__text {
+			justify-self: center;
+			text-align: center;
+			max-width: 35rem;
 		}
 
         .hero-btns__container {

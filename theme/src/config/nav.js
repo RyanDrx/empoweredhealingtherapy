@@ -4,17 +4,25 @@ export const nav = [
 		slug: '/',
 	},
 	{
-		title: 'Rates & Insurance',
-		slug: '/rates-and-insurance',
-	},
+		title: 'About',
+		slug: '/about',
+    },
 	{
 		title: 'Somatic Experiencing',
 		slug: '/somatic-experiencing',
 	},
 	{
-		title: 'About',
-		slug: '/about',
-    },
+		title: 'Play Therapy',
+		slug: '/play-therapy',
+	},
+	{
+		title: 'Couples Counseling',
+		slug: '/couples-counseling',
+	},
+	{
+		title: 'Rates & Insurance',
+		slug: '/rates-and-insurance',
+	},
     {
         title: 'Resources',
         slug: '/resources',

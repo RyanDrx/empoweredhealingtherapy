@@ -46,7 +46,7 @@ let medicalInsuranceLines = raiContent.medicalInsurance.split('\n\n');
 	</InfoCard>
 
 	<TwoColumnTextSection>
-		<h2 slot="section-title">Session Rates</h2>
+		<h2 slot="section-title">Individual Session Rates</h2>
 		<div slot="column-1-body" class="rate-card">
 			<div class="rate-card__icon">
 				<Icon name="ci:pie-chart-50" />
@@ -71,6 +71,37 @@ let medicalInsuranceLines = raiContent.medicalInsurance.split('\n\n');
 				<div class="rate-card__features">
 					<span class="feature-tag">Initial Intake Session</span>
 					<span class="feature-tag">Extended Assessment</span>
+				</div>
+			</div>
+		</div>
+	</TwoColumnTextSection>
+
+	<TwoColumnTextSection>
+		<h2 slot="section-title">Couples Therapy Rates</h2>
+		<div slot="column-1-body" class="rate-card couples-card">
+			<div class="rate-card__icon">
+				<Icon name="mdi:account-heart" />
+			</div>
+			<div class="rate-card__content">
+				<h3 class="rate-card__title">Couples Therapy Intake</h3>
+				<div class="rate-card__price">$230</div>
+				<div class="rate-card__duration">90 minutes</div>
+				<div class="rate-card__features">
+					<span class="feature-tag private-pay">Private Pay Only</span>
+				</div>
+			</div>
+		</div>
+		
+		<div slot="column-2-body" class="rate-card couples-card">
+			<div class="rate-card__icon">
+				<Icon name="mdi:heart-circle" />
+			</div>
+			<div class="rate-card__content">
+				<h3 class="rate-card__title">Couples Therapy Session</h3>
+				<div class="rate-card__price">$180</div>
+				<div class="rate-card__duration">50 minutes</div>
+				<div class="rate-card__features">
+					<span class="feature-tag private-pay">Private Pay Only</span>
 				</div>
 			</div>
 		</div>
@@ -169,6 +200,14 @@ let medicalInsuranceLines = raiContent.medicalInsurance.split('\n\n');
 		padding-top: 1rem;
 	}
 
+	.rate-card__duration {
+		font-size: 0.95rem;
+		color: var(--theme-on-surface);
+		opacity: 0.7;
+		font-weight: 500;
+		margin-top: -0.5rem;
+	}
+
 	.feature-tag {
 		background: var(--theme-primary-container);
 		color: var(--theme-on-primary-container);
@@ -183,6 +222,24 @@ let medicalInsuranceLines = raiContent.medicalInsurance.split('\n\n');
 	.feature-tag:hover {
 		background: var(--theme-primary);
 		color: var(--theme-on-primary);
+	}
+
+	.feature-tag.private-pay {
+		background: #f3e5f5;
+		color: #6a1b9a;
+	}
+
+	.feature-tag.private-pay:hover {
+		background: #6a1b9a;
+		color: white;
+	}
+
+	.couples-card {
+		border-left: 3px solid #d1a7d1;
+	}
+
+	.couples-card:hover {
+		border-left-color: #6a1b9a;
 	}
 
 	@keyframes fadeInUp {

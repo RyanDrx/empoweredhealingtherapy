@@ -8,39 +8,6 @@ const currentPath = pathname.slice(1).replace('/', '');
 ---
 
 <script type="module">
-  // Logo loading handler - prevent alt text flash
-  document.addEventListener('DOMContentLoaded', () => {
-    const logoImages = document.querySelectorAll('.header-logo__link img');
-    
-    logoImages.forEach((element) => {
-      const img = element;
-      
-      // Force hide initially
-      img.style.opacity = '0';
-      img.style.visibility = 'hidden';
-      
-      // If image is already loaded (cached)
-      if (img.complete && img.naturalHeight !== 0) {
-        img.style.visibility = 'visible';
-        img.style.animation = 'logoFadeIn 0.5s ease-out forwards';
-        return;
-      }
-      
-      // Handle image load event
-      img.addEventListener('load', () => {
-        img.style.visibility = 'visible';
-        img.style.animation = 'logoFadeIn 0.5s ease-out forwards';
-      });
-      
-      // Handle image error
-      img.addEventListener('error', () => {
-        img.style.visibility = 'visible';
-        img.style.opacity = '1';
-        console.warn('Logo image failed to load:', img.src);
-      });
-    });
-  });
-
   const bodyElement = document.querySelector('body');
   const menuButton = document.querySelector('#menuButton')
   const navHeader = document.querySelector('#navHeader');
@@ -86,10 +53,10 @@ const currentPath = pathname.slice(1).replace('/', '');
   </button>
 <header id="navHeader" class={`${rightMenu ? "header--right" : ``.trim()}`}>
   <div class="header-logo-menu__container">
-    <a class="header-logo__link" href="/">
+    <div class="header-logo__link">
         <slot name="logo">
         </slot>
-    </a>
+    </div>
   </div>
 
   <div class="header-nav__container">
@@ -116,7 +83,6 @@ const currentPath = pathname.slice(1).replace('/', '');
       }
     
     </slot>
-    </slot>
   </div>
   <div class="header-action-item__container">
     <slot name="action-item">
@@ -127,23 +93,28 @@ const currentPath = pathname.slice(1).replace('/', '');
 <style>
   header {
     width: 100%;
-    padding: 1rem 0.5rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    padding-bottom: .2rem;
+    padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    min-height: 80px; /* Ensure consistent header height */
+    min-height: 90px; /* Ensure consistent header height */
+    gap: 1rem;
+    box-sizing: border-box;
   }
   header.header--right {
     display: grid;
     grid-template-columns: auto 1fr auto; /* Better space distribution */
-    gap: 1rem;
+    gap: 1.5rem;
   }
 
-  .active-nav-item {
-    font-weight: bolder !important;
+  .active-nav-item a {
+    font-weight: 700 !important;
+    color: var(--theme-primary);
+    opacity: 1 !important;
+  }
+  
+  .active-nav-item a::after {
+    transform: scaleX(1) !important;
   }
 
   .header-logo__link {
@@ -151,36 +122,22 @@ const currentPath = pathname.slice(1).replace('/', '');
     color: inherit;
     text-decoration: none;
     flex-shrink: 0; /* Prevent logo from shrinking */
+    display: flex;
+    align-items: center;
   }
   
-  .header-logo__link :global(img) {
-    opacity: 0 !important;
-    visibility: hidden;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
-    /* Prevent any flashing by completely hiding until loaded */
-    color: transparent;
-    text-indent: -9999px;
-  }
-  
-  @keyframes logoFadeIn {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
   .header-logo-menu__container {
     display: flex;
     align-items: center;
     z-index: 100;
-    margin-left: 1rem;
     flex-shrink: 0; /* Prevent logo container from shrinking */
   }
   .header-nav__container {
     flex: 1; /* Take up available space */
     display: flex;
     justify-content: center; /* Center the navigation */
+    padding: 0 1rem;
+    min-width: 0; /* Allow nav to shrink */
   }
 
   .header-action-item__container {
@@ -191,7 +148,7 @@ const currentPath = pathname.slice(1).replace('/', '');
   .header-nav__container__contact {
     display: none;
   }
-  @media screen and (max-width: 930px) {
+  @media screen and (max-width: 1280px) {
     .header-action-item__container {
         display: none;
     }
@@ -239,12 +196,35 @@ const currentPath = pathname.slice(1).replace('/', '');
   }
   nav ul li a {
     text-decoration: none;
-    margin-right: 1rem;
+    margin-right: 1.5rem;
     color: inherit;
     opacity: 0;
-    transition: all 0.3s ease;
+    transition: color 0.3s ease;
     position: relative;
     animation: subtleFadeIn 0.4s ease-out forwards;
+    white-space: nowrap;
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    padding-bottom: 0.25rem;
+  }
+  
+  nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--theme-primary);
+    transform-origin: bottom right;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  nav ul li a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
   }
   
   /* Subtle stagger animation delay for each menu item */
@@ -261,16 +241,16 @@ const currentPath = pathname.slice(1).replace('/', '');
       transform: translateY(-5px);
     }
     100% {
-      opacity: 0.72;
+      opacity: 0.8;
       transform: translateY(0);
     }
   }
 
   nav ul li a:hover {
     opacity: 1;
-    transform: translateY(-1px);
+    color: var(--theme-primary);
   }
-  @media(max-width: 930px) {
+  @media(max-width: 1280px) {
     #menuButton {
       display: block;  
       z-index: 999;

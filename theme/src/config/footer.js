@@ -55,16 +55,24 @@ export const footerLists = [
 		title: '',
 		items: [
 			{
-				title: 'Resources',
-				slug: '/resources',
+				title: 'Somatic Experiencing',
+				slug: '/somatic-experiencing',
+			},
+			{
+				title: 'Play Therapy',
+				slug: '/play-therapy',
+			},
+			{
+				title: 'Couples Counseling',
+				slug: '/couples-counseling',
 			},
 			{
 				title: 'Rates & Insurance',
 				slug: '/rates-and-insurance',
 			},
 			{
-				title: 'Somatic Experiencing',
-				slug: '/somatic-experiencing',
+				title: 'Resources',
+				slug: '/resources',
 			},
 		],
 	},

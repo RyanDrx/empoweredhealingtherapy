@@ -15,17 +15,24 @@
 
 <style>
   .ehc-logo {
-    width: fit-content;
+    width: auto;
     background-color: transparent;
-    height: 6.5rem;
+    height: 5rem;
     transition: transform 0.2s ease;
+    display: block;
+    max-width: none;
+    object-fit: contain;
+  }
+  a {
+    display: block;
+    flex-shrink: 0;
   }
   a:hover .ehc-logo {
     transform: scale(1.02);
   }
   @media (max-width: 768px) {
     .ehc-logo {
-      height: 5rem;
+      height: 4rem;
     }
   }
 </style>

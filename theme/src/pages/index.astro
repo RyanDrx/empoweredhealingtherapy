@@ -7,7 +7,6 @@ import homeContent from '../../public/cms/home.json';
 import CustomerQuoteSection from '../components/sections/CustomerQuoteSection.astro';
 import StickyTextImageSection from '../components/sections/StickyTextImageSection.astro';
 import Button from '../components/buttons/Button.astro';
-import TextSection from '../components/sections/TextSection.astro';
 import CtaGeneral from '../components/CtaGeneral.astro';
 import CtaNewClients from '../components/CtaNewClients.astro';
 
@@ -93,6 +92,16 @@ const seo = {
 					href="/somatic-experiencing"
 					title="Somatic Experiencing"
 					imgSrc="/assets/images/somatic-experiencing-home"
+				/>
+				<FeatureCard
+					href="/play-therapy"
+					title="Play Therapy"
+					imgSrc="/assets/images/play-therapy-hero"
+				/>
+				<FeatureCard
+					href="/couples-counseling"
+					title="Couples Counseling"
+					imgSrc="/assets/images/couples-counseling-hero"
 				/>
                 <FeatureCard
 					href="/resources"
@@ -192,37 +201,38 @@ const seo = {
 
 	/* Feature Cards Section Styles */
 	.feature-card__section {
-		margin: var(--section-margin) auto;
-		margin-left: 2rem;
-		margin-right: 2rem;
+		margin: 4rem auto;
+		max-width: var(--container-max-width-narrow);
 	}
 
 	.explore-header {
 		text-align: center;
-		margin-bottom: 3rem;
+		margin-bottom: 3.5rem;
 	}
 
 	.explore-title {
-		font-size: 2.5rem;
-		font-weight: 600;
+		font-size: clamp(2rem, 4vw, 2.75rem);
+		font-weight: 700;
 		color: var(--theme-primary);
-		margin: 0 0 0.75rem 0;
+		margin: 0 0 1rem 0;
+		letter-spacing: -0.02em;
 	}
 
 	.explore-subtitle {
-		font-size: 1.2rem;
+		font-size: 1.25rem;
 		color: var(--theme-on-surface-1);
-		opacity: 0.8;
+		opacity: 0.85;
 		margin: 0;
 		max-width: 600px;
 		margin-left: auto;
 		margin-right: auto;
+		line-height: 1.6;
 	}
 
 	.feature-card__grid {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
-		gap: var(--theme-grid-gap);
+		gap: 2.5rem;
 	}
 
 	/* Responsive Design */

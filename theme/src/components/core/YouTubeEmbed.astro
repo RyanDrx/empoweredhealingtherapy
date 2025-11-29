@@ -2,12 +2,39 @@
 const { url, rounded, loading = 'lazy' } = Astro.props;
 
 function getYouTubeId(url) {
+  if (!url) return null;
+  const cleanUrl = url.trim();
+  
+  try {
+    // Handle standard youtube.com URLs
+    if (cleanUrl.includes('youtube.com/watch')) {
+      const urlObj = new URL(cleanUrl);
+      return urlObj.searchParams.get('v');
+    }
+    
+    // Handle youtu.be URLs
+    if (cleanUrl.includes('youtu.be/')) {
+      const urlObj = new URL(cleanUrl);
+      return urlObj.pathname.slice(1);
+    }
+    
+    // Handle embed URLs
+    if (cleanUrl.includes('youtube.com/embed/')) {
+        const parts = cleanUrl.split('embed/');
+        return parts[1].split('?')[0];
+    }
+  } catch (e) {
+    // Fallback to regex if URL parsing fails
+  }
+
   const regExp =
     /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-  const match = url.match(regExp);
+  const match = cleanUrl.match(regExp);
 
   return match && match[2].length === 11 ? match[2] : null;
 }
+
+const videoId = getYouTubeId(url);
 ---
 
 <style>
@@ -45,18 +72,21 @@ function getYouTubeId(url) {
   }
 </style>
 
+{videoId && (
 <div
   class={`youtube-embed__container ${
     rounded && `youtube-embed__container--rounded`
   }`}
 >
   <iframe
-    src={`https://www.youtube.com/embed/${getYouTubeId(url)}`}
+    src={`https://www.youtube.com/embed/${videoId}`}
     title="YouTube video player"
     frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
     allowfullscreen
     loading={loading}
   >
   </iframe>
 </div>
+)}

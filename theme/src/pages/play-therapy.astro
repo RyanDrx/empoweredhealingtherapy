@@ -1,0 +1,264 @@
+---
+import Layout from '../layouts/Page.astro';
+import TextAndImageHero from '../components/heros/TextAndImageHero.astro';
+import TextSection from '../components/sections/TextSection.astro';
+import StickyTextImageSection from '../components/sections/StickyTextImageSection.astro';
+import Container from '../components/Container.astro';
+import CtaGeneral from '../components/CtaGeneral.astro';
+import { Icon } from 'astro-icon';
+
+const seo = {
+	title: 'Play Therapy | Empowered Healing Counseling - Meaghan Trezza, LMHC',
+	description: 'Helping children feel safe, understood, and capable through play therapy. A supportive space where children explore emotions through the natural language of play.',
+};
+---
+
+<Layout {seo}>
+	<TextAndImageHero>
+		<div slot="text-container">
+			<h1> Safe, Understood, and Capable</h1>
+			<p class="hero-subheadline">
+				A supportive space where children explore emotions through the natural language of play.
+			</p>
+		</div>
+		<picture slot="image-container">
+			<img
+				width="780"
+				height="520"
+				src="/assets/images/play-therapy-hero.webp"
+				alt="Cozy therapy room with toys and warm lighting"
+				id="play-therapy-hero-image"
+				loading="eager"
+			/>
+		</picture>
+	</TextAndImageHero>
+
+	<TextSection>
+		<h2>Creating a Safe Space for Expression</h2>
+		<p>
+			Parents often come to play therapy when their child is struggling with big feelings, behavioral challenges, or life changes they don't yet have the words to explain. As a play therapist, I offer children a safe, supportive space where they can express themselves through play—the natural language of childhood.
+		</p>
+		<p>
+			I understand that every behavior tells a story, and my approach helps uncover what your child's play and actions are communicating about their inner world. Using evidence-based play therapy techniques, I help children process emotions, build coping skills, and develop confidence in a way that feels natural and empowering for them.
+		</p>
+		<p>
+			My work is grounded in warmth, empathy, and respect for each child's pace and individuality. I collaborate closely with parents, providing insight and guidance so you can better understand and support your child's emotional needs at home. Together, we create a consistent circle of support that helps your child feel safe, understood, and capable.
+		</p>
+	</TextSection>
+
+	<StickyTextImageSection reversed>
+		<picture slot="image-container">
+			<img
+				width="600"
+				height="600"
+				src="/assets/images/play-therapy-toys.webp"
+				alt="Child using toys and art supplies in a relaxed therapy environment"
+			/>
+		</picture>
+		<div slot="text-container">
+			<h2>What Is Play Therapy?</h2>
+			<p>
+				Play therapy is a form of psychotherapy that uses play—the natural way children express thoughts and feelings—as a means of communication and healing. It is most often used with children between the ages of 3 and 12 but can also benefit adolescents and even adults in some cases.
+			</p>
+			<h3>Purpose</h3>
+			<p>
+				Play therapy helps children express emotions, resolve conflicts, develop problem-solving skills, and improve behavior. It provides a safe, supportive space where children can explore experiences they may not yet have the words to describe.
+			</p>
+		</div>
+	</StickyTextImageSection>
+
+	<TextSection>
+		<h2>How It Works</h2>
+		<p>
+			In play therapy, toys, art materials, sand trays, puppets, and games are used as tools for expression. The therapist observes and interacts with the child to gain insight into their emotional world and to guide them toward healthier coping mechanisms.
+		</p>
+	</TextSection>
+
+	<Container>
+		<section class="goals-section">
+			<h2 class="goals-title">Goals of Play Therapy</h2>
+			<div class="goals-grid">
+				<div class="goal-card">
+					<div class="goal-icon">
+						<Icon name="iconoir:emoji-talking-happy" />
+					</div>
+					<h3>Emotional Expression</h3>
+					<p>Enhance emotional expression and self-awareness</p>
+				</div>
+				<div class="goal-card">
+					<div class="goal-icon">
+						<Icon name="ph:handshake" />
+					</div>
+					<h3>Communication Skills</h3>
+					<p>Build trust and communication skills</p>
+				</div>
+				<div class="goal-card">
+					<div class="goal-icon">
+						<Icon name="ph:shield-check" />
+					</div>
+					<h3>Reduce Challenges</h3>
+					<p>Reduce anxiety, trauma symptoms, or behavioral challenges</p>
+				</div>
+				<div class="goal-card">
+					<div class="goal-icon">
+						<Icon name="ph:heart" />
+					</div>
+					<h3>Strengthen Relationships</h3>
+					<p>Strengthen relationships with parents, peers, and caregivers</p>
+				</div>
+			</div>
+			<div class="goals-summary">
+				<p>
+					In essence, play therapy uses play as a language—allowing children to process experiences and emotions in a natural, developmentally appropriate way, supported by a trained therapist.
+				</p>
+			</div>
+		</section>
+	</Container>
+
+	<CtaGeneral />
+</Layout>
+
+<style>
+	.hero-subheadline {
+		font-size: 1.25rem;
+		line-height: 1.6;
+		color: var(--theme-on-surface-1);
+		margin-top: 1rem;
+		opacity: 0.9;
+	}
+
+	/* Goals Section Styles */
+	.goals-section {
+		margin: var(--section-margin) auto;
+		padding: 3rem 2rem;
+		background-color: var(--theme-surface-1);
+		border-radius: calc(var(--theme-shape-radius) * 2);
+	}
+
+	.goals-title {
+		text-align: center;
+		font-size: 2.25rem;
+		font-weight: 600;
+		color: var(--theme-primary);
+		margin: 0 0 3rem 0;
+	}
+
+	.goals-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		gap: 2rem;
+		margin-bottom: 3rem;
+	}
+
+	.goal-card {
+		background-color: white;
+		padding: 2rem;
+		border-radius: var(--theme-shape-radius);
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+		text-align: center;
+		transition: all 0.3s ease;
+		border: 2px solid transparent;
+		opacity: 0;
+		transform: translateY(20px);
+		animation: fadeInUp 0.6s ease-out forwards;
+	}
+
+	.goal-card:nth-child(1) { animation-delay: 0.1s; }
+	.goal-card:nth-child(2) { animation-delay: 0.2s; }
+	.goal-card:nth-child(3) { animation-delay: 0.3s; }
+	.goal-card:nth-child(4) { animation-delay: 0.4s; }
+
+	@keyframes fadeInUp {
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	.goal-card:hover {
+		transform: translateY(-4px);
+		box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+		border-color: var(--theme-primary);
+	}
+
+	.goal-icon {
+		font-size: 3rem;
+		margin-bottom: 1rem;
+		display: flex;
+		justify-content: center;
+		color: var(--theme-primary);
+	}
+	
+	.goal-icon [astro-icon] {
+		width: 3rem;
+		height: 3rem;
+	}
+
+	.goal-card h3 {
+		font-size: 1.25rem;
+		font-weight: 600;
+		color: var(--theme-primary);
+		margin: 0 0 0.75rem 0;
+	}
+
+	.goal-card p {
+		font-size: 1rem;
+		line-height: 1.6;
+		color: var(--theme-on-surface-1);
+		margin: 0;
+	}
+
+	.goals-summary {
+		text-align: center;
+		max-width: 700px;
+		margin: 0 auto;
+		padding: 2rem;
+		background-color: white;
+		border-radius: var(--theme-shape-radius);
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+	}
+
+	.goals-summary p {
+		font-size: 1.1rem;
+		line-height: 1.7;
+		color: var(--theme-on-surface-1);
+		margin: 0;
+	}
+
+	@media (max-width: 768px) {
+		.hero-subheadline {
+			font-size: 1.1rem;
+		}
+
+		.goals-section {
+			padding: 2rem 1rem;
+		}
+
+		.goals-title {
+			font-size: 1.875rem;
+			margin-bottom: 2rem;
+		}
+
+		.goals-grid {
+			grid-template-columns: 1fr;
+			gap: 1.5rem;
+			margin-bottom: 2rem;
+		}
+
+		.goal-card {
+			padding: 1.5rem;
+		}
+
+		.goal-icon {
+			font-size: 2.5rem;
+		}
+
+		.goals-summary {
+			padding: 1.5rem;
+		}
+
+		.goals-summary p {
+			font-size: 1rem;
+		}
+	}
+</style>
