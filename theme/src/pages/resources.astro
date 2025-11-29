@@ -56,7 +56,7 @@ const resources =  await Astro.glob<Resource>('../../public/cms/ResourceLinks/*.
                                     <YouTubeEmbed url={resource.resourceLink} />
                                 ) : (
                                     <div class="resource-card__icon-placeholder">
-                                        <Icon name="ph:link-bold" />
+                                        <Icon name="mdi:link" />
                                     </div>
                                 )}
                             </div>
@@ -72,7 +72,7 @@ const resources =  await Astro.glob<Resource>('../../public/cms/ResourceLinks/*.
                                     <Button href={resource.resourceLink} target="_blank" unelevated customIcon newTab>
                                         {isVideo ? 'Watch Video' : 'Visit Resource'}
                                         <Fragment slot="icon">
-                                            <Icon name={isVideo ? "ph:play-circle" : "la:external-link-alt"}/>
+                                            <Icon name={isVideo ? "mdi:play-circle" : "mdi:launch"}/>
                                         </Fragment>
                                     </Button>
                                 </div>
