@@ -159,17 +159,37 @@ const seo = {
 
 	.about-content p {
 		margin-bottom: 1.5rem;
+		text-align: left;
+	}
+
+	.about-content > div {
+		text-align: left;
 	}
 
 	.about-content ul {
-		margin: 2rem 0;
-		padding-left: 1rem;
+		margin: 1rem 0 2rem 0;
+		padding-left: 0;
+		list-style: none;
+		text-align: left;
+		max-width: 600px;
 	}
 
 	.about-content ul li {
-		margin-bottom: 0.75rem;
-		font-size: 1.05rem;
-		font-weight: 500;
+		margin-bottom: 0.5rem;
+		font-size: 1rem;
+		font-weight: 400;
+		line-height: 1.6;
+		padding-left: 0;
+		text-align: left;
+		position: relative;
+	}
+
+	.about-content ul li::before {
+		content: "•";
+		color: var(--theme-primary);
+		font-weight: bold;
+		font-size: 1.2em;
+		margin-right: 0.75rem;
 	}
 
 	/* Basil Section Styles */
@@ -217,6 +237,27 @@ const seo = {
 	}
 
 	@media (max-width: 768px) {
+		.about-content p {
+			margin-bottom: 1.25rem;
+			font-size: 0.95rem;
+		}
+
+		.about-content ul {
+			margin: 1rem 0 1.5rem 0;
+			max-width: 100%;
+		}
+
+		.about-content ul li {
+			margin-bottom: 0.4rem;
+			font-size: 0.9rem;
+			line-height: 1.5;
+		}
+
+		.about-content ul li::before {
+			font-size: 1.1em;
+			margin-right: 0.6rem;
+		}
+
 		.basil-section {
 			padding: 1.5rem;
 		}
