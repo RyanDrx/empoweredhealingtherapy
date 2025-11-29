@@ -1,0 +1,23 @@
+
+> odyssey-theme@2.0.2 build /Users/ryandierickx/Documents/GitHub/empoweredhealingtherapy/theme
+> astro build
+
+14:55:03 [WARN] The injected route "/admin" by netlify-cms specifies the entry point with the "entryPoint" property. This property is deprecated, please use "entrypoint" instead.
+14:55:04 [types] Updated src/env.d.ts type declarations.
+14:55:04 [types] Generated 358ms
+14:55:04 [build] output: "static"
+14:55:04 [build] directory: /Users/ryandierickx/Documents/GitHub/empoweredhealingtherapy/theme/dist/
+14:55:04 [build] Collecting build info...
+14:55:04 [build] ✓ Completed in 377ms.
+14:55:04 [build] Building static entrypoints...
+14:55:04 [ERROR] [vite] x Build failed in 584ms
+[vite]: Rollup failed to resolve import "virtual:astro-icon" from "/Users/ryandierickx/Documents/GitHub/empoweredhealingtherapy/theme/node_modules/.pnpm/astro-icon@1.1.5/node_modules/astro-icon/components/Icon.astro".
+This is most likely unintended because it can break your application at runtime.
+If you do want to externalize this module explicitly add it to
+`build.rollupOptions.external`
+  Stack trace:
+    at viteWarn (file:///Users/ryandierickx/Documents/GitHub/empoweredhealingtherapy/theme/node_modules/.pnpm/vite@5.4.21_@types+node@24.10.1_lightningcss@1.29.3_terser@5.39.0/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:65855:17)
+    at onRollupWarning (file:///Users/ryandierickx/Documents/GitHub/empoweredhealingtherapy/theme/node_modules/.pnpm/vite@5.4.21_@types+node@24.10.1_lightningcss@1.29.3_terser@5.39.0/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:65885:5)
+    at file:///Users/ryandierickx/Documents/GitHub/empoweredhealingtherapy/theme/node_modules/.pnpm/rollup@4.53.3/node_modules/rollup/dist/es/shared/node-entry.js:20975:13
+    at ModuleLoader.handleInvalidResolvedId (file:///Users/ryandierickx/Documents/GitHub/empoweredhealingtherapy/theme/node_modules/.pnpm/rollup@4.53.3/node_modules/rollup/dist/es/shared/node-entry.js:21592:26)
+ ELIFECYCLE  Command failed with exit code 1.

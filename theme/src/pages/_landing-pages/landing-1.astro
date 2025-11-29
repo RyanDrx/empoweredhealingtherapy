@@ -1,5 +1,5 @@
 ---
-import { Icon } from 'astro-icon';
+import Icon from '../../components/Icon.astro';
 import {
 	AnnouncementBar,
 	Button,
@@ -32,7 +32,7 @@ const seo = {
 		<div slot="btns-container">
 			<Button href="/contact" customIcon
 				>Get Started <Fragment slot="icon">
-					<Icon name="mdi:chevron-right" />
+					<Icon name="line-md:chevron-small-right" />
 				</Fragment></Button
 			>
 		</div>
@@ -132,7 +132,7 @@ const seo = {
 		</p>
 		<Button href="/theme/get-started" customIcon
 			>Get Started <Fragment slot="icon">
-				<Icon name="mdi:chevron-right" />
+				<Icon name="line-md:chevron-small-right" />
 			</Fragment></Button
 		>
 	</CtaCardSection>

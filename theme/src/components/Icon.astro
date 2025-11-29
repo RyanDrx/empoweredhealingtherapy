@@ -1,0 +1,16 @@
+---
+export interface Props {
+  name: string;
+  width?: string;
+  height?: string;
+  class?: string;
+}
+
+const { name, width, height, class: className } = Astro.props;
+---
+
+<iconify-icon icon={name} width={width} height={height} class={className}></iconify-icon>
+
+<script>
+  import 'iconify-icon';
+</script>

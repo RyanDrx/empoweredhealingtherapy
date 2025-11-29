@@ -1,7 +1,7 @@
 ---
 import Button from '../buttons/Button.astro';
 import Container from '../Container.astro';
-import { Icon } from 'astro-icon';
+import Icon from '../Icon.astro';
 import settings from '../../config/settings.js';
 import { ThemeSwitcher } from '../theme-switcher/theme-switcher';
 import homeContent from '../../../public/cms/home.json';
@@ -20,14 +20,14 @@ import homeContent from '../../../public/cms/home.json';
 				<div class="hero-btns__container">
 					<Button href="/contact"  customIcon>Get Started
                         <Fragment slot="icon">
-                            <Icon name="mdi:chevron-right"/>
+                            <Icon name="line-md:chevron-right"/>
                         </Fragment>
                     </Button>
                         
                 <Button href="https://www.therapyportal.com/p/empowered98403/" target="_blank" unelevated customIcon newTab>
                     Client Portal 
                     <Fragment slot="icon">
-                            <Icon name="mdi:launch"/>
+                            <Icon name="line-md:external-link-rounded"/>
                     </Fragment>
                 </Button>
 		    </div>

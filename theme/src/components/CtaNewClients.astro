@@ -1,5 +1,5 @@
 ---
-import { Icon } from 'astro-icon';
+import Icon from './Icon.astro';
 import Button from './buttons/Button.astro';
 import CtaCardSection from './sections/CtaCardSection.astro';
 ---
@@ -21,11 +21,11 @@ import CtaCardSection from './sections/CtaCardSection.astro';
 			<Button href="/contact" customIcon class="primary-cta">
 				Schedule Consultation
 				<Fragment slot="icon">
-					<Icon name="mdi:chevron-right" />
+					<Icon name="line-md:chevron-small-right" />
 				</Fragment>
 			</Button>
 			<div class="cta-note">
-				<Icon name="mdi:phone" />
+				<Icon name="line-md:phone-filled" />
 				<span>Free 15-minute consultation</span>
 			</div>
 		</div>

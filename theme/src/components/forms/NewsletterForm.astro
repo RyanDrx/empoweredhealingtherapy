@@ -1,5 +1,5 @@
 ---
-import {Icon} from 'astro-icon'
+import Icon from '../Icon.astro'
 import FormInput from '../form-fields/FormInput.astro';
 import Button from '../buttons/Button.astro';
 
@@ -10,7 +10,7 @@ import Button from '../buttons/Button.astro';
     <FormInput name="Email" placeholder="hello@example.com"/>
     <Button customIcon>Submit
       <Fragment slot="icon">
-        <Icon name="mdi:chevron-right" />
+        <Icon name="line-md:chevron-small-right" />
       </Fragment>
     </Button>
   </div>

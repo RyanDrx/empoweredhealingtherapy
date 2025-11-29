@@ -259,6 +259,7 @@ export default defineConfig({
 	vite: {
 		ssr: {
 			external: ['svgo'],
+			noExternal: ['@iconify-json/*'],
 		},
 		build: {
 			rollupOptions: {

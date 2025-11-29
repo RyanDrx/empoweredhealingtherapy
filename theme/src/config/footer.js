@@ -2,17 +2,17 @@ export const footerSocials = [
 	// {
 	// 	name: 'Twitter',
 	// 	url: 'https://twitter.com/',
-	// 	icon: 'mdi:twitter',
+	// 	icon: 'line-md:twitter',
 	// },
 	// {
 	// 	name: 'Youtube',
 	// 	url: 'https://youtube.com/c/',
-	// 	icon: 'mdi:youtube',
+	// 	icon: 'line-md:youtube',
 	// },
 	// {
 	// 	name: 'Facebook',
 	// 	url: 'https://facebook.com/',
-	// 	icon: 'mdi:facebook',
+	// 	icon: 'line-md:facebook',
 	// },
 ];
 

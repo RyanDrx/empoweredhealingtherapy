@@ -4,7 +4,7 @@ import HeroSection from '../components/heros/HeroSection.astro';
 import raiContent from '../../public/cms/ratesandinsurance.json';
 import CtaGeneral from '../components/CtaGeneral.astro';
 import TwoColumnTextSection from '../components/sections/TwoColumnTextSection.astro';
-import { Icon } from 'astro-icon';
+import Icon from '../components/Icon.astro';
 import InfoCard from '../components/InfoCard.astro';
 import CustomerQuoteSection from '../components/sections/CustomerQuoteSection.astro';
 
@@ -38,7 +38,7 @@ let medicalInsuranceLines = raiContent.medicalInsurance.split('\n\n');
 		customerName={raiContent.quoteAuthor}
 	/>
 
-	<InfoCard iconName="mdi:phone-message">
+	<InfoCard iconName="line-md:phone-message">
 		<h2 slot="card__title">Phone Consultation</h2>
 		<p slot="card__body">
 			{raiContent.phoneConsultation}
@@ -80,7 +80,7 @@ let medicalInsuranceLines = raiContent.medicalInsurance.split('\n\n');
 		<h2 slot="section-title">Couples Therapy Rates</h2>
 		<div slot="column-1-body" class="rate-card couples-card">
 			<div class="rate-card__icon">
-				<Icon name="mdi:account-heart" />
+				<Icon name="line-md:account-heart" />
 			</div>
 			<div class="rate-card__content">
 				<h3 class="rate-card__title">Couples Therapy Intake</h3>
@@ -94,7 +94,7 @@ let medicalInsuranceLines = raiContent.medicalInsurance.split('\n\n');
 		
 		<div slot="column-2-body" class="rate-card couples-card">
 			<div class="rate-card__icon">
-				<Icon name="mdi:heart-circle" />
+				<Icon name="line-md:heart-circle" />
 			</div>
 			<div class="rate-card__content">
 				<h3 class="rate-card__title">Couples Therapy Session</h3>
@@ -115,14 +115,14 @@ let medicalInsuranceLines = raiContent.medicalInsurance.split('\n\n');
        
     </InfoCard>
 
-	<InfoCard iconName="mdi:credit-card-check-outline">
+	<InfoCard iconName="line-md:credit-card-check-outline">
 		<h2 slot="card__title">Credit Cards & HSA</h2>
 		<p slot="card__body">
 			{raiContent.payments}
 		</p>
 	</InfoCard>
 
-	<InfoCard iconName="mdi:cancel">
+	<InfoCard iconName="line-md:cancel">
 		<h2 slot="card__title">Cancellation Policy</h2>
 		<p slot="card__body">
 			{raiContent.cancelationPolicy}

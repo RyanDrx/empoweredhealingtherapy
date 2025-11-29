@@ -1,5 +1,5 @@
 ---
-import {Icon} from 'astro-icon';
+import Icon from '../../components/Icon.astro';
 import { Button, Container, TextCardSection } from '@littlesticks/odyssey-theme-components';
 import Layout from '../../layouts/Page.astro';
 
@@ -22,7 +22,7 @@ const seo = {
         >
         Get Odyssey Theme
         <Fragment slot="icon">
-          <Icon name="mdi:launch" />
+          <Icon name="line-md:external-link-rounded" />
         </Fragment>
       </Button>
         <Button
@@ -31,7 +31,7 @@ const seo = {
 					>
           Theme Setup
           <Fragment slot="icon">
-            <Icon name="mdi:chevron-right" />
+            <Icon name="line-md:chevron-small-right" />
           </Fragment>
 				</Button>
         <Button
@@ -40,7 +40,7 @@ const seo = {
 					>
           Customizing Odyssey
           <Fragment slot="icon">
-            <Icon name="mdi:chevron-right" />
+            <Icon name="line-md:chevron-small-right" />
           </Fragment>
 				</Button>
 			</div>
