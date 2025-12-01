@@ -42,14 +42,18 @@ const seo = {
 
 	<ThreeColumnTextSection>
 		<div slot="column-1-body" class="col-card">
-			<Icon name="line-md:school-outline" />
+			<div class="icon-wrapper">
+				<Icon name="mdi:school-outline" width="80" height="80" />
+			</div>
 			<h2>Education</h2>
 			<p>
 				{aboutContent.education}
 			</p>
 		</div>
 		<div slot="column-2-body" class="col-card">
-			<Icon name="clarity:license-solid" />
+			<div class="icon-wrapper">
+				<Icon name="mdi:certificate-outline" width="80" height="80" />
+			</div>
 			<h2>License</h2>
 			<p>
 				I am a Licensed Mental Health Counselor in Washington state:
@@ -58,7 +62,9 @@ const seo = {
 			</p>
 		</div>
 		<div slot="column-3-body" class="col-card">
-			<Icon name="ri:psychotherapy-line" />
+			<div class="icon-wrapper">
+				<Icon name="mdi:brain" width="80" height="80" />
+			</div>
 			<h2>Training</h2>
 			<p>
 				{aboutContent.training}
@@ -67,7 +73,10 @@ const seo = {
 	</ThreeColumnTextSection>
 	<StickyTextImageSection>
 		<div slot="text-container">
-			<h2>A little bit about me</h2>
+			<div class="about-intro">
+				<h2>A little bit about me</h2>
+				<div class="about-divider"></div>
+			</div>
 			<div class="about-content">
 				{aboutContent.aboutContent.split('\n\n').map(paragraph => {
 					// Handle bullet point lists
@@ -77,9 +86,9 @@ const seo = {
 						const afterListContent = rest.filter(item => !item.includes('\t•\t'));
 						
 						return (
-							<div>
-								{beforeList && <p>{beforeList}</p>}
-								<ul>
+							<div class="about-section">
+								{beforeList && <h3 class="section-heading">{beforeList}</h3>}
+								<ul class="specializations-list">
 									{listItems.map(item => 
 										<li>{item.replace('\t•\t', '').trim()}</li>
 									)}
@@ -88,7 +97,7 @@ const seo = {
 							</div>
 						);
 					} else {
-						return <p>{paragraph}</p>;
+						return <p class="about-paragraph">{paragraph}</p>;
 					}
 				})}
 			</div>
@@ -128,10 +137,20 @@ const seo = {
 </Layout>
 
 <style>
-	[astro-icon] {
-		height: 3rem;
+	.icon-wrapper {
+		margin-bottom: 1.5rem;
+	}
+
+	.icon-wrapper [astro-icon] {
+		height: 80px;
+		width: 80px;
 		color: var(--theme-primary);
-		margin-bottom: 1rem;
+		transition: transform 0.3s ease, color 0.3s ease;
+	}
+
+	.icon-wrapper:hover [astro-icon] {
+		transform: scale(1.1);
+		color: var(--theme-primary-hover);
 	}
 
 	.col-card {
@@ -140,71 +159,136 @@ const seo = {
 		align-items: center;
 		text-align: center;
 		height: 100%;
+		padding: 2.5rem 2rem;
+		background: var(--theme-surface-1);
+		border-radius: calc(var(--theme-shape-radius) * 1.5);
+		transition: transform 0.3s ease, box-shadow 0.3s ease;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+		border: 1px solid rgba(0, 0, 0, 0.03);
+	}
+
+	.col-card:hover {
+		transform: translateY(-4px);
+		box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
 	}
 
 	.col-card h2 {
 		font-size: 1.5rem;
 		margin-bottom: 1rem;
 		color: var(--theme-primary);
+		font-weight: 700;
+		letter-spacing: -0.02em;
 	}
 
 	.col-card p {
-		line-height: 1.6;
+		line-height: 1.7;
 		color: var(--theme-on-surface-1);
+		font-size: 1.05rem;
+		max-width: 90%;
+	}
+
+	.about-intro {
+		margin-bottom: 2rem;
+	}
+
+	.about-intro h2 {
+		font-size: 2rem;
+		font-weight: 700;
+		color: var(--theme-primary);
+		margin-bottom: 1rem;
+		letter-spacing: -0.02em;
+	}
+
+	.about-divider {
+		width: 60px;
+		height: 4px;
+		background: linear-gradient(90deg, var(--theme-primary) 0%, var(--theme-primary-hover) 100%);
+		border-radius: 2px;
 	}
 
 	.about-content {
 		max-width: none;
 	}
 
-	.about-content p {
+	.about-paragraph {
+		margin-bottom: 1.75rem;
+		text-align: left;
+		font-size: 1.05rem;
+		line-height: 1.8;
+		color: var(--theme-on-surface-1);
+	}
+
+	.about-paragraph:first-of-type {
+		font-size: 1.15rem;
+		line-height: 1.9;
+		color: var(--theme-on-surface);
+		font-weight: 500;
+	}
+
+	.about-section {
+		margin: 2.5rem 0;
+		padding: 2rem;
+		background: var(--theme-surface-1);
+		border-radius: calc(var(--theme-shape-radius) * 1.5);
+		border-left: 4px solid var(--theme-primary);
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+	}
+
+	.section-heading {
+		font-size: 1.35rem;
+		font-weight: 600;
+		color: var(--theme-primary);
 		margin-bottom: 1.5rem;
-		text-align: left;
+		letter-spacing: -0.01em;
 	}
 
-	.about-content > div {
-		text-align: left;
-	}
-
-	.about-content ul {
-		margin: 1rem 0 2rem 0;
+	.specializations-list {
+		margin: 0;
 		padding-left: 0;
 		list-style: none;
-		text-align: left;
-		max-width: 600px;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 0.75rem 1.5rem;
 	}
 
-	.about-content ul li {
-		margin-bottom: 0.5rem;
+	.specializations-list li {
 		font-size: 1rem;
 		font-weight: 400;
 		line-height: 1.6;
 		padding-left: 0;
 		text-align: left;
 		position: relative;
+		display: flex;
+		align-items: center;
+		color: var(--theme-on-surface-1);
 	}
 
-	.about-content ul li::before {
-		content: "•";
+	.specializations-list li::before {
+		content: "✓";
 		color: var(--theme-primary);
 		font-weight: bold;
 		font-size: 1.2em;
 		margin-right: 0.75rem;
+		flex-shrink: 0;
 	}
 
 	/* Basil Section Styles */
 	.basil-section {
 		margin-top: 3rem;
-		padding: 2.5rem;
+		padding: 3rem 2.5rem;
 		background-color: var(--theme-surface-1);
-		border-radius: var(--theme-shape-radius);
-		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+		border-radius: calc(var(--theme-shape-radius) * 1.5);
+		box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+		border: 1px solid rgba(0, 0, 0, 0.03);
 	}
 
 	.basil-section h2 {
 		text-align: center;
-		margin-bottom: 2rem;
+		margin-bottom: 2.5rem;
 		color: var(--theme-primary);
+		font-size: 2rem;
+		font-weight: 700;
+		letter-spacing: -0.02em;
 	}
 
 	.basil-content {
@@ -224,36 +308,87 @@ const seo = {
 		width: 100%;
 		max-width: 400px;
 		height: auto;
-		border-radius: var(--theme-shape-radius);
-		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+		border-radius: calc(var(--theme-shape-radius) * 1.5);
+		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 		object-fit: cover;
+		transition: transform 0.3s ease, box-shadow 0.3s ease;
+	}
+
+	.basil-image img:hover {
+		transform: scale(1.02);
+		box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
 	}
 
 	.basil-text p {
-		font-size: 1.1rem;
-		line-height: 1.7;
+		font-size: 1.15rem;
+		line-height: 1.8;
 		color: var(--theme-on-surface-1);
 		margin: 0;
 	}
 
 	@media (max-width: 768px) {
-		.about-content p {
+		.icon-wrapper {
 			margin-bottom: 1.25rem;
+		}
+
+		.icon-wrapper [astro-icon] {
+			height: 65px;
+			width: 65px;
+		}
+
+		.col-card {
+			padding: 1.5rem 1rem;
+		}
+
+		.col-card h2 {
+			font-size: 1.3rem;
+		}
+
+		.col-card p {
 			font-size: 0.95rem;
 		}
 
-		.about-content ul {
-			margin: 1rem 0 1.5rem 0;
-			max-width: 100%;
+		.about-intro h2 {
+			font-size: 1.75rem;
 		}
 
-		.about-content ul li {
-			margin-bottom: 0.4rem;
+		.about-divider {
+			width: 50px;
+			height: 3px;
+		}
+
+		.about-paragraph {
+			margin-bottom: 1.25rem;
+			font-size: 0.95rem;
+			line-height: 1.7;
+		}
+
+		.about-paragraph:first-of-type {
+			font-size: 1.05rem;
+			line-height: 1.75;
+		}
+
+		.about-section {
+			margin: 2rem 0;
+			padding: 1.5rem;
+		}
+
+		.section-heading {
+			font-size: 1.15rem;
+			margin-bottom: 1.25rem;
+		}
+
+		.specializations-list {
+			grid-template-columns: 1fr;
+			gap: 0.65rem;
+		}
+
+		.specializations-list li {
 			font-size: 0.9rem;
 			line-height: 1.5;
 		}
 
-		.about-content ul li::before {
+		.specializations-list li::before {
 			font-size: 1.1em;
 			margin-right: 0.6rem;
 		}

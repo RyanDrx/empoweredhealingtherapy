@@ -12,9 +12,7 @@ const {reversed} = Astro.props;
       </div>
     </div>
     <div class="sticky-text-image__image">
-      <div class="image-wrapper">
-        <slot name="image-container"></slot>
-      </div>
+      <slot name="image-container"></slot>
     </div>
   </section>
 </Container>
@@ -29,7 +27,7 @@ const {reversed} = Astro.props;
     gap: 4rem;
     margin-left: 2rem;
     margin-right: 2rem;
-    align-items: center;
+    align-items: flex-start;
     min-height: 70vh;
   }
   
@@ -43,7 +41,7 @@ const {reversed} = Astro.props;
   
   .sticky-text-image__text {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     padding: 2rem 0;
   }
@@ -54,20 +52,21 @@ const {reversed} = Astro.props;
   }
   
   .sticky-text-image__image {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
+    position: sticky;
+    top: 100px;
+    align-self: start;
+    height: fit-content;
   }
   
-  .image-wrapper {
-    position: relative;
+  .sticky-text-image__image :global(picture) {
+    display: block;
     width: 100%;
     max-width: 500px;
     animation: fadeInScale 1s ease-out 0.3s both;
+    position: relative;
   }
   
-  .image-wrapper::before {
+  .sticky-text-image__image :global(picture)::before {
     content: '';
     position: absolute;
     top: -10px;
@@ -84,14 +83,12 @@ const {reversed} = Astro.props;
     transition: opacity 0.3s ease;
   }
   
-  .image-wrapper:hover::before {
+  .sticky-text-image__image :global(picture):hover::before {
     opacity: 1;
   }
   
-  .sticky-text-image__image :global(:first-child) {
-    position: sticky;
-    top: 2rem;
-    transition: all 0.3s ease;
+  .sticky-text-image__image :global(img) {
+    display: block;
   }
   
   .sticky-text-image__section :global(img) {
