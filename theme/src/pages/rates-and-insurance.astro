@@ -38,7 +38,7 @@ let medicalInsuranceLines = raiContent.medicalInsurance.split('\n\n');
 		customerName={raiContent.quoteAuthor}
 	/>
 
-	<InfoCard iconName="line-md:phone-message">
+	<InfoCard iconName="mdi:phone-message-outline">
 		<h2 slot="card__title">Phone Consultation</h2>
 		<p slot="card__body">
 			{raiContent.phoneConsultation}
@@ -107,7 +107,7 @@ let medicalInsuranceLines = raiContent.medicalInsurance.split('\n\n');
 		</div>
 	</TwoColumnTextSection>
 
-    <InfoCard iconName="uil:file-medical-alt">
+	<InfoCard iconName="mdi:file-document-outline">
         <h2 slot="card__title">Medical Insurance</h2>
         <Fragment slot="card__body">
             { medicalInsuranceLines.map(line => <p>{line}</p>) }
@@ -115,14 +115,14 @@ let medicalInsuranceLines = raiContent.medicalInsurance.split('\n\n');
        
     </InfoCard>
 
-	<InfoCard iconName="line-md:credit-card-check-outline">
+	<InfoCard iconName="mdi:credit-card-outline">
 		<h2 slot="card__title">Credit Cards & HSA</h2>
 		<p slot="card__body">
 			{raiContent.payments}
 		</p>
 	</InfoCard>
 
-	<InfoCard iconName="line-md:cancel">
+	<InfoCard iconName="mdi:cancel">
 		<h2 slot="card__title">Cancellation Policy</h2>
 		<p slot="card__body">
 			{raiContent.cancelationPolicy}

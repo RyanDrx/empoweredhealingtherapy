@@ -8,7 +8,7 @@ const { iconName } = Astro.props;
 	<section class="card__section">
 		<div class="card__content">
 			<div class="card__icon-wrapper">
-				<Icon name={iconName} />
+				<Icon name={iconName} width="64" height="64" class="card__icon" />
 			</div>
 			<div class="card__text">
 				<slot name="card__title"></slot>
@@ -63,17 +63,19 @@ const { iconName } = Astro.props;
 		opacity: 0.25;
 	}
 
-	[astro-icon] {
-		height: 3.5rem;
-		width: 3.5rem;
+	.card__icon {
+		width: 4rem;
+		height: 4rem;
 		color: var(--theme-primary);
 		transition: all 0.3s ease;
 		position: relative;
 		z-index: 2;
-		opacity: 0.9;
+		opacity: 0.95;
+		display: block;
+		margin: 0 auto;
 	}
 
-	.card__content:hover [astro-icon] {
+	.card__content:hover .card__icon {
 		transform: scale(1.05);
 		opacity: 1;
 	}
@@ -116,9 +118,9 @@ const { iconName } = Astro.props;
 			margin: 0 1rem;
 		}
 
-		[astro-icon] {
-			height: 3rem;
-			width: 3rem;
+		.card__icon {
+			width: 3.25rem;
+			height: 3.25rem;
 		}
 
 		.card__icon-wrapper::after {
@@ -145,9 +147,9 @@ const { iconName } = Astro.props;
 			margin: 0 0.5rem;
 		}
 
-		[astro-icon] {
-			height: 2.75rem;
-			width: 2.75rem;
+		.card__icon {
+			width: 3rem;
+			height: 3rem;
 		}
 
 		.card__icon-wrapper::after {
@@ -169,7 +171,7 @@ const { iconName } = Astro.props;
 	@media (prefers-reduced-motion: reduce) {
 		.card__content,
 		.card__icon-wrapper::after,
-		[astro-icon] {
+		.card__icon {
 			transition: none !important;
 		}
 
