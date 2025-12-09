@@ -225,21 +225,23 @@ let medicalInsuranceLines = raiContent.medicalInsurance.split('\n\n');
 	}
 
 	.feature-tag.private-pay {
-		background: #f3e5f5;
-		color: #6a1b9a;
+		background: rgba(var(--theme-primary-rgb), 0.12);
+		color: var(--theme-primary);
+		border: 1px solid rgba(var(--theme-primary-rgb), 0.2);
 	}
 
 	.feature-tag.private-pay:hover {
-		background: #6a1b9a;
-		color: white;
+		background: var(--theme-primary);
+		color: var(--theme-on-primary);
+		border-color: var(--theme-primary);
 	}
 
 	.couples-card {
-		border-left: 3px solid #d1a7d1;
+		border-left: 3px solid rgba(var(--theme-primary-rgb), 0.25);
 	}
 
 	.couples-card:hover {
-		border-left-color: #6a1b9a;
+		border-left-color: rgba(var(--theme-primary-rgb), 0.6);
 	}
 
 	@keyframes fadeInUp {

@@ -43,22 +43,41 @@ const seo = {
 	<Container>
 		<section class="key-outcomes-section">
 			<h3 class="key-outcomes-title">Key Outcomes</h3>
+			<p class="key-outcomes-subtitle">
+				The couples I support leave with practical skills and renewed confidence in their partnership.
+			</p>
 			<ul class="key-outcomes-list">
 				<li>
-					<Icon name="line-md:check-circle" />
-					<span>Break painful cycles of conflict</span>
+					<div class="key-outcome-icon">
+						<Icon name="mdi:check-circle-outline" width="32" height="32" />
+					</div>
+					<div class="key-outcome-text">
+						<span>Break painful cycles of conflict</span>
+					</div>
 				</li>
 				<li>
-					<Icon name="line-md:check-circle" />
-					<span>Rebuild trust and emotional safety</span>
+					<div class="key-outcome-icon">
+						<Icon name="mdi:check-circle-outline" width="32" height="32" />
+					</div>
+					<div class="key-outcome-text">
+						<span>Rebuild trust and emotional safety</span>
+					</div>
 				</li>
 				<li>
-					<Icon name="line-md:check-circle" />
-					<span>Deepen emotional connection</span>
+					<div class="key-outcome-icon">
+						<Icon name="mdi:check-circle-outline" width="32" height="32" />
+					</div>
+					<div class="key-outcome-text">
+						<span>Deepen emotional connection</span>
+					</div>
 				</li>
 				<li>
-					<Icon name="line-md:check-circle" />
-					<span>Improve communication skills</span>
+					<div class="key-outcome-icon">
+						<Icon name="mdi:check-circle-outline" width="32" height="32" />
+					</div>
+					<div class="key-outcome-text">
+						<span>Improve communication skills</span>
+					</div>
 				</li>
 			</ul>
 		</section>
@@ -114,45 +133,125 @@ const seo = {
 	/* Key Outcomes Section */
 	.key-outcomes-section {
 		margin: 2rem auto 4rem auto;
-		max-width: 800px;
+		max-width: 960px;
+		padding: clamp(1.5rem, 4vw, 3rem);
+		border-radius: calc(var(--theme-shape-radius) * 1.5);
+		background: linear-gradient(145deg, rgba(var(--theme-primary-rgb), 0.12), rgba(255, 255, 255, 0.5));
+		box-shadow: 0 25px 60px rgba(0, 0, 0, 0.08);
 	}
 
 	.key-outcomes-title {
 		text-align: center;
-		font-size: 1.5rem;
+		font-size: 1.75rem;
 		color: var(--theme-primary);
-		margin-bottom: 2rem;
+		margin-bottom: 0.5rem;
+	}
+
+	.key-outcomes-subtitle {
+		text-align: center;
+		color: var(--theme-on-surface-2);
+		margin: 0 auto 2rem auto;
+		max-width: 540px;
+		font-size: 1.05rem;
+		line-height: 1.6;
 	}
 
 	.key-outcomes-list {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-		gap: 1.5rem;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
 		list-style: none;
 		padding: 0;
+		margin: 0;
 	}
 
 	.key-outcomes-list li {
 		display: flex;
 		align-items: center;
-		gap: 1rem;
-		font-size: 1.1rem;
-		color: var(--theme-on-surface-1);
-		background-color: var(--theme-surface-1);
-		padding: 1rem 1.5rem;
-		border-radius: var(--theme-shape-radius);
-		transition: transform 0.2s ease;
+		gap: 1.25rem;
+		padding: 1.25rem 1.5rem;
+		border-radius: calc(var(--theme-shape-radius) * 1.2);
+		background: var(--theme-surface-1);
+		border: 1px solid rgba(255, 255, 255, 0.4);
+		box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+		position: relative;
+		overflow: hidden;
+		transition: transform 0.25s ease, box-shadow 0.25s ease;
+	}
+
+	.key-outcomes-list li::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: radial-gradient(circle at top right, rgba(var(--theme-primary-rgb), 0.15), transparent 60%);
+		opacity: 0;
+		transition: opacity 0.3s ease;
+		pointer-events: none;
 	}
 
 	.key-outcomes-list li:hover {
-		transform: translateX(5px);
+		transform: translateY(-4px);
+		box-shadow: 0 18px 32px rgba(0, 0, 0, 0.1);
 	}
 
-	.key-outcomes-list [astro-icon] {
-		width: 1.5rem;
-		height: 1.5rem;
-		color: var(--theme-primary);
+	.key-outcomes-list li:hover::after {
+		opacity: 1;
+	}
+
+	.key-outcome-icon {
+		width: 3rem;
+		height: 3rem;
+		border-radius: 999px;
+		background: linear-gradient(135deg, rgba(var(--theme-primary-rgb), 0.2), rgba(var(--theme-primary-rgb), 0.05));
+		display: grid;
+		place-items: center;
 		flex-shrink: 0;
+	}
+
+	.key-outcome-icon iconify-icon {
+		color: var(--theme-primary);
+		width: 2rem;
+		height: 2rem;
+		display: block;
+	}
+
+	.key-outcome-text span {
+		font-weight: 600;
+		font-size: 1.05rem;
+		color: var(--theme-on-surface-1);
+		line-height: 1.5;
+	}
+
+	@media (max-width: 768px) {
+		.key-outcomes-section {
+			padding: 1.5rem;
+		}
+
+		.key-outcomes-subtitle {
+			font-size: 1rem;
+			margin-bottom: 1.5rem;
+		}
+
+		.key-outcomes-list li {
+			padding: 1.1rem 1.25rem;
+		}
+	}
+
+	@media (max-width: 500px) {
+		.key-outcomes-section {
+			margin: 1.5rem auto 3rem auto;
+		}
+
+		.key-outcome-text span {
+			font-size: 1rem;
+		}
+
+		.key-outcomes-list li {
+			padding: 1rem 1.25rem;
+		}
 	}
 
 	/* Therapeutic Orientation Section */

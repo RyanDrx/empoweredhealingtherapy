@@ -180,6 +180,10 @@ const {reversed} = Astro.props;
     
     .sticky-text-image__image {
       order: 1;
+      position: static; /* disable sticky on mobile */
+      top: auto;
+      align-self: stretch;
+      height: auto;
     }
     
     .sticky-text-image__section--reversed .sticky-text-image__image {
@@ -198,12 +202,8 @@ const {reversed} = Astro.props;
       font-size: 1rem;
     }
     
-    .sticky-text-image__image :global(:first-child) {
-      position: static;
-    }
-    
-    .image-wrapper {
-      max-width: 400px;
+    .sticky-text-image__image :global(picture) {
+      max-width: 100%;
     }
   }
   
@@ -212,15 +212,15 @@ const {reversed} = Astro.props;
       font-size: 1.75rem;
     }
     
-    .image-wrapper {
-      max-width: 300px;
+    .sticky-text-image__image :global(picture) {
+      max-width: 100%;
     }
   }
   
   /* Accessibility */
   @media (prefers-reduced-motion: reduce) {
     .text-content,
-    .image-wrapper {
+    .sticky-text-image__image :global(picture) {
       animation: none;
     }
     
@@ -228,7 +228,7 @@ const {reversed} = Astro.props;
       transform: none;
     }
     
-    .image-wrapper::before {
+    .sticky-text-image__image :global(picture)::before {
       transition: none;
     }
   }
