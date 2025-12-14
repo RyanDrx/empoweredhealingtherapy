@@ -46,20 +46,15 @@ import Container from '../Container.astro';
 	.three-col-text__column {
 		width: calc(var(--column-width) - 2rem);
 		margin: 1rem;
-		padding: 2rem;
+		padding: 0;
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
 		align-items: center;
-		background-color: var(--theme-surface-1);
-		border-radius: var(--theme-shape-radius);
-		box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-		transition: transform 0.3s ease, box-shadow 0.3s ease;
-	}
-
-	.three-col-text__column:hover {
-		transform: translateY(-5px);
-		box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+		background-color: transparent;
+		border-radius: 0;
+		box-shadow: none;
+		transition: none;
 	}
 
 	@media (max-width: 1200px) {
@@ -70,6 +65,10 @@ import Container from '../Container.astro';
 	@media (max-width: 768px) {
 		.three-col-text__section {
 			--column-count: 1;
+		}
+		.three-col-text__column {
+			width: 100%;
+			margin: 0.75rem 0;
 		}
 	}
 </style>

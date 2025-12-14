@@ -21,7 +21,7 @@ const { background, color } = Astro.props;
 		--section-color: var(--theme-on-surface-1);
 		margin: var(--section-margin) auto;
 		padding: 3rem 2rem;
-		background-color: var(--section-bg);
+		background-color: transparent;
 		color: var(--section-color);
 		border-radius: var(--theme-shape-radius);
 		margin-left: 2rem;
@@ -29,17 +29,31 @@ const { background, color } = Astro.props;
 		box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
 		border: 2px solid rgba(var(--theme-primary-rgb), 0.15);
 		position: relative;
+		overflow: hidden;
 	}
 
 	.cta-card__section::before {
 		content: '';
 		position: absolute;
 		inset: 0;
-		background: linear-gradient(135deg, 
-			rgba(255, 255, 255, 0.9) 0%, 
-			rgba(255, 255, 255, 0.95) 100%);
+		background-color: rgba(255, 255, 255, 0.94);
+		border-radius: var(--theme-shape-radius);
+		z-index: 0;
+		pointer-events: none;
+	}
+
+	.cta-card__section::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background-image: url('/assets/images/mountainforest.webp');
+		background-size: cover;
+		background-position: center;
+		opacity: 0.08;
+		filter: blur(2px);
 		border-radius: var(--theme-shape-radius);
 		z-index: 1;
+		pointer-events: none;
 	}
 
 	.cta-card__container {
