@@ -1,6 +1,7 @@
 :root {
 	/* Theme Colors */
 	--theme-primary: #818185;
+	--theme-primary-rgb: 129, 129, 133;
     /* hsl(0, 0%, 0%); */
 	--theme-primary-hover: hsl(0, 0%, 20%);
 	--theme-on-primary: #fff;
@@ -45,6 +46,7 @@
 	color-scheme: light;
 	/* Theme Colors */
 	--theme-primary: #818185;
+	--theme-primary-rgb: 129, 129, 133;
 	--theme-primary-hover: hsl(0, 0%, 20%);
 	--theme-on-primary: #fff;
 
@@ -81,6 +83,7 @@
 	color-scheme: dark;
 	/* Theme Colors */
 	--theme-primary: hsl(0, 0%, 100%);
+	--theme-primary-rgb: 255, 255, 255;
 	--theme-primary-hover: hsl(0, 0%, 90%);
 	--theme-on-primary: hsl(0, 0%, 0%);
 
@@ -101,6 +104,7 @@
 [data-theme='earth'] {
 	/* Theme Colors */
 	--theme-primary: #2c3e2d;
+	--theme-primary-rgb: 44, 62, 45;
 	--theme-primary-hover: #395a3b;
 	--theme-on-primary: hsl(0, 0%, 100%);
 
@@ -121,6 +125,7 @@
 	/* Theme Colors */
 	/* Theme Colors */
 	--theme-primary: #1556ac;
+	--theme-primary-rgb: 21, 86, 172;
 	--theme-primary-hover: #2569c3;
 	--theme-on-primary: hsl(0, 0%, 100%);
 
@@ -138,6 +143,7 @@
 	/* Theme Colors */
 	/* Theme Colors */
 	--theme-primary: #e38a20;
+	--theme-primary-rgb: 227, 138, 32;
 	--theme-primary-hover: #eb870f;
 	--theme-on-primary: hsl(0, 0%, 100%);
 
