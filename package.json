@@ -19,7 +19,7 @@
 	"devDependencies": {
 		"@astrojs/lit": "^4.3.0",
 		"@astrojs/mdx": "^3.1.0",
-		"@astrojs/sitemap": "^3.2.0",
+		"@astrojs/sitemap": "3.6.0",
 		"@iconify-json/bi": "^1.2.6",
 		"@iconify-json/ci": "^1.2.2",
 		"@iconify-json/line-md": "^1.2.11",
