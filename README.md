@@ -1,77 +1,47 @@
-<p align="center">
-  <img src="assets/gh-banner.png" alt="Odyssey Theme Banner">
-</p>
+# Empowered Healing Counseling
 
-<br/>
-<div align="center">
-  <a href="https://twitter.com/littlesticksdev">
-  <img src="assets/twitter-badge.svg" alt="Follow Little Sticks on Twitter"/>
-</a>
-  <a href="https://littlesticks.lemonsqueezy.com/checkout?cart=1b9b09ef-0511-41ca-b94e-d6c6c4fde36e">
-    <img src="assets/sponsor-badge.svg" alt="Sponsor This Repo" />
-  </a>
-  <a href="https://littlesticks.dev/discord">
-    <img src="assets/discord-badge.svg" alt="Join our Discord" />
-  </a>
-  
-</div>
-<br/>
+Astro site for Empowered Healing Counseling, built for Netlify with Netlify CMS-managed page content and resource links.
 
-# Odyssey Theme
-
-Odyssey Theme is a modern theme/starter for a business or startup's marketing website. It provides landing page examples, a full-featured blog, contact forms, and more. It is fully themeable to match your business' branding and style. It even includes a theme switcher component to show how easily the entire style of the site can be changed with only a few lines of CSS.
-
-## Features
-
-<p align="center">
-  <img src="assets/lh-screenshot.png" alt="Screenshot of perfect score in Lighthouse benchmark">
-</p>
-
-
-- ✅ **A perfect score in Lighthouse**
-- ✅ **Blazing fast performance thanks to Astro 🚀**
-- ✅ **A Full Featured Blog with Tagging**
-- ✅ **Fully theme-able styles with for buttons, shapes, backgrounds, surfaces, etc.**
-- ✅ **Responsive, mobile-friendly landing pages**
-- ✅ **SEO Best Practices (Open Graph, Canonical URLs, sitemap)**
-- ✅ **Performant Local Fonts Setup**
-- ✅ **Contact Forms Setup for Netlify, Formspree, Formspark, etc.**
-- ✅ **A package of ready-to-use UI components**
-
-
-## Demo
-
-View a [live demo](https://odyssey-theme.littlesticks.site/) of the Odyssey Theme.
-
-## Documentation
-
-1. View the [Theme Setup Guide](https://odyssey-theme.littlesticks.site/theme/theme-setup)
-2. View the [Customizing the Theme Guide](https://odyssey-theme.littlesticks.site/theme/customizing-odyssey)
-
-## Usage
+## Quick Start
 
 ```bash
-cd theme
-
 npm install
-
-npm start
+npm run dev
 ```
 
-## Deploy
+Local development runs from the repository root. The old nested `theme/` project has been promoted, so future changes should start from root-level `src/`, `public/`, and `astro.config.mjs`.
 
-Feel free to deploy and host your site on your favorite static hosting service such as Netlify, Firebase Hosting, Vercel, GitHub Pages, etc.
+## Commands
 
-Astro has [an in-depth guide](https://docs.astro.build/en/guides/deploy/) on how to deploy an Astro project to each service.
+- `npm run dev` - start the Astro dev server
+- `npm run build` - build the production site into `dist/`
+- `npm run preview` - preview the production build locally
+- `npm run format` - run Prettier across the project
 
-## Sponsor
+## Project Map
 
-If you find this theme useful, please consider donating to support the continued development of it with the link below
+- `src/pages/` - Astro routes
+- `src/components/` - shared UI, forms, heroes, sections, cards, and core layout pieces
+- `src/layouts/` - page and post layout wrappers
+- `src/config/` - navigation, footer, and site settings
+- `src/styles/` - reset, theme tokens, typography, and global CSS
+- `public/cms/` - JSON content edited through Netlify CMS
+- `public/assets/` - public images, fonts, favicons, and CMS-uploaded media
+- `astro.config.mjs` - Astro integrations and Netlify CMS configuration
+- `netlify.toml` - Netlify build/runtime settings
 
-[Donate to Odyssey Theme](https://littlesticks.lemonsqueezy.com/checkout?cart=1b9b09ef-0511-41ca-b94e-d6c6c4fde36e)
+## Content Editing
 
-## Support
+Most page copy lives in `public/cms/*.json`. Resource links live in `public/cms/ResourceLinks/*.json`. Page files import those JSON files and render them through Astro components.
 
-Please feel free to reach out to us on our Discord if you have questions or file an issue on the repo.
+When adding new CMS-managed content, update both the JSON file and the Netlify CMS collection in `astro.config.mjs`.
 
-[Join our Discord](https://littlesticks.dev/discord)
+## Deployment
+
+Netlify builds from the repository root with:
+
+```bash
+npm run build
+```
+
+The output directory is `dist/`.
