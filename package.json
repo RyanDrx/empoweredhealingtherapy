@@ -1,10 +1,13 @@
 {
-	"name": "odyssey-theme",
-	"version": "2.0.2",
-	"private": false,
+	"name": "empowered-healing-therapy",
+	"version": "1.0.0",
+	"private": true,
 	"repository": {
 		"type": "git",
-		"url": "git@github.com:littlesticksdev/odyssey-theme"
+		"url": "git@github.com:RyanD/empoweredhealingtherapy"
+	},
+	"engines": {
+		"node": ">=18.0.0"
 	},
 	"scripts": {
 		"dev": "astro dev",
@@ -13,15 +16,29 @@
 		"preview": "astro preview",
 		"format": "npx prettier -w ."
 	},
-	"dependencies": {
-		"@astrojs/netlify": "^2.1.1",
-		"@astrojs/partytown": "^2.1.4",
-		"@astrojs/sitemap": "^3.4.1",
-		"astro": "^2.0.6"
-	},
 	"devDependencies": {
+		"@astrojs/lit": "^4.3.0",
+		"@astrojs/mdx": "^3.1.0",
+		"@astrojs/sitemap": "^3.2.0",
 		"@iconify-json/bi": "^1.2.6",
 		"@iconify-json/ci": "^1.2.2",
-		"@iconify-json/mdi": "^1.2.3"
+		"@iconify-json/line-md": "^1.2.11",
+		"@iconify-json/mdi": "^1.2.3",
+		"@webcomponents/template-shadowroot": "^0.2.1",
+		"astro": "^4.16.0",
+		"date-fns": "^4.1.0",
+		"lit": "^3.2.0",
+		"prettier": "^3.3.0",
+		"prettier-plugin-astro": "^0.14.0"
+	},
+	"dependencies": {
+		"@astrojs/partytown": "^2.1.0",
+		"astro-analytics": "^2.7.0",
+		"astro-compress": "^2.3.0",
+		"astro-critters": "^2.2.0",
+		"astro-netlify-cms": "^0.5.4",
+		"astro-robots-txt": "^1.0.0",
+		"iconify-icon": "^3.0.2",
+		"netlify-cms-app": "^2.15.72"
 	}
 }
