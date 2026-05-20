@@ -1,0 +1,35 @@
+# Empowered Healing Counseling
+
+Empowered Healing Counseling is a private therapy practice website for Meaghan Trezza, LMHC in Tacoma, Washington. The site explains therapy services, practice approach, rates, contact options, and curated mental health resources.
+
+## Important Pages
+
+- Home: https://www.empoweredhealingwa.com/
+- About: https://www.empoweredhealingwa.com/about
+- Contact: https://www.empoweredhealingwa.com/contact
+- Rates and Insurance: https://www.empoweredhealingwa.com/rates-and-insurance
+- Somatic Experiencing: https://www.empoweredhealingwa.com/somatic-experiencing
+- Play Therapy: https://www.empoweredhealingwa.com/play-therapy
+- Couples Counseling: https://www.empoweredhealingwa.com/couples-counseling
+- Resources: https://www.empoweredhealingwa.com/resources
+
+## Services and Topics
+
+- Individual therapy
+- Trauma therapy
+- Anxiety and depression counseling
+- Somatic Experiencing
+- Play therapy
+- Couples counseling
+- Telehealth therapy in Washington
+- In-person counseling in Tacoma, Washington
+
+## Content Sources
+
+Page copy is managed from JSON files in `public/cms/`. Resource links are managed in `public/cms/ResourceLinks/`. The public site should be treated as the canonical source for visitors.
+
+## Contact
+
+- Phone: (360) 207-5773
+- Email: Meaghan@EmpoweredHealingWA.com
+- Address: 1310 South Union Avenue, Suite A #302, Tacoma, WA 98405

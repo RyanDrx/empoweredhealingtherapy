@@ -20,7 +20,8 @@ const Tag = href ? 'a' : 'button';
 <style>
   .btn {
     width: fit-content;
-    padding: 0.36rem 0.92rem;
+    min-height: 44px;
+    padding: 0.65rem 1.05rem;
     margin-bottom: 0;
     display: flex;
     align-items: center;
@@ -29,18 +30,25 @@ const Tag = href ? 'a' : 'button';
     color: var(--theme-on-primary);
     border: none;
     border-radius: var(--theme-button-border-radius);
-    font-weight: 500;
+    font-weight: 700;
+    line-height: 1;
+    box-shadow: 0 6px 16px rgba(var(--theme-primary-rgb), 0.16);
+    transition: background-color var(--theme-transition), color var(--theme-transition), box-shadow var(--theme-transition), transform var(--theme-transition);
   }
   .btn:hover {
     background-color: var(--theme-primary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px rgba(var(--theme-primary-rgb), 0.2);
   }
   .btn--unelevated {
     background-color: transparent;
     color: var(--theme-on-bg);
+    box-shadow: none;
   }
   .btn--unelevated:hover {
     background-color: transparent;
-    opacity: var(--theme-primary-hover);
+    color: var(--theme-primary-hover);
+    box-shadow: none;
   }
   .btn--outlined {
     color: var(--theme-primary);
@@ -69,5 +77,18 @@ const Tag = href ? 'a' : 'button';
   button.btn {
     cursor: pointer;
     outline: none;
+  }
+
+  .btn:focus-visible {
+    outline: 3px solid rgba(var(--theme-primary-rgb), 0.35);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn,
+    .btn:hover {
+      transform: none;
+      transition: none;
+    }
   }
 </style>

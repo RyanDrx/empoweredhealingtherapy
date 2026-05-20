@@ -5,6 +5,7 @@ import lit from '@astrojs/lit';
 import NetlifyCMS from 'astro-netlify-cms';
 import robotsTxt from 'astro-robots-txt';
 import partytown from '@astrojs/partytown';
+import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
@@ -257,6 +258,7 @@ export default defineConfig({
 	// Add renderers to the config
 	// This is for the astro-icon package. You can find more about the package here: https://www.npmjs.com/package/astro-icon
 	vite: {
+		plugins: [tailwindcss()],
 		ssr: {
 			external: ['svgo'],
 			noExternal: ['@iconify-json/*'],

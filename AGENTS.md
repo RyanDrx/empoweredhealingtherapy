@@ -24,6 +24,7 @@ Use the root directory for all commands.
 - `src/styles/` contains global CSS and design tokens.
 - `public/cms/` contains editable JSON content used by page routes.
 - `public/assets/` contains public images, fonts, favicons, and CMS media.
+- `public/llms.txt` gives AI agents a concise public-facing map of important pages and content boundaries.
 - `astro.config.mjs` contains Astro integrations and the Netlify CMS collection schema.
 - `netlify.toml` contains deployment settings.
 
@@ -40,6 +41,7 @@ When adding or renaming CMS fields, update:
 ## Implementation Rules
 
 - Preserve existing Astro component patterns.
+- Tailwind CSS is available through the Vite plugin for small utility-class additions. Prefer existing component CSS for broad styling changes.
 - Keep user-facing design changes separate from structural cleanup unless explicitly requested.
 - Do not commit generated `dist/`, local `.netlify/`, dependencies, logs, or editor files.
 - Run `npm run build` before claiming structural changes are complete.

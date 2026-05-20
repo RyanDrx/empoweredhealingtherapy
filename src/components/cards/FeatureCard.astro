@@ -29,18 +29,20 @@ const { href, imgSrc, title } = Astro.props;
 		color: var(--theme-on-surface-1);
 		border-radius: var(--theme-shape-radius);
 		overflow: hidden;
-		transition: transform 0.3s ease, box-shadow 0.3s ease;
+		transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 		position: relative;
 		height: 100%;
 		display: flex;
 		flex-direction: column;
-        border: 1px solid rgba(0,0,0,0.05);
-        min-height: 22rem;
+		border: 1px solid rgba(32, 35, 33, 0.08);
+		min-height: 21rem;
+		box-shadow: 0 8px 24px rgba(32, 35, 33, 0.06);
 	}
 
 	.feature-card:hover {
-		transform: translateY(-4px);
-		box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+		transform: translateY(-2px);
+		box-shadow: 0 16px 34px rgba(32, 35, 33, 0.1);
+		border-color: rgba(var(--theme-primary-rgb), 0.24);
 	}
 
 	.feature-card__link {
@@ -53,7 +55,7 @@ const { href, imgSrc, title } = Astro.props;
 
 	.feature-card__image-wrapper {
 		position: relative;
-		height: 15rem;
+		height: clamp(12rem, 28vw, 15rem);
 		overflow: hidden;
 		background-color: var(--theme-surface-2);
 		z-index: 0;
@@ -65,13 +67,12 @@ const { href, imgSrc, title } = Astro.props;
 		height: 100%;
 		object-fit: cover;
 		object-position: center;
-		transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
-        will-change: transform;
+		transition: transform 0.45s ease;
 		opacity: 1;
 	}
 
 	.feature-card:hover .feature-card__img {
-		transform: scale(1.05);
+		transform: scale(1.025);
 	}
 
 	.feature-card__overlay {
@@ -83,8 +84,8 @@ const { href, imgSrc, title } = Astro.props;
 		background: linear-gradient(
 			to bottom,
 			transparent 0%,
-			rgba(242, 242, 242, 0.8) 70%,
-			rgb(242, 242, 242) 100%
+			rgba(255, 250, 242, 0.72) 70%,
+			rgb(255, 250, 242) 100%
 		);
 		opacity: 1;
 		pointer-events: none;
@@ -105,7 +106,7 @@ const { href, imgSrc, title } = Astro.props;
 
 	.feature-card__title {
 		font-family: var(--theme-font-family-serif);
-		font-size: 1.35rem;
+		font-size: clamp(1.2rem, 2.5vw, 1.35rem);
 		font-weight: 600;
 		margin: 0 0 0.5rem 0;
 		line-height: 1.2;
@@ -131,8 +132,8 @@ const { href, imgSrc, title } = Astro.props;
 
 	.feature-card:hover .feature-card__cta {
 		opacity: 1;
-        color: var(--theme-primary);
-        transform: translateX(4px);
+		color: var(--theme-primary);
+		transform: translateX(2px);
 	}
 
 	/* Ensure accessibility */
@@ -148,6 +149,20 @@ const { href, imgSrc, title } = Astro.props;
 		
 		.feature-card__title {
 			font-size: 1.25rem;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.feature-card,
+		.feature-card__img,
+		.feature-card__cta {
+			transition: none;
+		}
+
+		.feature-card:hover,
+		.feature-card:hover .feature-card__img,
+		.feature-card:hover .feature-card__cta {
+			transform: none;
 		}
 	}
 </style>

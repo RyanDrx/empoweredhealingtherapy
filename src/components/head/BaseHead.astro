@@ -15,6 +15,45 @@ const title = Astro.props.title || settings.title;
 const description = Astro.props.description || settings.description;
 const canonicalURL = Astro.props.canonicalURL || new URL(Astro.url.pathname, Astro.site);
 const image = new URL(Astro.props.image || '/assets/images/social.png', Astro.site);
+const structuredData = {
+	'@context': 'https://schema.org',
+	'@type': 'MedicalBusiness',
+	name: 'Empowered Healing Counseling',
+	alternateName: 'Meaghan Trezza, LMHC',
+	url: settings.url,
+	logo: new URL('/assets/images/EmpoweredHealingLogo.png', Astro.site).href,
+	image: image.href,
+	description,
+	telephone: '+1-360-207-5773',
+	address: {
+		'@type': 'PostalAddress',
+		streetAddress: '1310 South Union Avenue Suite A #302',
+		addressLocality: 'Tacoma',
+		addressRegion: 'WA',
+		postalCode: '98405',
+		addressCountry: 'US',
+	},
+	areaServed: [
+		{
+			'@type': 'State',
+			name: 'Washington',
+		},
+		{
+			'@type': 'City',
+			name: 'Tacoma',
+		},
+	],
+	medicalSpecialty: ['MentalHealth', 'Counseling'],
+	knowsAbout: [
+		'Trauma therapy',
+		'Anxiety counseling',
+		'Depression counseling',
+		'Somatic Experiencing',
+		'Play therapy',
+		'Couples counseling',
+	],
+	priceRange: '$$',
+};
 ---
 
 <!-- Global Metadata -->
@@ -25,7 +64,11 @@ const image = new URL(Astro.props.image || '/assets/images/social.png', Astro.si
 <title>{title}</title>
 <meta name="title" content={title} />
 <meta name="description" content={description} />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="author" content="Empowered Healing Counseling" />
+<meta name="theme-color" content="#f6f1e8" />
 <link rel="canonical" href={canonicalURL} />
+<link rel="alternate" type="text/plain" href="/llms.txt" title="LLMs.txt" />
 <!-- Generator -->
 <meta name="generator" content={Astro.generator} />
 <!-- Open Graph / Facebook -->
@@ -46,21 +89,4 @@ const image = new URL(Astro.props.image || '/assets/images/social.png', Astro.si
 <!-- For Demonstration of the themes -->
 {settings.enableThemeSwitcher && <ThemeProvider />}
 
-<script type="application/ld+json">
-             {
-                "@context": "https://schema.org",
-                "@type": "Corporation",
-                "name": "Empowered Healing Counseling",
-                "alternateName": "Meghan Trezza, LMHC",
-                "url": "https://www.empoweredhealingwa.com",
-                "logo": "https://www.empoweredhealingwa.com/assets/EmpoweredHealingLogo_Vx9Es.png",
-                "contactPoint": {
-                    "@type": "ContactPoint",
-                    "telephone": "(360) 207-5773",
-                    "contactType": "customer service",
-                    "contactOption": "TollFree",
-                    "areaServed": "US",
-                    "availableLanguage": "en"
-                }
-            }
-</script>
+<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />

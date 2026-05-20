@@ -20,15 +20,15 @@ const {reversed} = Astro.props;
 
   <style>
   .sticky-text-image__section {
-    margin: calc(var(--section-margin) * 2) auto;
+    margin: var(--section-margin) auto;
     display: grid;
     grid-template-columns: 6fr 4fr;
     position: relative;
-    gap: 4rem;
+    gap: clamp(2rem, 5vw, 4rem);
     margin-left: 2rem;
     margin-right: 2rem;
     align-items: flex-start;
-    min-height: 70vh;
+    min-height: min(70vh, 720px);
   }
   
   .sticky-text-image__section--reversed {
@@ -48,7 +48,7 @@ const {reversed} = Astro.props;
   
   .text-content {
     max-width: 100%;
-    animation: fadeInSlide 0.8s ease-out;
+    animation: fadeInSlide 0.55s ease-out;
   }
   
   .sticky-text-image__image {
@@ -62,7 +62,7 @@ const {reversed} = Astro.props;
     display: block;
     width: 100%;
     max-width: 500px;
-    animation: fadeInScale 1s ease-out 0.3s both;
+    animation: fadeInScale 0.65s ease-out 0.15s both;
     position: relative;
   }
   
@@ -98,21 +98,21 @@ const {reversed} = Astro.props;
     object-fit: cover;
     border-radius: var(--theme-shape-radius);
     box-shadow: 
-      0 10px 40px rgba(0, 0, 0, 0.1),
-      0 4px 25px rgba(0, 0, 0, 0.08);
+      0 14px 40px rgba(32, 35, 33, 0.1),
+      0 4px 18px rgba(32, 35, 33, 0.06);
     transition: all 0.4s ease;
   }
   
   .sticky-text-image__section :global(img:hover) {
-    transform: scale(1.02);
+    transform: scale(1.01);
     box-shadow: 
-      0 20px 60px rgba(0, 0, 0, 0.15),
-      0 8px 35px rgba(0, 0, 0, 0.12);
+      0 18px 48px rgba(32, 35, 33, 0.14),
+      0 6px 24px rgba(32, 35, 33, 0.08);
   }
   
   /* Enhanced typography for slotted content */
   .text-content :global(h2) {
-    font-size: 2.5rem;
+    font-size: clamp(1.85rem, 4vw, 2.35rem);
     font-weight: 600;
     color: var(--theme-primary);
     margin-bottom: 1.5rem;

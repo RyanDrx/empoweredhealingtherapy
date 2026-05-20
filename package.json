@@ -24,12 +24,14 @@
 		"@iconify-json/ci": "^1.2.2",
 		"@iconify-json/line-md": "^1.2.11",
 		"@iconify-json/mdi": "^1.2.3",
+		"@tailwindcss/vite": "^4.3.0",
 		"@webcomponents/template-shadowroot": "^0.2.1",
 		"astro": "^4.16.0",
 		"date-fns": "^4.1.0",
 		"lit": "^3.2.0",
 		"prettier": "^3.3.0",
-		"prettier-plugin-astro": "^0.14.0"
+		"prettier-plugin-astro": "^0.14.0",
+		"tailwindcss": "^4.3.0"
 	},
 	"dependencies": {
 		"@astrojs/partytown": "^2.1.0",
