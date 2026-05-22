@@ -4,29 +4,35 @@ import TextAndImageHero from '../components/heros/TextAndImageHero.astro';
 import TextSection from '../components/sections/TextSection.astro';
 import StickyTextImageSection from '../components/sections/StickyTextImageSection.astro';
 import CtaGeneral from '../components/CtaGeneral.astro';
-import Icon from '../components/Icon.astro';
 import Container from '../components/Container.astro';
 
 const seo = {
-	title: 'Couples Counseling | Empowered Healing Counseling - Meaghan Trezza, LMHC',
-	description: 'Rebuild communication, restore connection, and strengthen your relationship. Integrating the Gottman Method and Emotionally Focused Therapy (EFT).',
+	title: 'Couples Counseling | Empowered Healing Counseling — Meaghan Trezza, LMHC',
+	description:
+		'Rebuild communication, restore connection, and strengthen your relationship. Integrating the Gottman Method and Emotionally Focused Therapy (EFT).',
 };
+
+const outcomes = [
+	{ n: '01', title: 'Break painful conflict cycles', body: 'Recognize the loops you keep ending up in — and find a different exit.' },
+	{ n: '02', title: 'Rebuild trust and emotional safety', body: 'Repair after rupture, and learn to trust your own signals again.' },
+	{ n: '03', title: 'Deepen emotional connection', body: 'Move past surface management into the kind of closeness you started with.' },
+	{ n: '04', title: 'Improve communication skills', body: 'Practical, repeatable tools you can use the next time it gets hard.' },
+];
 ---
 
 <Layout {seo}>
 	<TextAndImageHero>
 		<div slot="text-container">
-			<h1>Rebuild Communication. Restore Connection.</h1>
-			<p class="hero-subheadline">
-				Integrating the Gottman Method and Emotionally Focused Therapy (EFT).
-			</p>
+			<span class="eyebrow">Couples Counseling</span>
+			<h1>Rebuild communication. Restore connection.</h1>
+			<p>Integrating the Gottman Method and Emotionally Focused Therapy (EFT) — two well-researched frameworks, used together.</p>
 		</div>
 		<picture slot="image-container">
 			<img
 				width="780"
 				height="520"
 				src="/assets/images/couples-counseling-hero.webp"
-				alt="Couple seated in a warmly lit therapy room"
+				alt="Two people sitting close in a quiet, warmly lit room"
 				id="couples-counseling-hero-image"
 				loading="eager"
 			/>
@@ -34,65 +40,60 @@ const seo = {
 	</TextAndImageHero>
 
 	<TextSection>
-		<h2>Supporting Your Journey Together</h2>
+		<h2>Supporting your journey together</h2>
 		<p>
-			Couples often seek therapy when they feel stuck in painful cycles—arguing about the same issues, feeling emotionally distant, or struggling to rebuild trust. Working with a therapist who integrates the Gottman Method and Emotionally Focused Therapy (EFT) offers the best of two highly researched and effective approaches to help couples create lasting change in both communication and connection.
+			Couples often seek therapy when they feel stuck in painful cycles —
+			arguing about the same issues, feeling emotionally distant, or struggling
+			to rebuild trust. Working with a therapist who integrates the Gottman
+			Method and Emotionally Focused Therapy (EFT) offers the best of two
+			highly researched and effective approaches to help couples create lasting
+			change in both communication and connection.
 		</p>
 	</TextSection>
 
-	<Container>
-		<section class="key-outcomes-section">
-			<h3 class="key-outcomes-title">Key Outcomes</h3>
-			<p class="key-outcomes-subtitle">
-				The couples I support leave with practical skills and renewed confidence in their partnership.
-			</p>
-			<ul class="key-outcomes-list">
-				<li>
-					<div class="key-outcome-icon">
-						<Icon name="mdi:check-circle-outline" width="32" height="32" />
-					</div>
-					<div class="key-outcome-text">
-						<span>Break painful cycles of conflict</span>
-					</div>
-				</li>
-				<li>
-					<div class="key-outcome-icon">
-						<Icon name="mdi:check-circle-outline" width="32" height="32" />
-					</div>
-					<div class="key-outcome-text">
-						<span>Rebuild trust and emotional safety</span>
-					</div>
-				</li>
-				<li>
-					<div class="key-outcome-icon">
-						<Icon name="mdi:check-circle-outline" width="32" height="32" />
-					</div>
-					<div class="key-outcome-text">
-						<span>Deepen emotional connection</span>
-					</div>
-				</li>
-				<li>
-					<div class="key-outcome-icon">
-						<Icon name="mdi:check-circle-outline" width="32" height="32" />
-					</div>
-					<div class="key-outcome-text">
-						<span>Improve communication skills</span>
-					</div>
-				</li>
-			</ul>
-		</section>
-	</Container>
+	<section class="outcomes">
+		<Container>
+			<div class="outcomes__header">
+				<span class="eyebrow">What changes</span>
+				<h2 class="outcomes__title">Practical skills, renewed confidence.</h2>
+			</div>
+			<ol class="outcomes__list">
+				{outcomes.map((o) => (
+					<li class="outcomes__item">
+						<span class="outcomes__num">{o.n}</span>
+						<div class="outcomes__body">
+							<h3>{o.title}</h3>
+							<p>{o.body}</p>
+						</div>
+					</li>
+				))}
+			</ol>
+		</Container>
+	</section>
 
-	<div class="therapeutic-orientation-wrapper">
-		<TextSection>
-			<div class="therapeutic-orientation-content">
-				<h2>Therapeutic Orientation</h2>
+	<section class="therapeutic-orientation">
+		<Container narrow>
+			<div class="therapeutic-orientation__inner">
+				<span class="eyebrow eyebrow--on-dark">Approach</span>
+				<h2>Therapeutic orientation</h2>
 				<p>
-					My theoretical orientation as a couple's therapist is grounded in both the Gottman Method and Emotionally Focused Therapy (EFT), integrating empirically supported strategies with an attachment-based, emotionally attuned framework. This blended approach allows me to address both the behavioral and emotional dimensions of relational distress while fostering sustainable, secure connection between partners.
+					My theoretical orientation as a couples therapist is grounded in
+					both the Gottman Method and Emotionally Focused Therapy (EFT),
+					integrating empirically supported strategies with an
+					attachment-based, emotionally attuned framework. This blended
+					approach lets me address both the behavioral and emotional
+					dimensions of relational distress while fostering sustainable,
+					secure connection between partners.
 				</p>
 			</div>
-		</TextSection>
-	</div>
+		</Container>
+	</section>
+
+	<style is:global>
+		.therapeutic-orientation .eyebrow {
+			color: var(--clay-soft);
+		}
+	</style>
 
 	<StickyTextImageSection>
 		<picture slot="image-container">
@@ -100,14 +101,22 @@ const seo = {
 				width="600"
 				height="600"
 				src="/assets/images/couples-gottman-method.webp"
-				alt="Illustration representing the Gottman Method approach"
+				alt="Illustration of the Gottman Method's relationship structure"
 				class="gottman-image"
 			/>
 		</picture>
 		<div slot="text-container">
+			<span class="eyebrow">In session</span>
 			<h2>The Gottman Method</h2>
 			<p>
-				From the Gottman perspective, I focus on building a solid foundation of relational health through assessment and skill-building. I use Gottman interventions to help couples reduce conflict, improve communication, and strengthen friendship and shared meaning. The structured nature of this model provides partners with concrete tools to recognize destructive patterns—such as criticism, defensiveness, contempt, and stonewalling—and replace them with behaviors that promote mutual understanding and respect.
+				From the Gottman perspective, I focus on building a solid foundation
+				of relational health through assessment and skill-building. I use
+				Gottman interventions to help couples reduce conflict, improve
+				communication, and strengthen friendship and shared meaning. The
+				structured nature of this model gives partners concrete tools to
+				recognize destructive patterns — criticism, defensiveness, contempt,
+				stonewalling — and replace them with behaviors that promote mutual
+				understanding and respect.
 			</p>
 		</div>
 	</StickyTextImageSection>
@@ -116,166 +125,127 @@ const seo = {
 </Layout>
 
 <style>
-	.hero-subheadline {
-		font-size: 1.25rem;
-		line-height: 1.6;
-		color: var(--theme-on-surface-1);
-		margin-top: 1rem;
-		opacity: 0.9;
+	.outcomes {
+		margin: var(--gap-section) auto;
 	}
 
-	@media (max-width: 768px) {
-		.hero-subheadline {
-			font-size: 1.1rem;
-		}
+	.outcomes__header {
+		margin: 0 0 2.25rem;
+		max-width: 38rem;
 	}
 
-	/* Key Outcomes Section */
-	.key-outcomes-section {
-		margin: 2rem auto 4rem auto;
-		max-width: 960px;
-		padding: clamp(1.5rem, 4vw, 3rem);
-		border-radius: calc(var(--theme-shape-radius) * 1.5);
-		background: linear-gradient(145deg, rgba(var(--theme-primary-rgb), 0.12), rgba(255, 255, 255, 0.5));
-		box-shadow: 0 25px 60px rgba(0, 0, 0, 0.08);
-	}
-
-	.key-outcomes-title {
-		text-align: center;
-		font-size: 1.75rem;
-		color: var(--theme-primary);
-		margin-bottom: 0.5rem;
-	}
-
-	.key-outcomes-subtitle {
-		text-align: center;
-		color: var(--theme-on-surface-2);
-		margin: 0 auto 2rem auto;
-		max-width: 540px;
-		font-size: 1.05rem;
-		line-height: 1.6;
-	}
-
-	.key-outcomes-list {
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
-		list-style: none;
-		padding: 0;
+	.outcomes__title {
+		font-size: var(--step-4);
+		font-weight: 500;
 		margin: 0;
 	}
 
-	.key-outcomes-list li {
-		display: flex;
-		align-items: center;
-		gap: 1.25rem;
-		padding: 1.25rem 1.5rem;
-		border-radius: calc(var(--theme-shape-radius) * 1.2);
-		background: var(--theme-surface-1);
-		border: 1px solid rgba(255, 255, 255, 0.4);
-		box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
-		position: relative;
-		overflow: hidden;
-		transition: transform 0.25s ease, box-shadow 0.25s ease;
-	}
-
-	.key-outcomes-list li::after {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		background: radial-gradient(circle at top right, rgba(var(--theme-primary-rgb), 0.15), transparent 60%);
-		opacity: 0;
-		transition: opacity 0.3s ease;
-		pointer-events: none;
-	}
-
-	.key-outcomes-list li:hover {
-		transform: translateY(-4px);
-		box-shadow: 0 18px 32px rgba(0, 0, 0, 0.1);
-	}
-
-	.key-outcomes-list li:hover::after {
-		opacity: 1;
-	}
-
-	.key-outcome-icon {
-		width: 3rem;
-		height: 3rem;
-		border-radius: 999px;
-		background: linear-gradient(135deg, rgba(var(--theme-primary-rgb), 0.2), rgba(var(--theme-primary-rgb), 0.05));
+	.outcomes__list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
 		display: grid;
-		place-items: center;
-		flex-shrink: 0;
+		grid-template-columns: 1fr 1fr;
+		gap: 0;
+		border-top: 1px solid var(--line);
 	}
 
-	.key-outcome-icon iconify-icon {
-		color: var(--theme-primary);
-		width: 2rem;
-		height: 2rem;
-		display: block;
+	.outcomes__item {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: 1.25rem;
+		padding: 1.75rem 0;
+		border-bottom: 1px solid var(--line);
+		padding-right: 2rem;
 	}
 
-	.key-outcome-text span {
-		font-weight: 600;
-		font-size: 1.05rem;
-		color: var(--theme-on-surface-1);
-		line-height: 1.5;
+	.outcomes__list .outcomes__item:nth-child(2n) {
+		border-left: 1px solid var(--line);
+		padding-left: 2rem;
+		padding-right: 0;
 	}
 
-	@media (max-width: 768px) {
-		.key-outcomes-section {
-			padding: 1.5rem;
+	.outcomes__num {
+		font-family: var(--font-display);
+		font-style: italic;
+		font-weight: 400;
+		font-size: var(--step-2);
+		color: var(--clay);
+		font-variation-settings: 'opsz' 48, 'SOFT' 100;
+		line-height: 1;
+		padding-top: 0.15em;
+	}
+
+	.outcomes__body h3 {
+		font-size: var(--step-2);
+		font-weight: 500;
+		margin: 0 0 0.5rem;
+	}
+
+	.outcomes__body p {
+		font-size: var(--step-0);
+		line-height: 1.55;
+		color: var(--ink-muted);
+		margin: 0;
+		max-width: 36ch;
+	}
+
+	@media (max-width: 720px) {
+		.outcomes__list {
+			grid-template-columns: 1fr;
 		}
 
-		.key-outcomes-subtitle {
-			font-size: 1rem;
-			margin-bottom: 1.5rem;
+		.outcomes__list .outcomes__item:nth-child(2n) {
+			border-left: none;
+			padding-left: 0;
 		}
 
-		.key-outcomes-list li {
-			padding: 1.1rem 1.25rem;
+		.outcomes__item {
+			padding-right: 0;
 		}
 	}
 
-	@media (max-width: 500px) {
-		.key-outcomes-section {
-			margin: 1.5rem auto 3rem auto;
-		}
-
-		.key-outcome-text span {
-			font-size: 1rem;
-		}
-
-		.key-outcomes-list li {
-			padding: 1rem 1.25rem;
-		}
+	.therapeutic-orientation {
+		margin: var(--gap-section) auto;
+		background-color: var(--moss);
+		color: oklch(96% 0.012 75);
+		padding: clamp(3rem, 7vw, 5rem) 0;
 	}
 
-	/* Therapeutic Orientation Section */
-	.therapeutic-orientation-wrapper {
-		background-color: var(--theme-surface-3); /* Subtle background */
-		padding: 2rem 0;
-        color: white;
-		margin: var(--section-margin) 0;
-	}
-
-	.therapeutic-orientation-content {
-		text-align: center;
-		max-width: 800px;
+	.therapeutic-orientation__inner {
+		max-width: 38rem;
 		margin: 0 auto;
 	}
 
-	.therapeutic-orientation-content h2 {
-		margin-top: 0; /* Reset margin since wrapper handles spacing */
+	.therapeutic-orientation h2 {
+		color: oklch(98% 0.012 75);
+		font-size: var(--step-4);
+		font-weight: 500;
+		margin: 0 0 1.25rem;
 	}
 
-	/* Gottman Image Styling */
+	.therapeutic-orientation h2::after {
+		content: '';
+		display: block;
+		width: 2rem;
+		height: 2px;
+		background: oklch(85% 0.06 35);
+		margin-top: 1rem;
+	}
+
+	.therapeutic-orientation p {
+		color: oklch(92% 0.018 80);
+		font-size: var(--step-1);
+		line-height: 1.65;
+		margin: 0;
+		max-width: 56ch;
+	}
+
+	.eyebrow--on-dark {
+		color: oklch(85% 0.06 35) !important;
+	}
+
 	.gottman-image {
-		border-radius: var(--theme-shape-radius);
-		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-		border: 1px solid rgba(0, 0, 0, 0.05);
+		border-radius: var(--radius-md);
 	}
 </style>

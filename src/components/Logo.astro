@@ -1,38 +1,49 @@
 ---
-// Temporarily using regular img tag due to @astrojs/image issues
+const { compact } = Astro.props;
 ---
 
-<a href="/" aria-label="Empowered Healing Counseling - Home">
-  <img
-    class="ehc-logo"
-    width="625"
-    height="282"
-    src="/assets/images/EmpoweredHealingLogo.webp"
-    alt="Empowered Healing Counseling - Therapy services in Tacoma, WA"
-    loading="eager"
-  />
+<a href="/" aria-label="Empowered Healing Counseling — Home" class={`ehc-logo-link ${compact ? 'ehc-logo-link--compact' : ''}`}>
+	<img
+		class="ehc-logo"
+		width="625"
+		height="282"
+		src="/assets/images/EmpoweredHealingLogo.webp"
+		alt="Empowered Healing Counseling — Therapy services in Tacoma, WA"
+		loading="eager"
+	/>
 </a>
 
 <style>
-  .ehc-logo {
-    width: auto;
-    background-color: transparent;
-    height: 5rem;
-    transition: transform 0.2s ease;
-    display: block;
-    max-width: none;
-    object-fit: contain;
-  }
-  a {
-    display: block;
-    flex-shrink: 0;
-  }
-  a:hover .ehc-logo {
-    transform: scale(1.02);
-  }
-  @media (max-width: 768px) {
-    .ehc-logo {
-      height: 4rem;
-    }
-  }
+	.ehc-logo-link {
+		display: inline-flex;
+		align-items: center;
+		text-decoration: none;
+		color: inherit;
+		flex-shrink: 0;
+	}
+
+	.ehc-logo {
+		width: auto;
+		height: 5.5rem;
+		background-color: transparent;
+		display: block;
+		object-fit: contain;
+		max-width: none;
+		transition: opacity var(--theme-transition);
+	}
+
+	.ehc-logo-link:hover .ehc-logo {
+		opacity: 0.85;
+	}
+
+	.ehc-logo-link--compact .ehc-logo {
+		height: 4.25rem;
+	}
+
+	@media (max-width: 768px) {
+		.ehc-logo,
+		.ehc-logo-link--compact .ehc-logo {
+			height: 3.5rem;
+		}
+	}
 </style>

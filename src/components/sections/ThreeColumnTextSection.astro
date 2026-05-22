@@ -3,72 +3,83 @@ import Container from '../Container.astro';
 ---
 
 <Container>
-	<div class="three-col-text__title">
-		<slot name="section-title" />
-	</div>
+	<section class="three-col">
+		<div class="three-col__title">
+			<slot name="section-title" />
+		</div>
 
-	<section class="three-col-text__section">
-		<div class="three-col-text__column">
-			<slot name="column-1-body" />
-			<slot name="column-1-cta" />
-		</div>
-		<div class="three-col-text__column">
-			<slot name="column-2-body" />
-			<slot name="column-2-cta" />
-		</div>
-		<div class="three-col-text__column">
-			<slot name="column-3-body" />
-			<slot name="column-3-cta" />
+		<div class="three-col__grid">
+			<div class="three-col__cell">
+				<slot name="column-1-body" />
+				<slot name="column-1-cta" />
+			</div>
+			<div class="three-col__cell">
+				<slot name="column-2-body" />
+				<slot name="column-2-cta" />
+			</div>
+			<div class="three-col__cell">
+				<slot name="column-3-body" />
+				<slot name="column-3-cta" />
+			</div>
 		</div>
 	</section>
 </Container>
 
 <style>
-	.three-col-text__section {
-		--column-count: 3;
-		--column-width: calc(100% / var(--column-count));
-		margin: var(--section-margin) auto;
-		display: flex;
-		flex-wrap: wrap;
-		text-align: center;
-		justify-content: space-evenly;
+	.three-col {
+		margin: var(--gap-section) auto;
 	}
 
-	.three-col-text__title {
-		text-align: center;
-		margin: 0 auto;
-		margin-bottom: 2rem;
-		display: flex;
-		flex-wrap: wrap;
-		text-align: center;
-		justify-content: space-evenly;
-	}
-	.three-col-text__column {
-		width: calc(var(--column-width) - 2rem);
-		margin: 1rem;
-		padding: 0;
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		align-items: center;
-		background-color: transparent;
-		border-radius: 0;
-		box-shadow: none;
-		transition: none;
+	.three-col__title {
+		margin: 0 0 2rem;
+		max-width: 38rem;
 	}
 
-	@media (max-width: 1200px) {
-		.three-col-text__section {
-			--column-count: 2;
+	.three-col__grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 0;
+		border-top: 1px solid var(--line);
+	}
+
+	.three-col__cell {
+		padding: 2.25rem 1.5rem;
+		border-bottom: 1px solid var(--line);
+	}
+
+	.three-col__cell + .three-col__cell {
+		border-left: 1px solid var(--line);
+	}
+
+	@media (max-width: 1024px) {
+		.three-col__grid {
+			grid-template-columns: 1fr 1fr;
+		}
+
+		.three-col__cell + .three-col__cell {
+			border-left: 1px solid var(--line);
+		}
+
+		.three-col__cell:nth-child(odd) + .three-col__cell:nth-child(even) {
+			border-left: 1px solid var(--line);
+		}
+
+		.three-col__cell:nth-child(2n+1) {
+			border-left: none;
 		}
 	}
-	@media (max-width: 768px) {
-		.three-col-text__section {
-			--column-count: 1;
+
+	@media (max-width: 720px) {
+		.three-col__grid {
+			grid-template-columns: 1fr;
 		}
-		.three-col-text__column {
-			width: 100%;
-			margin: 0.75rem 0;
+
+		.three-col__cell + .three-col__cell {
+			border-left: none;
+		}
+
+		.three-col__cell {
+			padding: 2rem 0;
 		}
 	}
 </style>

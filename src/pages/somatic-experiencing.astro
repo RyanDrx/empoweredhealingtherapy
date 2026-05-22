@@ -8,25 +8,25 @@ import StickyTextImageSection from '../components/sections/StickyTextImageSectio
 import TextCardSection from '../components/sections/TextCardSection.astro';
 
 const seo = {
-	title: 'Somatic Experiencing | Empowered Healing Counseling - Meaghan Trezza, LMHC',
-	description: 'Somatic Experiencing for healing trauma and PTSD. Meaghan Trezza, LMHC, is a Somatic Experiencing Practitioner in Tacoma, Washington.',
+	title: 'Somatic Experiencing | Empowered Healing Counseling — Meaghan Trezza, LMHC',
+	description:
+		'Somatic Experiencing for healing trauma and PTSD. Meaghan Trezza, LMHC, is a Somatic Experiencing Practitioner in Tacoma, Washington.',
 };
 ---
 
 <Layout {seo}>
 	<HeroSection>
 		<div slot="text-container">
+			<span class="eyebrow">Modality</span>
 			<h1>Somatic Experiencing</h1>
-			<!-- <p>
-				{raiContent.payme}
-			</p> -->
+			<p>A body-aware approach to trauma — listening to what the nervous system already knows.</p>
 		</div>
 		<picture slot="image-container">
 			<img
 				width="780"
 				height="439"
 				src="/assets/images/somatic-experiencing.webp"
-				alt="Somatic Experiencing"
+				alt="Light filtering through forest, soft and steady"
 				id="se-hero-image"
 				loading="eager"
 			/>
@@ -44,49 +44,20 @@ const seo = {
 				width="508"
 				height="508"
 				src="/assets/images/somatic-experiencing-masks.webp"
-				alt="Somatic Experiencing Masks"
+				alt="Carved wooden masks — a still-life of internal states"
 			/>
 		</picture>
 		<div slot="text-container">
+			<span class="eyebrow">The approach</span>
 			<h2>What is Somatic Experiencing?</h2>
-			<p style="white-space: pre-line;">
-				{seContent.whatIsSE}
-			</p>
-			<!-- <div class="intro_button">
-                <Button href="/about">
-                    About Me
-                </Button>
-            </div> -->
+			{seContent.whatIsSE.split('\n\n').map((p) => <p>{p}</p>)}
 		</div>
 	</StickyTextImageSection>
 
 	<TextCardSection>
 		<h2>Why Somatic Experiencing?</h2>
-		<p style="white-space: pre-line;">
-			{seContent.whySE}
-		</p>
-		<!-- <div class="intro_button">
-                <Button href="/about">
-                    About Me
-                </Button>
-            </div> -->
+		{seContent.whySE.split('\n\n').map((p) => <p>{p}</p>)}
 	</TextCardSection>
 
 	<CtaGeneral />
 </Layout>
-
-<style>
-	.rates-card__section {
-		text-align: center;
-		max-width: 50rem;
-		margin: calc(var(--section-margin) * 2) auto;
-	}
-
-	[astro-icon] {
-		height: 3.5rem;
-	}
-
-	[astro-icon='bi:circle-fill'] {
-		height: 3rem;
-	}
-</style>

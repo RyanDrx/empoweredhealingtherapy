@@ -1,118 +1,34 @@
-/* Special thanks to this tool for local fonts CSS generation:
-  https://google-webfonts-helper.herokuapp.com/fonts/lato?subsets=latin
-*/
+/* Variable display + body fonts. Self-host preconnect via head; load from Google Fonts here. */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Outfit:wght@300..700&display=swap');
 
-/* roboto-serif-600 - latin */
-@font-face {
-  font-family: 'Roboto Serif';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: local(''),
-       url('/assets/fonts/roboto-serif-v8-latin-600.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('/assets/fonts/roboto-serif-v8-latin-600.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
-/* roboto-serif-700 - latin */
-@font-face {
-  font-family: 'Roboto Serif';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: local(''),
-       url('/assets/fonts/roboto-serif-v8-latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('/assets/fonts/roboto-serif-v8-latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
-
-/* lato-300 - latin */
-@font-face {
-  font-family: 'Lato';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: local(''),
-       url('/assets/fonts/lato-v23-latin-300.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('/assets/fonts/lato-v23-latin-300.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
-/* lato-regular - latin */
-@font-face {
-  font-family: 'Lato';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: local(''),
-       url('/assets/fonts/lato-v23-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('/assets/fonts/lato-v23-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
-/* lato-700 - latin */
-@font-face {
-  font-family: 'Lato';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: local(''),
-       url('/assets/fonts/lato-v23-latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('/assets/fonts/lato-v23-latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
-/* lato-700italic - latin */
-@font-face {
-  font-family: 'Lato';
-  font-style: italic;
-  font-weight: 700;
-  font-display: swap;
-  src: local(''),
-       url('/assets/fonts/lato-v23-latin-700italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-       url('/assets/fonts/lato-v23-latin-700italic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
 :root {
-  --font-size-xs: clamp(12px, 0.05vw + 12.5px, 13px);
-  --font-size-sm: clamp(14.4px, 0.07vw + 14.13px, 15px);
-  --font-size-base: clamp(18px, 0.23vw + 17.09px, 20px);
-  --font-size-md: clamp(22.5px, 0.47vw + 20.61px, 26.66px);
-  --font-size-lg: clamp(28.13px, 0.84vw + 24.76px, 35.54px);
-  --font-size-xl: clamp(35.16px, 1.39vw + 29.6px, 47.37px);
-  --font-size-xxl: clamp(43.95px, 2.18vw + 35.22px, 63.15px);
-  --font-size-xxxl: clamp(54.93px, 3.32vw + 41.64px, 84.17px);
+	--step--1: clamp(0.83rem, 0.78rem + 0.18vw, 0.92rem);
+	--step-0:  clamp(1rem,    0.95rem + 0.22vw, 1.1rem);
+	--step-1:  clamp(1.15rem, 1.08rem + 0.32vw, 1.32rem);
+	--step-2:  clamp(1.35rem, 1.22rem + 0.6vw,  1.7rem);
+	--step-3:  clamp(1.7rem,  1.45rem + 1.1vw,  2.3rem);
+	--step-4:  clamp(2.15rem, 1.7rem + 2vw,    3rem);
+	--step-5:  clamp(2.7rem,  2rem + 3.4vw,    4rem);
+	--step-6:  clamp(3.2rem,  2.2rem + 4.8vw,  5.4rem);
+
+	/* legacy aliases */
+	--font-size-xs:   var(--step--1);
+	--font-size-sm:   var(--step-0);
+	--font-size-base: var(--step-0);
+	--font-size-md:   var(--step-1);
+	--font-size-lg:   var(--step-2);
+	--font-size-xl:   var(--step-3);
+	--font-size-xxl:  var(--step-4);
+	--font-size-xxxl: var(--step-5);
 }
 
 html,
 body {
-	line-height: 1.5;
-	font-family: var(--theme-font-family-sans);
-	font-size: var(--font-size-base);
-	color: var(--theme-on-bg);
-} 
-
-h1,
-h2,
-h3 {
-	font-family: var(--theme-font-family-serif);
-	font-weight: 700;
-}
-
-h1 {
-	font-size: var(--font-size-xxl);
-}
-
-h2 {
-	font-size: var(--font-size-xl);
-}
-
-h3 {
-	font-size: var(--font-size-lg);
-}
-
-h1,
-h2 {
-	line-height: 1.1;
-	font-weight: 700;
-}
-
-h3 {
-	font-weight: 500;
-}
-
-h6 {
-	font-size: var(--font-size-sm);
+	line-height: 1.6;
+	font-family: var(--font-body);
+	font-size: var(--step-0);
+	color: var(--ink);
+	font-feature-settings: 'ss01', 'cv11';
 }
 
 h1,
@@ -120,15 +36,115 @@ h2,
 h3,
 h4,
 h5,
-h6,
-p {
+h6 {
+	font-family: var(--font-display);
+	font-weight: 500;
+	color: var(--ink);
+	letter-spacing: -0.02em;
+	text-wrap: balance;
 	margin: 0 0 1rem 0;
 }
 
-blockquote {
-	font-style: italic;
-	font-size: var(--font-size-base);
+h1 {
+	font-size: var(--step-5);
 	font-weight: 500;
-	margin-bottom: 1rem;
-	padding-left: 0;
+	line-height: 1.02;
+	font-variation-settings: 'opsz' 96, 'SOFT' 30;
+}
+
+h2 {
+	font-size: var(--step-4);
+	font-weight: 500;
+	line-height: 1.08;
+	font-variation-settings: 'opsz' 48, 'SOFT' 25;
+}
+
+h3 {
+	font-size: var(--step-3);
+	font-weight: 500;
+	line-height: 1.15;
+	letter-spacing: -0.015em;
+	font-variation-settings: 'opsz' 36, 'SOFT' 20;
+}
+
+h4 {
+	font-size: var(--step-2);
+	font-weight: 500;
+	line-height: 1.2;
+	letter-spacing: -0.012em;
+}
+
+h5 {
+	font-size: var(--step-1);
+	font-weight: 600;
+}
+
+h6 {
+	font-size: var(--step-0);
+	font-weight: 600;
+	font-family: var(--font-body);
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--ink-muted);
+}
+
+p {
+	margin: 0 0 1.1rem 0;
+	max-width: 68ch;
+	color: var(--ink);
+}
+
+p.lead {
+	font-size: var(--step-1);
+	color: var(--ink);
+	line-height: 1.55;
+	max-width: 56ch;
+}
+
+small,
+.meta {
+	font-size: var(--step--1);
+	color: var(--ink-faint);
+	letter-spacing: 0.02em;
+}
+
+.eyebrow {
+	display: inline-block;
+	font-family: var(--font-body);
+	font-size: var(--step--1);
+	font-weight: 500;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	color: var(--clay-deep);
+	margin: 0 0 1rem 0;
+}
+
+a {
+	color: var(--clay-deep);
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.2em;
+	transition: color var(--theme-transition);
+}
+
+a:hover {
+	color: var(--ink);
+}
+
+blockquote {
+	font-family: var(--font-display);
+	font-style: italic;
+	font-variation-settings: 'opsz' 48, 'SOFT' 50;
+	font-size: var(--step-3);
+	font-weight: 400;
+	line-height: 1.35;
+	color: var(--ink);
+	max-width: 32ch;
+	margin: 0 0 1.5rem 0;
+	padding: 0;
+	border: none;
+}
+
+::selection {
+	background: oklch(88% 0.06 35);
+	color: var(--ink);
 }

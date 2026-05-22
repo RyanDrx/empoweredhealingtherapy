@@ -6,34 +6,34 @@ import CtaGeneral from '../components/CtaGeneral.astro';
 import CustomerQuoteSection from '../components/sections/CustomerQuoteSection.astro';
 import { Resource } from '../models/resource';
 import YouTubeEmbed from '../components/core/YouTubeEmbed.astro';
-import Button from '../components/buttons/Button.astro';
 import Icon from '../components/Icon.astro';
 import Container from '../components/Container.astro';
 
-//const resourceLinks = await Astro.glob<Resource>('../../public/cms/ResourceLinks/*.json');
-
 const seo = {
-	title: 'Resources | Empowered Healing Counseling - Meaghan Trezza, LMHC',
-	description: 'Resources and links for depression anxiety and drama. Meaghan Trezza, LMHC, is a Somatic Experiencing Practitioner in Tacoma, WA.',
+	title: 'Resources | Empowered Healing Counseling — Meaghan Trezza, LMHC',
+	description:
+		'Links, readings, and short videos on trauma, anxiety, Somatic Experiencing, and more.',
 };
 
-const resources =  await Astro.glob<Resource>('../../public/cms/ResourceLinks/*.json');
-
-
+const resources = await Astro.glob<Resource>('../../public/cms/ResourceLinks/*.json');
+const videoResources = resources.filter((r) => r.resourceLink.includes('youtube') || r.youtubeLink);
+const linkResources = resources.filter((r) => !(r.resourceLink.includes('youtube') || r.youtubeLink));
 ---
 
 <Layout {seo}>
 	<HeroSection>
 		<div slot="text-container">
+			<span class="eyebrow">Reading &amp; viewing</span>
 			<h1>Resources</h1>
+			<p>A working library — short articles and talks I return to or hand to clients.</p>
 		</div>
 		<picture slot="image-container">
 			<img
 				width="828"
 				height="414"
-                id="resources-hero"
+				id="resources-hero"
 				src="/assets/images/helpful-resources.webp"
-				alt="Helpful resources for depression, anxiety, and trauma"
+				alt="A stack of dog-eared books beside a notebook"
 				loading="eager"
 			/>
 		</picture>
@@ -44,253 +44,169 @@ const resources =  await Astro.glob<Resource>('../../public/cms/ResourceLinks/*.
 		customerName={resourceContent.quoteAuthor}
 	/>
 
-    <Container>
-        <div class="resources-grid">
-            {
-                resources.map((resource: Resource) => {
-                    const isVideo = resource.resourceLink.includes('youtube') || resource.youtubeLink;
-                    return (
-                        <article class={`resource-card ${isVideo ? 'resource-card--video' : 'resource-card--link'}`}>
-                            <div class="resource-card__media">
-                                {isVideo ? (
-                                    <YouTubeEmbed url={resource.resourceLink} />
-                                ) : (
-                                    <div class="resource-card__icon-placeholder">
-										<Icon name="line-md:link" width="56" height="56" />
-                                    </div>
-                                )}
-                            </div>
-                            <div class="resource-card__content">
-                                <div class="resource-card__header">
-                                    <span class={`resource-type ${isVideo ? 'video' : 'link'}`}>
-                                        {isVideo ? 'Video' : 'Article / Website'}
-                                    </span>
-                                    <h3>{resource.title}</h3>
-                                </div>
-                                <p>{resource.description}</p>
-                                <div class="resource-card__footer">
-                                    <Button href={resource.resourceLink} target="_blank" unelevated customIcon newTab>
-                                        {isVideo ? 'Watch Video' : 'Visit Resource'}
-                                        <Fragment slot="icon">
-												<Icon name={isVideo ? "line-md:external-link-rounded" : "line-md:external-link-rounded"} width="20" height="20"/>
-                                        </Fragment>
-                                    </Button>
-                                </div>
-                            </div>
-                        </article>
-                    )
-                })
-            }
-        </div>
-    </Container>
-       
+	{videoResources.length > 0 && (
+		<section class="resource-block">
+			<Container>
+				<div class="resource-block__header">
+					<span class="eyebrow">Watch</span>
+					<h2>Talks &amp; short videos</h2>
+				</div>
+				<div class="video-grid">
+					{videoResources.map((resource: Resource) => (
+						<article class="video-card">
+							<div class="video-card__media">
+								<YouTubeEmbed url={resource.resourceLink} />
+							</div>
+							<div class="video-card__body">
+								<h3>{resource.title}</h3>
+								<p>{resource.description}</p>
+							</div>
+						</article>
+					))}
+				</div>
+			</Container>
+		</section>
+	)}
+
+	{linkResources.length > 0 && (
+		<section class="resource-block">
+			<Container>
+				<div class="resource-block__header">
+					<span class="eyebrow">Read</span>
+					<h2>Articles &amp; websites</h2>
+				</div>
+				<ul class="link-list">
+					{linkResources.map((resource: Resource) => (
+						<li class="link-row">
+							<a href={resource.resourceLink} target="_blank" rel="noopener noreferrer">
+								<div class="link-row__text">
+									<h3>{resource.title}</h3>
+									{resource.description && <p>{resource.description}</p>}
+								</div>
+								<span class="link-row__arrow" aria-hidden="true">
+									<Icon name="line-md:external-link-rounded" width="22" height="22" />
+								</span>
+							</a>
+						</li>
+					))}
+				</ul>
+			</Container>
+		</section>
+	)}
+
 	<CtaGeneral />
 </Layout>
 
 <style>
-    .resources-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 1rem;
-        margin: var(--section-margin) auto;
-        max-width: 1040px;
-    }
+	.resource-block {
+		margin: var(--gap-section) auto;
+	}
 
-    .resource-card {
-        background: var(--theme-surface-1);
-        border-radius: calc(var(--theme-shape-radius) * 1.25);
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        transition: transform 0.25s ease, box-shadow 0.25s ease;
-        border: 1px solid rgba(0, 0, 0, 0.06);
-        height: 100%;
-        position: relative;
-    }
+	.resource-block__header {
+		margin: 0 0 2rem;
+		max-width: 38rem;
+	}
 
-    .resource-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(90deg, rgba(var(--theme-primary-rgb), 0.7), rgba(var(--theme-primary-rgb), 0.15));
-        opacity: 0.75;
-    }
+	.resource-block__header h2 {
+		font-size: var(--step-4);
+		font-weight: 500;
+		margin: 0;
+	}
 
-    .resource-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 18px 45px rgba(0, 0, 0, 0.12);
-    }
+	.video-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: clamp(1.5rem, 3vw, 2.5rem);
+	}
 
-    .resource-card__media {
-        background-color: var(--theme-surface-3);
-        background-image: linear-gradient(
-            135deg,
-            rgba(var(--theme-primary-rgb), 0.18),
-            rgba(var(--theme-primary-rgb), 0.05)
-        );
-        aspect-ratio: 16 / 9;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        overflow: hidden;
-    }
+	.video-card {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
 
-    /* Subtle layered background for a parallax-like feel */
-    .resource-card__media::before {
-        content: '';
-        position: absolute;
-        inset: -12%;
-        background:
-            radial-gradient(circle at 15% 15%, rgba(var(--theme-primary-rgb), 0.16), transparent 55%),
-            radial-gradient(circle at 85% 40%, rgba(var(--theme-primary-rgb), 0.10), transparent 60%),
-            linear-gradient(135deg, rgba(var(--theme-primary-rgb), 0.06), transparent 55%);
-        transform: translate3d(0, 0, 0) scale(1.05);
-        transition: transform 0.35s ease, opacity 0.35s ease;
-        opacity: 0.85;
-        pointer-events: none;
-    }
+	.video-card__media {
+		aspect-ratio: 16 / 9;
+		border-radius: var(--radius-md);
+		overflow: hidden;
+		background: var(--paper-2);
+	}
 
-    .resource-card__media::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: radial-gradient(circle at top right, rgba(var(--theme-primary-rgb), 0.12), transparent 55%);
-        pointer-events: none;
-        opacity: 0.9;
-    }
+	.video-card__media :global(.youtube-embed__container) {
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		border-radius: 0;
+	}
 
+	.video-card__body h3 {
+		font-size: var(--step-2);
+		font-weight: 500;
+		margin: 0 0 0.4rem;
+	}
 
-    
-    /* Override YouTube embed styles to fit card */
-    .resource-card__media :global(.youtube-embed__container) {
-        width: 100%;
-        margin-bottom: 0;
-        border-radius: 0;
-        height: 100%;
-        aspect-ratio: 16/9;
-        position: relative;
-        z-index: 1;
-    }
-    .resource-card__icon-placeholder {
-        padding: 1.75rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        height: 100%;
-        position: relative;
-        z-index: 1;
-    }
+	.video-card__body p {
+		font-size: var(--step-0);
+		line-height: 1.55;
+		color: var(--ink-muted);
+		margin: 0;
+		max-width: 50ch;
+	}
 
-    .resource-card__icon-placeholder :global(iconify-icon) {
-        color: white;
-        opacity: 0.95;
-        display: block;
-        width: 2.75rem;
-        height: 2.75rem;
-    }
+	.link-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		border-top: 1px solid var(--line);
+	}
 
-    .resource-card__footer :global(iconify-icon) {
-        display: block;
-    }
+	.link-row {
+		border-bottom: 1px solid var(--line);
+	}
 
-    .resource-card__content {
-        padding: 1.1rem 1.25rem 1.25rem 1.25rem;
-        display: flex;
-        flex-direction: column;
-        flex-grow: 1;
-        gap: 0.75rem;
-    }
+	.link-row a {
+		display: grid;
+		grid-template-columns: 1fr auto;
+		gap: 1.5rem;
+		align-items: center;
+		padding: 1.5rem 0;
+		text-decoration: none;
+		color: var(--ink);
+		transition: color var(--theme-transition);
+	}
 
-    .resource-card__header {
-        margin-bottom: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-    }
+	.link-row a:hover {
+		color: var(--clay-deep);
+	}
 
-    .resource-type {
-        display: inline-block;
-        width: fit-content;
-        font-size: 0.7rem;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        font-weight: 600;
-        padding: 0.25rem 0.75rem;
-        border-radius: 1rem;
-        margin-bottom: 0;
-        border: 1px solid rgba(var(--theme-primary-rgb), 0.18);
-    }
+	.link-row__text h3 {
+		font-family: var(--font-display);
+		font-size: var(--step-2);
+		font-weight: 500;
+		letter-spacing: -0.015em;
+		margin: 0 0 0.35rem;
+	}
 
-    .resource-type.video {
-        background: rgba(var(--theme-primary-rgb), 0.12);
-        color: var(--theme-primary);
-    }
+	.link-row__text p {
+		font-size: var(--step-0);
+		line-height: 1.55;
+		color: var(--ink-muted);
+		margin: 0;
+		max-width: 60ch;
+	}
 
-    .resource-type.link {
-        background: rgba(var(--theme-primary-rgb), 0.07);
-        color: var(--theme-on-surface-1);
-    }
+	.link-row__arrow :global(iconify-icon) {
+		color: var(--clay);
+		transition: transform var(--theme-transition);
+	}
 
-    .resource-card h3 {
-        font-size: 1.2rem;
-        margin: 0;
-        line-height: 1.3;
-        color: var(--theme-on-surface);
-        font-weight: 600;
-    }
+	.link-row a:hover .link-row__arrow :global(iconify-icon) {
+		transform: translate(3px, -3px);
+	}
 
-    .resource-card p {
-        color: var(--theme-on-surface-1);
-        line-height: 1.6;
-        margin: 0;
-        flex-grow: 1;
-        font-size: 1rem;
-    }
-
-    .resource-card__footer {
-        margin-top: auto;
-        padding-top: 0.25rem;
-    }
-
-    /* CSS-only subtle "parallax" on hover: layers move at different rates */
-    .resource-card:hover .resource-card__media::before {
-        transform: translate3d(0, -10px, 0) scale(1.08);
-        opacity: 0.95;
-    }
-
-
-
-
-
-    @media (max-width: 900px) {
-        .resources-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .resource-card__content {
-            padding: 1.25rem;
-        }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-        .resource-card,
-        .resource-card__media::before {
-            transition: none !important;
-        }
-
-        .resource-card:hover .resource-card__media::before {
-            transform: none !important;
-        }
-    }
-
-    /* Page-specific: make hero image feel larger */
-    :global(#resources-hero) {
-        height: clamp(320px, 42vw, 600px);
-        max-height: none;
-    }
+	@media (max-width: 720px) {
+		.video-grid {
+			grid-template-columns: 1fr;
+		}
+	}
 </style>

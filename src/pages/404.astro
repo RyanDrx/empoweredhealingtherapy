@@ -1,45 +1,82 @@
 ---
 import Button from '../components/buttons/Button.astro';
 import Container from '../components/Container.astro';
-import TextCardSection from '../components/sections/TextCardSection.astro';
 import Layout from '../layouts/Page.astro';
 
 const seo = {
-	title: 'Empowered Healing Counseling | 404',
-	description: 'Therapy services for individuals, couples, and families in the greater Seattle area.',
+	title: 'Page not found | Empowered Healing Counseling',
+	description: 'The page you were looking for does not exist.',
 };
 ---
 
 <Layout {seo}>
-	<Container>
-		<TextCardSection>
-			<h1>404</h1>
-			<h2>Page Not Found</h2>
-			<div class="cta-buttons__container">
-				<Button href="/">
-					Return Home
-				</Button>
+	<section class="not-found">
+		<Container narrow>
+			<span class="eyebrow">404</span>
+			<h1>This page wandered off.</h1>
+			<p>It may have been moved or renamed. Here are a few places you can pick up the thread.</p>
+			<ul class="not-found__links">
+				<li><a href="/">Home</a></li>
+				<li><a href="/about">About Meaghan</a></li>
+				<li><a href="/somatic-experiencing">Somatic Experiencing</a></li>
+				<li><a href="/contact">Contact</a></li>
+			</ul>
+			<div class="not-found__cta">
+				<Button href="/">Return home</Button>
 			</div>
-		</TextCardSection>
-	</Container>
+		</Container>
+	</section>
 </Layout>
 
 <style>
-	.cta-buttons__container {
+	.not-found {
+		padding: clamp(4rem, 10vw, 8rem) 0;
+	}
+
+	.not-found h1 {
+		font-size: var(--step-5);
+		font-weight: 500;
+		margin: 0.25rem 0 1rem;
+	}
+
+	.not-found h1::after {
+		content: '';
+		display: block;
+		width: 2.5rem;
+		height: 3px;
+		background: var(--clay);
+		margin-top: 1.25rem;
+	}
+
+	.not-found p {
+		font-size: var(--step-1);
+		color: var(--ink-muted);
+		margin: 0 0 2rem;
+		max-width: 38ch;
+	}
+
+	.not-found__links {
+		list-style: none;
+		margin: 0 0 2.5rem;
+		padding: 1.5rem 0;
+		border-top: 1px solid var(--line);
+		border-bottom: 1px solid var(--line);
 		display: flex;
 		flex-wrap: wrap;
+		gap: 0.5rem 2rem;
 	}
-	.cta-buttons__container :global(a) {
-		margin-right: 1rem;
-		margin-bottom: 1rem;
+
+	.not-found__links a {
+		color: var(--ink);
+		text-decoration: none;
+		font-family: var(--font-display);
+		font-size: var(--step-1);
+		font-weight: 500;
 	}
-	.code-buttons__container {
-		margin: 1rem auto;
-		display: flex;
-		flex-wrap: wrap;
-	}
-	.code-buttons__container > a {
-		margin-right: 1rem;
-		margin-bottom: 1rem;
+
+	.not-found__links a:hover {
+		color: var(--clay-deep);
+		text-decoration: underline;
+		text-underline-offset: 0.3em;
 	}
 </style>

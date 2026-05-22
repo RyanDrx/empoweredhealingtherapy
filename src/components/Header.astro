@@ -1,329 +1,315 @@
 ---
-
 const { navData, rightMenu } = Astro.props;
 import Icon from './Icon.astro';
 
 const pathname = new URL(Astro.request.url).pathname;
-const currentPath = pathname.slice(1).replace('/', '');
+const currentSlug = pathname.endsWith('/') && pathname.length > 1
+	? pathname.slice(0, -1)
+	: pathname;
 ---
 
 <script type="module">
-  const bodyElement = document.querySelector('body');
-  const menuButton = document.querySelector('#menuButton')
-  const navHeader = document.querySelector('#navHeader');
-  const menuButtonIconHam = document.querySelector('#menuButtonIconHam');
-  const menuButtonIconClose = document.querySelector('#menuButtonIconClose');
-  let scrollPosition = 0;
+	const bodyElement = document.querySelector('body');
+	const menuButton = document.querySelector('#menuButton');
+	const navHeader = document.querySelector('#navHeader');
+	const menuButtonIconHam = document.querySelector('#menuButtonIconHam');
+	const menuButtonIconClose = document.querySelector('#menuButtonIconClose');
+	let scrollPosition = 0;
 
-  menuButton.addEventListener('click', toggleMenu)
+	menuButton.addEventListener('click', toggleMenu);
 
-  function toggleMenu() {
-    menuButtonIconHam.toggleAttribute('hidden');
-    menuButtonIconClose.toggleAttribute('hidden');
-    
-    if (navHeader.hasAttribute('mobile-menu-open', true)) {
-      menuButton.title = "Open Main Menu"
-      // unlock scroll position
-      bodyElement.style.removeProperty('overflow');
-      bodyElement.style.removeProperty('position');
-      bodyElement.style.removeProperty('top');
-      bodyElement.style.removeProperty('width');
-      window.scrollTo(0, scrollPosition);
-    } else {
-      menuButton.title = "Close Main Menu"
-      // lock scroll position
-      scrollPosition = window.pageYOffset;
-      bodyElement.style.overflow = 'hidden';
-      bodyElement.style.position = 'fixed';
-      bodyElement.style.top = `-${scrollPosition}px`;
-      bodyElement.style.width = '100%';
-    }
-    
-    navHeader.toggleAttribute('mobile-menu-open');
-  }
+	function toggleMenu() {
+		menuButtonIconHam.toggleAttribute('hidden');
+		menuButtonIconClose.toggleAttribute('hidden');
 
-</script>  
-  <button id="menuButton" title="Open Main Menu">
-    <span id="menuButtonIconHam">
-      <Icon name="line-md:menu" width="50px" height="50px" />
-    </span>
-    <span id="menuButtonIconClose" hidden>
-      <Icon name="line-md:close-small" width="50px" height="50px" />
-    </span>
-  </button>
-<header id="navHeader" class={`${rightMenu ? "header--right" : ``.trim()}`}>
-  <div class="header-logo-menu__container">
-    <div class="header-logo__link">
-        <slot name="logo">
-        </slot>
-    </div>
-  </div>
+		const isOpen = navHeader.hasAttribute('mobile-menu-open');
 
-  <div class="header-nav__container">
-    <slot name="nav">
-      {
-      navData && <nav>
-        <ul>
-          {navData.map((navItem: { slug: string | URL; title: unknown; }) => (
-            (
-            <li 
-                class={currentPath.trim().replace('/', '') == (navItem.slug as string).trim().replace('/', '') ? "active-nav-item" : ""}
-            >
-                <a href={navItem.slug}>
-                {navItem.title}
-                </a>
-            </li>
-            )
+		if (isOpen) {
+			menuButton.title = 'Open Main Menu';
+			menuButton.setAttribute('aria-expanded', 'false');
+			bodyElement.style.removeProperty('overflow');
+			bodyElement.style.removeProperty('position');
+			bodyElement.style.removeProperty('top');
+			bodyElement.style.removeProperty('width');
+			window.scrollTo(0, scrollPosition);
+		} else {
+			menuButton.title = 'Close Main Menu';
+			menuButton.setAttribute('aria-expanded', 'true');
+			scrollPosition = window.pageYOffset;
+			bodyElement.style.overflow = 'hidden';
+			bodyElement.style.position = 'fixed';
+			bodyElement.style.top = `-${scrollPosition}px`;
+			bodyElement.style.width = '100%';
+		}
 
-          ))}
-          <li><a class='header-nav__container__contact' href='/contact' >Contact</a></li>
-      
-        </ul>
-      </nav>
-      }
-    
-    </slot>
-  </div>
-  <div class="header-action-item__container">
-    <slot name="action-item">
-    </slot>
-  </div>
+		navHeader.toggleAttribute('mobile-menu-open');
+	}
+
+	// subtle header state on scroll
+	const onScroll = () => {
+		if (window.scrollY > 8) navHeader.setAttribute('data-scrolled', 'true');
+		else navHeader.removeAttribute('data-scrolled');
+	};
+	window.addEventListener('scroll', onScroll, { passive: true });
+	onScroll();
+</script>
+
+<header
+	id="navHeader"
+	class={`site-header ${rightMenu ? 'site-header--right' : ''}`}
+>
+	<div class="site-header__inner">
+		<div class="site-header__logo">
+			<slot name="logo" />
+		</div>
+
+		<button
+			id="menuButton"
+			class="site-header__menu-btn"
+			title="Open Main Menu"
+			aria-controls="primary-nav"
+			aria-expanded="false"
+		>
+			<span id="menuButtonIconHam">
+				<Icon name="line-md:menu" width="32" height="32" />
+			</span>
+			<span id="menuButtonIconClose" hidden>
+				<Icon name="line-md:close-small" width="32" height="32" />
+			</span>
+		</button>
+
+		<div id="primary-nav" class="site-header__nav-wrap">
+			<slot name="nav">
+				{navData && (
+					<nav aria-label="Primary">
+						<ul>
+							{navData.map((navItem) => {
+								const slug =
+									navItem.slug.endsWith('/') && navItem.slug.length > 1
+										? navItem.slug.slice(0, -1)
+										: navItem.slug;
+								const isActive = currentSlug === slug;
+								return (
+									<li class={isActive ? 'is-active' : ''}>
+										<a href={navItem.slug}>{navItem.title}</a>
+									</li>
+								);
+							})}
+							<li class="site-header__contact-li">
+								<a href="/contact">Contact</a>
+							</li>
+						</ul>
+					</nav>
+				)}
+			</slot>
+		</div>
+
+		<div class="site-header__action">
+			<slot name="action-item" />
+		</div>
+	</div>
 </header>
 
 <style>
-  header {
-    width: 100%;
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    min-height: 90px; /* Ensure consistent header height */
-    gap: 1rem;
-    box-sizing: border-box;
-  }
-  header.header--right {
-    display: grid;
-    grid-template-columns: auto 1fr auto; /* Better space distribution */
-    gap: 1.5rem;
-  }
+	.site-header {
+		position: sticky;
+		top: 0;
+		z-index: 90;
+		width: 100%;
+		background: var(--paper);
+		border-bottom: 1px solid transparent;
+		transition: border-color var(--theme-transition),
+			box-shadow var(--theme-transition);
+	}
 
-  .active-nav-item a {
-    font-weight: 700 !important;
-    color: var(--theme-primary);
-    opacity: 1 !important;
-  }
-  
-  .active-nav-item a::after {
-    transform: scaleX(1) !important;
-  }
+	.site-header[data-scrolled] {
+		border-bottom-color: var(--line);
+		box-shadow: 0 8px 24px -16px oklch(20% 0.05 50 / 0.18);
+	}
 
-  .header-logo__link {
-    width: fit-content;
-    color: inherit;
-    text-decoration: none;
-    flex-shrink: 0; /* Prevent logo from shrinking */
-    display: flex;
-    align-items: center;
-  }
-  
-  .header-logo-menu__container {
-    display: flex;
-    align-items: center;
-    z-index: 100;
-    flex-shrink: 0; /* Prevent logo container from shrinking */
-  }
-  .header-nav__container {
-    flex: 1; /* Take up available space */
-    display: flex;
-    justify-content: center; /* Center the navigation */
-    padding: 0 1rem;
-    min-width: 0; /* Allow nav to shrink */
-  }
+	.site-header__inner {
+		max-width: var(--w-page);
+		margin: 0 auto;
+		padding: 0.6rem clamp(1.25rem, 4vw, 2.5rem);
+		display: grid;
+		grid-template-columns: auto 1fr auto;
+		align-items: center;
+		gap: 1.5rem;
+		min-height: var(--navbar-height);
+	}
 
-  .header-action-item__container {
-    z-index: 100;
-    flex-shrink: 0; /* Prevent action items from shrinking */
-  }
+	.site-header__logo {
+		display: inline-flex;
+		align-items: center;
+	}
 
-  .header-nav__container__contact {
-    display: none;
-  }
-  @media screen and (max-width: 1280px) {
-    .header-action-item__container {
-        display: none;
-    }
+	.site-header__nav-wrap {
+		justify-self: center;
+	}
 
-     .header-logo-menu__container {
-        display: flex;
-        align-items: center;
-        z-index: 100;
-        justify-content: space-between; /* Better space distribution */
-        width: 100%;
-        margin-left: 0;
-        padding-right: 4rem; /* Account for menu button */
-    }
+	nav {
+		display: flex;
+	}
 
-    .header-nav__container__contact {
-        display: block;
-    }
-  }
-  #menuButton {
-    outline: none;
-    border: none;
-    background-color: transparent;
-    margin-right: .5rem;
-    display: none;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-    position: absolute;
-    right: 0;
-    top: 0;
-    padding: 1rem;
+	nav ul {
+		display: flex;
+		align-items: center;
+		gap: 0.25rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
 
-  }
-  #menuButton > span {
-    color: var(--theme-on-bg);
-    vertical-align: middle;
-  }
-  nav {
-  display: flex;
-  }
-  nav ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: flex;
-  }
-  nav ul li a {
-    text-decoration: none;
-    margin-right: 1.5rem;
-    color: inherit;
-    opacity: 0;
-    transition: color 0.3s ease;
-    position: relative;
-    animation: subtleFadeIn 0.4s ease-out forwards;
-    white-space: nowrap;
-    font-size: var(--font-size-sm);
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    padding-bottom: 0.25rem;
-  }
-  
-  nav ul li a::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    transform: scaleX(0);
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: var(--theme-primary);
-    transform-origin: bottom right;
-    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
+	nav li a {
+		display: inline-block;
+		padding: 0.55rem 0.85rem;
+		font-family: var(--font-body);
+		font-size: var(--step--1);
+		font-weight: 500;
+		letter-spacing: 0.01em;
+		color: var(--ink-muted);
+		text-decoration: none;
+		border-radius: var(--radius-xs);
+		transition: color var(--theme-transition),
+			background-color var(--theme-transition);
+		white-space: nowrap;
+	}
 
-  nav ul li a:hover::after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
-  }
-  
-  /* Subtle stagger animation delay for each menu item */
-  nav ul li:nth-child(1) a { animation-delay: 0.05s; }
-  nav ul li:nth-child(2) a { animation-delay: 0.1s; }
-  nav ul li:nth-child(3) a { animation-delay: 0.15s; }
-  nav ul li:nth-child(4) a { animation-delay: 0.2s; }
-  nav ul li:nth-child(5) a { animation-delay: 0.25s; }
-  nav ul li:nth-child(6) a { animation-delay: 0.3s; }
+	nav li a:hover {
+		color: var(--ink);
+		background-color: oklch(0% 0 0 / 0.03);
+	}
 
-  @keyframes subtleFadeIn {
-    0% {
-      opacity: 0;
-      transform: translateY(-5px);
-    }
-    100% {
-      opacity: 0.8;
-      transform: translateY(0);
-    }
-  }
+	nav li.is-active a {
+		color: var(--clay-deep);
+		font-weight: 600;
+	}
 
-  nav ul li a:hover {
-    opacity: 1;
-    color: var(--theme-primary);
-  }
-  @media(max-width: 1280px) {
-    #menuButton {
-      display: block;  
-      z-index: 999;
-    }
+	.site-header__contact-li {
+		display: none;
+		margin-left: 0.5rem;
+		padding-left: 0.75rem;
+		border-left: 1px solid var(--line);
+	}
 
-     nav ul li a {
-        margin-right: 0;
-        /* Reset desktop animations for mobile */
-        animation: none;
-        opacity: 0.72;
-        transform: none;
-    }
-    
-    .header-nav__container {
-      width: 100%;
-      height: 100%;
-      background-color: var(--theme-bg);
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: fixed;
-      inset: 0;
-      z-index: 99;
-    }
-    
-    header[mobile-menu-open] .header-nav__container {
-      display: flex;
-      text-align: center;
-    }
-    
-    /* Mobile menu item animations */
-    header[mobile-menu-open] nav ul li a {
-      animation: subtleMobileSlideIn 0.3s ease-out forwards;
-      opacity: 0;
-    }
-    
-    header[mobile-menu-open] nav ul li:nth-child(1) a { animation-delay: 0.05s; }
-    header[mobile-menu-open] nav ul li:nth-child(2) a { animation-delay: 0.1s; }
-    header[mobile-menu-open] nav ul li:nth-child(3) a { animation-delay: 0.15s; }
-    header[mobile-menu-open] nav ul li:nth-child(4) a { animation-delay: 0.2s; }
-    header[mobile-menu-open] nav ul li:nth-child(5) a { animation-delay: 0.25s; }
-    header[mobile-menu-open] nav ul li:nth-child(6) a { animation-delay: 0.3s; }
-    
-    @keyframes subtleMobileSlideIn {
-      0% {
-        opacity: 0;
-        transform: translateX(-10px);
-      }
-      100% {
-        opacity: 0.72;
-        transform: translateX(0);
-      }
-    }
-    
-    header[mobile-menu-open] nav ul {
-      align-items: center;
-      flex-direction: column;
-    }
-     header[mobile-menu-open] nav ul li {
-       font-size: var(--font-size-lg);
-       margin-bottom: 1rem;
-     }
-  }
-  
-  /* Accessibility: Respect reduced motion preferences */
-  @media (prefers-reduced-motion: reduce) {
-    .header-logo__link :global(img),
-    nav ul li a {
-      animation: none !important;
-      opacity: 1 !important;
-      visibility: visible !important;
-      transform: none !important;
-    }
-  }
+	.site-header__action {
+		justify-self: end;
+	}
+
+	.site-header__menu-btn {
+		display: none;
+		appearance: none;
+		background: transparent;
+		border: 1px solid var(--line);
+		border-radius: var(--radius-sm);
+		color: var(--ink);
+		padding: 0.5rem;
+		cursor: pointer;
+		-webkit-tap-highlight-color: transparent;
+		line-height: 0;
+	}
+
+	.site-header__menu-btn :global(iconify-icon) {
+		display: block;
+		line-height: 0;
+	}
+
+	.site-header__menu-btn > span {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.site-header__menu-btn > span[hidden] {
+		display: none;
+	}
+
+	.site-header__menu-btn:hover {
+		background-color: var(--paper-2);
+	}
+
+	@media screen and (max-width: 1180px) {
+		.site-header__menu-btn {
+			display: inline-flex;
+			justify-self: end;
+			grid-column: 3;
+		}
+
+		.site-header__action {
+			display: none;
+		}
+
+		.site-header__contact-li {
+			display: block;
+		}
+
+		.site-header__nav-wrap {
+			position: fixed;
+			top: var(--navbar-height);
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: var(--paper);
+			display: none;
+			padding: 1.5rem 1.5rem 4rem;
+			z-index: 95;
+			justify-self: stretch;
+			overflow-y: auto;
+		}
+
+		.site-header[mobile-menu-open] .site-header__nav-wrap {
+			display: block;
+			animation: menu-fade 220ms var(--ease-out-quart);
+		}
+
+		@keyframes menu-fade {
+			from { opacity: 0; transform: translateY(-8px); }
+			to   { opacity: 1; transform: translateY(0); }
+		}
+
+		.site-header[mobile-menu-open] nav {
+			width: 100%;
+			margin: 0 auto;
+			max-width: var(--w-narrow);
+		}
+
+		.site-header[mobile-menu-open] nav ul {
+			flex-direction: column;
+			align-items: flex-start;
+			width: 100%;
+			gap: 0.25rem;
+		}
+
+		.site-header[mobile-menu-open] nav li {
+			width: 100%;
+			border-bottom: 1px solid var(--line);
+		}
+
+		.site-header[mobile-menu-open] nav li a {
+			width: 100%;
+			padding: 1.1rem 0.25rem;
+			font-family: var(--font-display);
+			font-size: var(--step-3);
+			font-weight: 500;
+			letter-spacing: -0.01em;
+			color: var(--ink);
+		}
+
+		.site-header[mobile-menu-open] nav li.is-active a {
+			color: var(--clay-deep);
+		}
+
+		.site-header__contact-li {
+			border-left: none;
+			padding-left: 0;
+			margin-left: 0;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.site-header,
+		nav li a {
+			transition: none;
+		}
+	}
 </style>

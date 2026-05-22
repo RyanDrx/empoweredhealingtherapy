@@ -1,235 +1,108 @@
 ---
 import Container from '../Container.astro';
 
-const {reversed} = Astro.props;
+const { reversed } = Astro.props;
 ---
 
 <Container>
-  <section class={`sticky-text-image__section ${reversed && `sticky-text-image__section--reversed`}`}>
-    <div class="sticky-text-image__text">
-      <div class="text-content">
-        <slot name="text-container"></slot>
-      </div>
-    </div>
-    <div class="sticky-text-image__image">
-      <slot name="image-container"></slot>
-    </div>
-  </section>
+	<section class={`sticky-section ${reversed ? 'sticky-section--reversed' : ''}`}>
+		<div class="sticky-section__text">
+			<div class="sticky-section__text-inner">
+				<slot name="text-container" />
+			</div>
+		</div>
+		<div class="sticky-section__image">
+			<slot name="image-container" />
+		</div>
+	</section>
 </Container>
 
+<style>
+	.sticky-section {
+		margin: var(--gap-section) auto;
+		display: grid;
+		grid-template-columns: 7fr 5fr;
+		gap: clamp(2rem, 6vw, 5rem);
+		align-items: start;
+	}
 
-  <style>
-  .sticky-text-image__section {
-    margin: var(--section-margin) auto;
-    display: grid;
-    grid-template-columns: 6fr 4fr;
-    position: relative;
-    gap: clamp(2rem, 5vw, 4rem);
-    margin-left: 2rem;
-    margin-right: 2rem;
-    align-items: flex-start;
-    min-height: min(70vh, 720px);
-  }
-  
-  .sticky-text-image__section--reversed {
-    grid-template-columns: 4fr 6fr;
-  }
-  
-  .sticky-text-image__section--reversed .sticky-text-image__text {
-    order: 2;
-  }
-  
-  .sticky-text-image__text {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 2rem 0;
-  }
-  
-  .text-content {
-    max-width: 100%;
-    animation: fadeInSlide 0.55s ease-out;
-  }
-  
-  .sticky-text-image__image {
-    position: sticky;
-    top: 100px;
-    align-self: start;
-    height: fit-content;
-  }
-  
-  .sticky-text-image__image :global(picture) {
-    display: block;
-    width: 100%;
-    max-width: 500px;
-    animation: fadeInScale 0.65s ease-out 0.15s both;
-    position: relative;
-  }
-  
-  .sticky-text-image__image :global(picture)::before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: -10px;
-    right: -10px;
-    bottom: -10px;
-    background: linear-gradient(135deg, 
-      rgba(var(--theme-primary-rgb), 0.1) 0%, 
-      rgba(var(--theme-primary-rgb), 0.05) 50%,
-      transparent 100%);
-    border-radius: calc(var(--theme-shape-radius) + 10px);
-    z-index: -1;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  
-  .sticky-text-image__image :global(picture):hover::before {
-    opacity: 1;
-  }
-  
-  .sticky-text-image__image :global(img) {
-    display: block;
-  }
-  
-  .sticky-text-image__section :global(img) {
-    width: 100%;
-    height: auto;
-    max-height: 70vh;
-    object-fit: cover;
-    border-radius: var(--theme-shape-radius);
-    box-shadow: 
-      0 14px 40px rgba(32, 35, 33, 0.1),
-      0 4px 18px rgba(32, 35, 33, 0.06);
-    transition: all 0.4s ease;
-  }
-  
-  .sticky-text-image__section :global(img:hover) {
-    transform: scale(1.01);
-    box-shadow: 
-      0 18px 48px rgba(32, 35, 33, 0.14),
-      0 6px 24px rgba(32, 35, 33, 0.08);
-  }
-  
-  /* Enhanced typography for slotted content */
-  .text-content :global(h2) {
-    font-size: clamp(1.85rem, 4vw, 2.35rem);
-    font-weight: 600;
-    color: var(--theme-primary);
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
-  }
-  
-  .text-content :global(p) {
-    font-size: 1.125rem;
-    line-height: 1.7;
-    color: var(--theme-on-surface-1);
-    margin-bottom: 1.25rem;
-  }
-  
-  .text-content :global(.intro-button) {
-    margin-top: 2rem;
-  }
-  
-  /* Animations */
-  @keyframes fadeInSlide {
-    from {
-      opacity: 0;
-      transform: translateX(-30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-  
-  @keyframes fadeInScale {
-    from {
-      opacity: 0;
-      transform: scale(0.9);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 1024px) {
-    .sticky-text-image__section {
-      gap: 3rem;
-      min-height: auto;
-    }
-    
-    .text-content :global(h2) {
-      font-size: 2.25rem;
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .sticky-text-image__section {
-      grid-template-columns: 1fr;
-      margin-left: 0;
-      margin-right: 0;
-      gap: 2rem;
-      padding: 0 1rem;
-    }
-    
-    .sticky-text-image__section--reversed .sticky-text-image__text {
-      order: 2;
-    }
-    
-    .sticky-text-image__image {
-      order: 1;
-      position: static; /* disable sticky on mobile */
-      top: auto;
-      align-self: stretch;
-      height: auto;
-    }
-    
-    .sticky-text-image__section--reversed .sticky-text-image__image {
-      order: 1;
-    }
-    
-    .text-content {
-      text-align: center;
-    }
-    
-    .text-content :global(h2) {
-      font-size: 2rem;
-    }
-    
-    .text-content :global(p) {
-      font-size: 1rem;
-    }
-    
-    .sticky-text-image__image :global(picture) {
-      max-width: 100%;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .text-content :global(h2) {
-      font-size: 1.75rem;
-    }
-    
-    .sticky-text-image__image :global(picture) {
-      max-width: 100%;
-    }
-  }
-  
-  /* Accessibility */
-  @media (prefers-reduced-motion: reduce) {
-    .text-content,
-    .sticky-text-image__image :global(picture) {
-      animation: none;
-    }
-    
-    .sticky-text-image__section :global(img:hover) {
-      transform: none;
-    }
-    
-    .sticky-text-image__image :global(picture)::before {
-      transition: none;
-    }
-  }
+	.sticky-section--reversed {
+		grid-template-columns: 5fr 7fr;
+	}
+
+	.sticky-section--reversed .sticky-section__text {
+		order: 2;
+	}
+
+	.sticky-section__text {
+		padding-top: 0.5rem;
+	}
+
+	.sticky-section__text-inner {
+		max-width: 38rem;
+	}
+
+	.sticky-section__image {
+		position: sticky;
+		top: calc(var(--navbar-height) + 1.5rem);
+		align-self: start;
+	}
+
+	.sticky-section__image :global(picture) {
+		display: block;
+		width: 100%;
+		max-width: 32rem;
+	}
+
+	.sticky-section__image :global(img) {
+		width: 100%;
+		height: auto;
+		max-height: 38rem;
+		object-fit: cover;
+		border-radius: var(--radius-md);
+		display: block;
+	}
+
+	.sticky-section__text-inner :global(h2) {
+		font-size: var(--step-4);
+		font-weight: 500;
+		color: var(--ink);
+		margin: 0 0 1.25rem;
+	}
+
+	.sticky-section__text-inner :global(h2::after) {
+		content: '';
+		display: block;
+		width: 2.5rem;
+		height: 2px;
+		background: var(--clay);
+		margin-top: 1.1rem;
+	}
+
+	.sticky-section__text-inner :global(p) {
+		font-size: var(--step-1);
+		line-height: 1.6;
+		color: var(--ink);
+		margin: 0 0 1.2rem;
+	}
+
+	@media (max-width: 960px) {
+		.sticky-section,
+		.sticky-section--reversed {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+
+		.sticky-section--reversed .sticky-section__text {
+			order: 2;
+		}
+
+		.sticky-section__image {
+			position: static;
+		}
+
+		.sticky-section__image :global(picture) {
+			max-width: 100%;
+		}
+	}
 </style>

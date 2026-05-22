@@ -6,75 +6,30 @@ const { background, color } = Astro.props;
 
 <Container>
 	<section
-		class="cta-card__section"
-		style={background && `--section-bg:${background}; --section-color:${color}`}
+		class="cta-card"
+		style={background ? `--cta-bg:${background}; --cta-fg:${color};` : ''}
 	>
-		<div class="cta-card__container">
+		<div class="cta-card__inner">
 			<slot />
 		</div>
 	</section>
 </Container>
 
 <style>
-	.cta-card__section {
-		--section-bg: var(--theme-surface-1);
-		--section-color: var(--theme-on-surface-1);
-		margin: var(--section-margin) auto;
-		padding: 3rem 2rem;
-		background-color: transparent;
-		color: var(--section-color);
-		border-radius: var(--theme-shape-radius);
-		margin-left: 2rem;
-		margin-right: 2rem;
-		box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-		border: 2px solid rgba(var(--theme-primary-rgb), 0.15);
-		position: relative;
-		overflow: hidden;
-	}
-
-	.cta-card__section::before {
-		content: '';
-		position: absolute;
-		inset: 0;
-		background-color: rgba(255, 255, 255, 0.94);
-		border-radius: var(--theme-shape-radius);
-		z-index: 0;
-		pointer-events: none;
-	}
-
-	.cta-card__section::after {
-		content: '';
-		position: absolute;
-		inset: 0;
-		background-image: url('/assets/images/mountainforest.webp');
-		background-size: cover;
-		background-position: center;
-		opacity: 0.08;
-		filter: blur(2px);
-		border-radius: var(--theme-shape-radius);
-		z-index: 1;
-		pointer-events: none;
-	}
-
-	.cta-card__container {
-		position: relative;
-		z-index: 2;
-	}
-	.cta-card__container {
-		margin: 0 auto;
-		max-width: var(--container-max-width-narrow);
-		display: flex;
-		flex-direction: column;
-		align-items: center;
+	.cta-card {
+		--cta-bg: var(--paper-3);
+		--cta-fg: var(--ink);
+		margin: var(--gap-section) auto;
+		padding: clamp(2rem, 5vw, 3.5rem) clamp(1.5rem, 4vw, 2.5rem);
+		background-color: var(--cta-bg);
+		color: var(--cta-fg);
+		border: 1px solid var(--line);
+		border-radius: var(--radius-lg);
 		text-align: center;
-		position: relative;
-		z-index: 2;
 	}
 
-    @media (max-width: 768px) {
-		.cta-card__section {
-			margin-left: 0;
-			margin-right: 0;
-		}
+	.cta-card__inner {
+		max-width: 44rem;
+		margin: 0 auto;
 	}
 </style>

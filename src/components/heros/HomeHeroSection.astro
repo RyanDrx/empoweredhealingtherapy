@@ -2,115 +2,182 @@
 import Button from '../buttons/Button.astro';
 import Container from '../Container.astro';
 import Icon from '../Icon.astro';
-import settings from '../../config/settings.js';
-import { ThemeSwitcher } from '../theme-switcher/theme-switcher';
 import homeContent from '../../../public/cms/home.json';
 ---
 
-<Container>
-	
-	    <section class="hero-section__section">
-		<div class="hero-section__text">
-				<h1>
-                  {homeContent.title}
-                </h1>
-				<p>
-                    {homeContent.description}
-				</p>
-				<div class="hero-btns__container">
-					<Button href="/contact"  customIcon>Get Started
-                        <Fragment slot="icon">
-                            <Icon name="line-md:chevron-right"/>
-                        </Fragment>
-                    </Button>
-                        
-                <Button href="https://www.therapyportal.com/p/empowered98403/" target="_blank" unelevated customIcon newTab>
-                    Client Portal 
-                    <Fragment slot="icon">
-                            <Icon name="line-md:external-link-rounded"/>
-                    </Fragment>
-                </Button>
-		    </div>
-        {settings.enableThemeSwitcher && <ThemeSwitcher client:load/>}
+<section class="home-hero">
+	<Container>
+		<div class="home-hero__grid">
+			<div class="home-hero__text">
+				<span class="eyebrow">Meaghan Trezza, LMHC &middot; Tacoma, WA</span>
+				<h1 class="home-hero__title">
+					<span class="home-hero__title-line">{homeContent.title}</span>
+				</h1>
+				<p class="lead home-hero__lead">{homeContent.description}</p>
+
+				<ul class="home-hero__chips" aria-label="Practice modalities">
+					<li>Somatic Experiencing</li>
+					<li>Trauma &amp; anxiety</li>
+					<li>Couples &amp; play therapy</li>
+					<li>Queer &amp; neurodivergent affirming</li>
+				</ul>
+
+				<div class="home-hero__actions">
+					<Button href="/contact" customIcon>
+						Book a free 15-min consult
+						<Fragment slot="icon">
+							<Icon name="line-md:chevron-right" />
+						</Fragment>
+					</Button>
+					<Button
+						href="https://www.therapyportal.com/p/empowered98403/"
+						unelevated
+						customIcon
+						newTab
+					>
+						Client portal
+						<Fragment slot="icon">
+							<Icon name="line-md:external-link-rounded" />
+						</Fragment>
+					</Button>
+				</div>
+			</div>
+
+			<figure class="home-hero__figure">
+				<img
+					width="780"
+					height="439"
+					id="home-hero-image"
+					src="/assets/images/home-hero.webp"
+					alt="A quiet, sunlit room — the kind of space therapy often happens in"
+					loading="eager"
+				/>
+				<figcaption class="home-hero__caption">
+					In-person in Tacoma. Telehealth across Washington.
+				</figcaption>
+			</figure>
 		</div>
-		<div class="hero-section__image">
-                    <img
-                    width="780"
-                    height="439"
-                    id="home-hero-image"
-                    src="/assets/images/home-hero.webp"
-                    alt="Empowered Healing Counseling Depression Anxiety Therapy"
-                    loading="eager"
-                    />
-		</div>
-	</section>
-</Container>
+	</Container>
+</section>
 
 <style>
-	.hero-section__section {
-		margin: var(--section-margin) auto;
-		min-height: min(760px, calc(82vh - var(--navbar-height, 0px)));
+	.home-hero {
+		padding: clamp(2.5rem, 6vw, 5rem) 0 var(--gap-section);
+		position: relative;
+	}
+
+	.home-hero__grid {
 		display: grid;
-		grid-template-columns: 1.2fr 1fr;
-		align-items: center;
+		grid-template-columns: 7fr 5fr;
 		gap: clamp(2rem, 6vw, 5rem);
-		padding: clamp(1rem, 3vw, 2.5rem) 0;
+		align-items: end;
 	}
-	.hero-section__text {
-		justify-self: start;
-		max-width: 42rem;
+
+	.home-hero__text {
+		max-width: 36rem;
 	}
-	.hero-btns__container {
-		display: flex;
-		align-items: center;
-		gap: 1rem;
+
+	.home-hero__title {
+		font-size: var(--step-6);
+		line-height: 0.98;
+		margin: 0 0 1.5rem;
+		letter-spacing: -0.025em;
+		font-variation-settings: 'opsz' 144, 'SOFT' 30;
+	}
+
+	.home-hero__title-line {
+		display: inline-block;
+		position: relative;
+	}
+
+	.home-hero__title-line::after {
+		content: '';
+		display: block;
+		width: 3rem;
+		height: 3px;
+		background: var(--clay);
 		margin-top: 1.5rem;
 	}
-	.hero-btns__container {
-		margin-right: 1rem;
+
+	.home-hero__lead {
+		font-size: var(--step-2);
+		line-height: 1.4;
+		color: var(--ink-muted);
+		font-family: var(--font-display);
+		font-style: italic;
+		font-variation-settings: 'opsz' 48, 'SOFT' 50;
+		font-weight: 400;
+		max-width: 30ch;
 	}
-	.hero-section__image {
+
+	.home-hero__chips {
 		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		list-style: none;
+		margin: 1.5rem 0 2rem;
+		padding: 0;
 	}
-	.hero-section__image img {
+
+	.home-hero__chips li {
+		font-size: var(--step--1);
+		font-weight: 500;
+		padding: 0.4rem 0.85rem;
+		border: 1px solid var(--line);
+		border-radius: var(--radius-pill);
+		color: var(--ink-muted);
+		background: oklch(96.5% 0.015 75 / 0.5);
+	}
+
+	.home-hero__actions {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.75rem 1rem;
+		margin-top: 1.75rem;
+	}
+
+	.home-hero__figure {
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.home-hero__figure img {
 		width: 100%;
-		height: 100%;
-		max-height: 70vh;
+		aspect-ratio: 4 / 5;
 		object-fit: cover;
-		border-radius: calc(var(--theme-shape-radius) * 1.25);
-		box-shadow: 0 18px 42px rgba(32, 35, 33, 0.12);
+		border-radius: var(--radius-md);
+		display: block;
+		box-shadow: 0 24px 60px -28px oklch(20% 0.05 50 / 0.35);
 	}
-	@media (max-width: 768px) {
-		.hero-section__section {
-			margin: 2rem auto 0 auto;
-			min-height: auto;
+
+	.home-hero__caption {
+		font-size: var(--step--1);
+		color: var(--ink-faint);
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		font-weight: 500;
+	}
+
+	@media (max-width: 960px) {
+		.home-hero__grid {
 			grid-template-columns: 1fr;
-			gap: 2rem;
-			padding: 1rem 0;
+			gap: 2.5rem;
 		}
 
-		.hero-section__text {
-			justify-self: center;
-			text-align: center;
-			max-width: 35rem;
+		.home-hero__figure img {
+			aspect-ratio: 5 / 4;
 		}
-
-        .hero-btns__container {
-		    margin-right: 0;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-	    }
 	}
 
-	@media (max-width: 480px) {
-		.hero-btns__container {
-			align-items: stretch;
-			flex-direction: column;
+	@media (max-width: 640px) {
+		.home-hero__title-line::after {
+			margin-top: 1rem;
 		}
-
-		.hero-btns__container :global(.btn) {
-			width: 100%;
+		.home-hero__chips {
+			margin: 1.25rem 0 1.5rem;
 		}
 	}
 </style>

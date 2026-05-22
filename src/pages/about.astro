@@ -1,417 +1,332 @@
 ---
-import TextSection from '../components/sections/TextSection.astro';
 import Layout from '../layouts/Page.astro';
 import HeroSection from '../components/heros/HeroSection.astro';
 import aboutContent from '../../public/cms/about.json';
 import Icon from '../components/Icon.astro';
-import ThreeColumnTextSection from '../components/sections/ThreeColumnTextSection.astro';
 import CtaGeneral from '../components/CtaGeneral.astro';
 import CustomerQuoteSection from '../components/sections/CustomerQuoteSection.astro';
 import StickyTextImageSection from '../components/sections/StickyTextImageSection.astro';
+import Container from '../components/Container.astro';
 
 const seo = {
-	title: 'About | Empowered Healing Counseling - Meaghan Trezza, LMHC',
-	description: 'About Meaghan Trezza, LMHC, Licensed Mental Health Counselor in Washington state. Specializing in anxiety, depression, and trauma.',
+	title: 'About | Empowered Healing Counseling — Meaghan Trezza, LMHC',
+	description:
+		'About Meaghan Trezza, LMHC. Licensed Mental Health Counselor in Washington state. Specializing in trauma, anxiety, somatic experiencing, and more.',
 };
+
+const credentials = [
+	{
+		icon: 'mdi:school-outline',
+		label: 'Education',
+		body: aboutContent.education,
+	},
+	{
+		icon: 'mdi:certificate-outline',
+		label: 'License',
+		body: `Licensed Mental Health Counselor in Washington state. ${aboutContent.licenseNumber}`,
+	},
+	{
+		icon: 'mdi:brain',
+		label: 'Specialized training',
+		body: aboutContent.training,
+	},
+];
+
+const aboutParagraphs = aboutContent.aboutContent.split('\n\n');
+const introParagraphs: string[] = [];
+const tailParagraphs: string[] = [];
+const specializations: string[] = [];
+let sawList = false;
+
+for (const para of aboutParagraphs) {
+	if (!para.trim()) continue;
+
+	if (para.includes('\t•\t')) {
+		for (const line of para.split('\n')) {
+			if (line.includes('\t•\t')) {
+				specializations.push(line.replace('\t•\t', '').trim());
+			}
+		}
+		sawList = true;
+		continue;
+	}
+
+	if (sawList) {
+		tailParagraphs.push(para);
+	} else {
+		introParagraphs.push(para);
+	}
+}
 ---
 
 <Layout {seo}>
 	<HeroSection>
 		<div slot="text-container">
-			<h1>About</h1>
-			<p>
-				{aboutContent.aboutBlurb}
-			</p>
+			<span class="eyebrow">About</span>
+			<h1>Meaghan Trezza, LMHC</h1>
+			<p>{aboutContent.aboutBlurb}</p>
 		</div>
 		<picture slot="image-container">
 			<img
 				width="828"
 				height="414"
 				src="/assets/images/about-me-hero.webp"
-				alt="About Me - Empowered Healing Counseling"
+				alt="Portrait of Meaghan Trezza"
 				id="about-hero-image"
 				loading="eager"
 			/>
 		</picture>
 	</HeroSection>
 
-    <CustomerQuoteSection
+	<CustomerQuoteSection
 		quoteText={aboutContent.quote}
 		customerName={aboutContent.quoteAuthor}
 	/>
 
-	<ThreeColumnTextSection>
-		<div slot="column-1-body" class="col-card">
-			<div class="icon-wrapper">
-				<Icon name="mdi:school-outline" width="80" height="80" />
+	<section class="credentials">
+		<Container>
+			<div class="credentials__header">
+				<span class="eyebrow">Credentials</span>
+				<h2 class="credentials__title">Training, license, and background.</h2>
 			</div>
-			<h2>Education</h2>
-			<p>
-				{aboutContent.education}
-			</p>
-		</div>
-		<div slot="column-2-body" class="col-card">
-			<div class="icon-wrapper">
-				<Icon name="mdi:certificate-outline" width="80" height="80" />
-			</div>
-			<h2>License</h2>
-			<p>
-				I am a Licensed Mental Health Counselor in Washington state:
-                <br />
-				{aboutContent.licenseNumber}
-			</p>
-		</div>
-		<div slot="column-3-body" class="col-card">
-			<div class="icon-wrapper">
-				<Icon name="mdi:brain" width="80" height="80" />
-			</div>
-			<h2>Training</h2>
-			<p>
-				{aboutContent.training}
-			</p>
-		</div>
-	</ThreeColumnTextSection>
+			<dl class="credentials__list">
+				{credentials.map((c) => (
+					<div class="credentials__item">
+						<dt>
+							<Icon name={c.icon} width="22" height="22" />
+							<span>{c.label}</span>
+						</dt>
+						<dd>{c.body}</dd>
+					</div>
+				))}
+			</dl>
+		</Container>
+	</section>
+
 	<StickyTextImageSection>
 		<div slot="text-container">
-			<div class="about-intro">
-				<h2>A little bit about me</h2>
-				<div class="about-divider"></div>
-			</div>
-			<div class="about-content">
-				{aboutContent.aboutContent.split('\n\n').map(paragraph => {
-					// Handle bullet point lists
-					if (paragraph.includes('\t•\t')) {
-						const [beforeList, ...rest] = paragraph.split('\n');
-						const listItems = rest.filter(item => item.includes('\t•\t'));
-						const afterListContent = rest.filter(item => !item.includes('\t•\t'));
-						
-						return (
-							<div class="about-section">
-								{beforeList && <h3 class="section-heading">{beforeList}</h3>}
-								<ul class="specializations-list">
-									{listItems.map(item => 
-										<li>{item.replace('\t•\t', '').trim()}</li>
-									)}
-								</ul>
-								{afterListContent.map(content => content && <p>{content}</p>)}
-							</div>
-						);
-					} else {
-						return <p class="about-paragraph">{paragraph}</p>;
-					}
-				})}
-			</div>
+			<span class="eyebrow">In my own words</span>
+			<h2>A little bit about me</h2>
+			{introParagraphs.map((p) => (
+				<p>{p}</p>
+			))}
+
+			{specializations.length > 0 && (
+				<div class="specializations">
+					<h3>I specialize in working with</h3>
+					<ul>
+						{specializations.map((item) => (
+							<li>{item}</li>
+						))}
+					</ul>
+				</div>
+			)}
+
+			{tailParagraphs.map((p) => (
+				<p>{p}</p>
+			))}
 		</div>
 		<picture slot="image-container">
 			<img
 				width="800"
 				height="800"
 				src="/assets/images/home-portrait.webp"
-				alt="Meaghan Trezza - Empowered Healing Counseling"
+				alt="Meaghan in her therapy office"
 			/>
 		</picture>
 	</StickyTextImageSection>
 
-	<TextSection narrow>
-		<div class="basil-section">
-			<h2>My Co-Therapist Basil</h2>
-			<div class="basil-content">
-				<div class="basil-image">
+	<section class="basil">
+		<Container narrow>
+			<div class="basil__grid">
+				<picture class="basil__image">
 					<img
 						src="/assets/images/basil.webp"
 						alt="Basil the therapy dog"
 						width="400"
 						height="400"
 					/>
-				</div>
-				<div class="basil-text">
+				</picture>
+				<div class="basil__text">
+					<span class="eyebrow">My co-therapist</span>
+					<h2>Basil</h2>
 					<p>
-						Basil often comes into the office with me to spend time with my in-person clients. She is currently undergoing training as a therapy dog and is a breath of fresh air on those challenging days. Basil enjoys belly rubs, long naps, and her beloved lamb chop toy.
+						Basil often joins me in the office for in-person sessions. She's
+						in training as a therapy dog and tends to be a breath of fresh air
+						on the harder days. She enjoys belly rubs, long naps, and her
+						beloved lamb chop toy.
 					</p>
 				</div>
 			</div>
-		</div>
-	</TextSection>
+		</Container>
+	</section>
 
 	<CtaGeneral />
 </Layout>
 
 <style>
-	.icon-wrapper {
-		margin-bottom: 1.5rem;
+	.credentials {
+		margin: var(--gap-section) auto;
 	}
 
-	.icon-wrapper [astro-icon] {
-		height: 80px;
-		width: 80px;
-		color: var(--theme-primary);
-		transition: transform 0.3s ease, color 0.3s ease;
+	.credentials__header {
+		margin: 0 0 2rem;
+		max-width: 38rem;
 	}
 
-	.icon-wrapper:hover [astro-icon] {
-		transform: scale(1.1);
-		color: var(--theme-primary-hover);
-	}
-
-	.col-card {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		text-align: center;
-		height: 100%;
-		padding: 2.5rem 2rem;
-		background: var(--theme-surface-1);
-		border-radius: calc(var(--theme-shape-radius) * 1.5);
-		transition: transform 0.3s ease, box-shadow 0.3s ease;
-		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-		border: 1px solid rgba(0, 0, 0, 0.03);
-	}
-
-	.col-card:hover {
-		transform: translateY(-4px);
-		box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
-	}
-
-	.col-card h2 {
-		font-size: 1.5rem;
-		margin-bottom: 1rem;
-		color: var(--theme-primary);
-		font-weight: 700;
-		letter-spacing: -0.02em;
-	}
-
-	.col-card p {
-		line-height: 1.7;
-		color: var(--theme-on-surface-1);
-		font-size: 1.05rem;
-		max-width: 90%;
-	}
-
-	.about-intro {
-		margin-bottom: 2rem;
-	}
-
-	.about-intro h2 {
-		font-size: 2rem;
-		font-weight: 700;
-		color: var(--theme-primary);
-		margin-bottom: 1rem;
-		letter-spacing: -0.02em;
-	}
-
-	.about-divider {
-		width: 60px;
-		height: 4px;
-		background: linear-gradient(90deg, var(--theme-primary) 0%, var(--theme-primary-hover) 100%);
-		border-radius: 2px;
-	}
-
-	.about-content {
-		max-width: none;
-	}
-
-	.about-paragraph {
-		margin-bottom: 1.75rem;
-		text-align: left;
-		font-size: 1.05rem;
-		line-height: 1.8;
-		color: var(--theme-on-surface-1);
-	}
-
-	.about-paragraph:first-of-type {
-		font-size: 1.15rem;
-		line-height: 1.9;
-		color: var(--theme-on-surface);
+	.credentials__title {
+		font-size: var(--step-4);
+		margin: 0;
 		font-weight: 500;
 	}
 
-	.about-section {
-		margin: 2.5rem 0;
-		padding: 2rem;
-		background: var(--theme-surface-1);
-		border-radius: calc(var(--theme-shape-radius) * 1.5);
-		border: 1px solid rgba(32, 35, 33, 0.08);
-		box-shadow: 0 8px 24px rgba(32, 35, 33, 0.06);
+	.credentials__list {
+		margin: 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 0;
+		border-top: 1px solid var(--line);
+		border-bottom: 1px solid var(--line);
 	}
 
-	.section-heading {
-		font-size: 1.35rem;
+	.credentials__item {
+		padding: 1.75rem 1.5rem 1.75rem 0;
+	}
+
+	.credentials__item + .credentials__item {
+		border-left: 1px solid var(--line);
+		padding-left: 1.5rem;
+	}
+
+	.credentials__item dt {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-family: var(--font-body);
+		font-size: var(--step--1);
 		font-weight: 600;
-		color: var(--theme-primary);
-		margin-bottom: 1.5rem;
-		letter-spacing: -0.01em;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--clay-deep);
+		margin: 0 0 0.6rem;
 	}
 
-	.specializations-list {
+	.credentials__item dt :global(iconify-icon) {
+		color: var(--clay-deep);
+	}
+
+	.credentials__item dd {
 		margin: 0;
-		padding-left: 0;
-		list-style: none;
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-		gap: 0.75rem 1.5rem;
-	}
-
-	.specializations-list li {
-		font-size: 1rem;
-		font-weight: 400;
+		font-size: var(--step-0);
 		line-height: 1.6;
-		padding-left: 0;
-		text-align: left;
-		position: relative;
-		display: flex;
-		align-items: center;
-		color: var(--theme-on-surface-1);
+		color: var(--ink);
 	}
 
-	.specializations-list li::before {
-		content: "✓";
-		color: var(--theme-primary);
-		font-weight: bold;
-		font-size: 1.2em;
-		margin-right: 0.75rem;
-		flex-shrink: 0;
+	.specializations {
+		margin-top: 2.5rem;
+		padding-top: 1.75rem;
+		border-top: 1px solid var(--line);
 	}
 
-	/* Basil Section Styles */
-	.basil-section {
-		margin-top: 3rem;
-		padding: 3rem 2.5rem;
-		background-color: var(--theme-surface-1);
-		border-radius: calc(var(--theme-shape-radius) * 1.5);
-		box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-		border: 1px solid rgba(0, 0, 0, 0.03);
+	.specializations h3 {
+		font-family: var(--font-body);
+		font-size: var(--step-0);
+		font-weight: 600;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: var(--ink-muted);
+		margin: 0 0 1.25rem;
 	}
 
-	.basil-section h2 {
-		text-align: center;
-		margin-bottom: 2.5rem;
-		color: var(--theme-primary);
-		font-size: 2rem;
-		font-weight: 700;
-		letter-spacing: -0.02em;
-	}
-
-	.basil-content {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 2rem;
-		align-items: center;
-	}
-
-	.basil-image {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-
-	.basil-image img {
-		width: 100%;
-		max-width: 400px;
-		height: auto;
-		border-radius: calc(var(--theme-shape-radius) * 1.5);
-		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-		object-fit: cover;
-		transition: transform 0.3s ease, box-shadow 0.3s ease;
-	}
-
-	.basil-image img:hover {
-		transform: scale(1.02);
-		box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
-	}
-
-	.basil-text p {
-		font-size: 1.15rem;
-		line-height: 1.8;
-		color: var(--theme-on-surface-1);
+	.specializations ul {
+		list-style: none;
 		margin: 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 0.5rem 2rem;
 	}
 
-	@media (max-width: 768px) {
-		.icon-wrapper {
-			margin-bottom: 1rem;
-		}
+	.specializations li {
+		position: relative;
+		padding-left: 1.25rem;
+		font-size: var(--step-0);
+		color: var(--ink);
+		line-height: 1.5;
+	}
 
-		.icon-wrapper [astro-icon] {
-			height: 60px;
-			width: 60px;
-		}
+	.specializations li::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0.65em;
+		width: 0.5rem;
+		height: 1px;
+		background: var(--clay);
+	}
 
-		.col-card {
-			padding: 2rem 1.5rem;
-			margin-bottom: 1rem;
-		}
+	.basil {
+		margin: var(--gap-section) auto;
+	}
 
-		.col-card h2 {
-			font-size: 1.4rem;
-			margin-bottom: 0.75rem;
-		}
+	.basil__grid {
+		display: grid;
+		grid-template-columns: 1fr 1.4fr;
+		gap: clamp(1.5rem, 4vw, 3rem);
+		align-items: center;
+	}
 
-		.col-card p {
-			font-size: 1rem;
-			line-height: 1.65;
-			max-width: 100%;
-		}
+	.basil__image img {
+		width: 100%;
+		max-width: 22rem;
+		aspect-ratio: 1;
+		object-fit: cover;
+		border-radius: var(--radius-md);
+		display: block;
+	}
 
-		.about-intro h2 {
-			font-size: 1.75rem;
-		}
+	.basil__text h2 {
+		font-size: var(--step-4);
+		font-weight: 500;
+		margin: 0 0 0.75rem;
+	}
 
-		.about-divider {
-			width: 50px;
-			height: 3px;
-		}
+	.basil__text p {
+		font-size: var(--step-1);
+		line-height: 1.6;
+		color: var(--ink);
+		margin: 0;
+		max-width: 36ch;
+	}
 
-		.about-paragraph {
-			margin-bottom: 1.25rem;
-			font-size: 0.95rem;
-			line-height: 1.7;
-		}
-
-		.about-paragraph:first-of-type {
-			font-size: 1.05rem;
-			line-height: 1.75;
-		}
-
-		.about-section {
-			margin: 2rem 0;
-			padding: 1.5rem;
-		}
-
-		.section-heading {
-			font-size: 1.15rem;
-			margin-bottom: 1.25rem;
-		}
-
-		.specializations-list {
+	@media (max-width: 900px) {
+		.credentials__list {
 			grid-template-columns: 1fr;
-			gap: 0.65rem;
 		}
 
-		.specializations-list li {
-			font-size: 0.9rem;
-			line-height: 1.5;
+		.credentials__item + .credentials__item {
+			border-left: none;
+			border-top: 1px solid var(--line);
+			padding-left: 0;
 		}
 
-		.specializations-list li::before {
-			font-size: 1.1em;
-			margin-right: 0.6rem;
+		.credentials__item {
+			padding: 1.5rem 0;
 		}
+	}
 
-		.basil-section {
-			padding: 1.5rem;
-		}
-
-		.basil-content {
+	@media (max-width: 720px) {
+		.specializations ul {
 			grid-template-columns: 1fr;
-			gap: 1.5rem;
 		}
 
-		.basil-image img {
+		.basil__grid {
+			grid-template-columns: 1fr;
+		}
+
+		.basil__image img {
 			max-width: 100%;
-		}
-
-		.basil-text p {
-			font-size: 1rem;
 		}
 	}
 </style>

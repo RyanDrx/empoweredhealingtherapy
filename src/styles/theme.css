@@ -1,160 +1,117 @@
 :root {
-	/* Theme Colors */
-	--theme-primary: #5f6762;
-	--theme-primary-rgb: 95, 103, 98;
-    /* hsl(0, 0%, 0%); */
-	--theme-primary-hover: #39443e;
-	--theme-on-primary: #fff;
+	/* === Color (OKLCH) ============================================= */
+	/* Ink scale — warm-leaning neutrals on top of paper */
+	--ink:         oklch(22% 0.025 55);
+	--ink-muted:   oklch(45% 0.022 55);
+	--ink-faint:   oklch(60% 0.018 60);
 
-	--theme-bg: #f6f1e8;
-	--theme-on-bg: #202321;
+	/* Paper scale — warm cream surfaces */
+	--paper:       oklch(96.5% 0.015 75);
+	--paper-2:     oklch(93% 0.018 70);
+	--paper-3:     oklch(98% 0.012 80);
+	--line:        oklch(82% 0.02 60);
+	--line-strong: oklch(70% 0.025 55);
 
-	--theme-surface-1: #fffaf2;
-	--theme-on-surface-1: #303632;
+	/* Clay — primary action color */
+	--clay:        oklch(56% 0.135 38);
+	--clay-deep:   oklch(42% 0.13 35);
+	--clay-soft:   oklch(88% 0.04 32);
+	--clay-ink:    oklch(28% 0.07 35);
 
-	--theme-surface-2: #d9a58f;
+	/* Moss — secondary, used sparingly */
+	--moss:        oklch(40% 0.075 148);
+	--moss-soft:   oklch(89% 0.025 145);
 
-	--theme-surface-3: #9d747d;
+	/* Blush — warm tint surface */
+	--blush:       oklch(91% 0.035 25);
 
-	--theme-on-surface-2: #202321;
+	/* === Compatibility (legacy aliases used across components) ==== */
+	--theme-primary:        var(--clay);
+	--theme-primary-rgb:    176, 92, 56;
+	--theme-primary-hover:  var(--clay-deep);
+	--theme-on-primary:     var(--paper);
 
-	/* Theme Shapes */
-	/* Set this to 0 if you want all of the rounded cards, images, etc to be straight edges */
-	--theme-shape-radius: 0.875rem;
-	--theme-button-border-radius: 3rem;
+	--theme-bg:           var(--paper);
+	--theme-on-bg:        var(--ink);
 
-	/* Theme Transition */
-	--theme-transition: 0.2s ease-in-out;
+	--theme-surface-1:    var(--paper-3);
+	--theme-on-surface-1: var(--ink);
 
-	/* Theme Layout */
-	--section-margin: clamp(2.5rem, 6vw, 5rem);
-	--theme-grid-gap: clamp(1rem, 2vw, 1.5rem);
-	--container-max-width: 1440px;
-	--container-max-width-narrow: 960px;
-	--container-padding: 0 clamp(1rem, 4vw, 2rem);
+	--theme-surface-2:    var(--clay-soft);
+	--theme-on-surface-2: var(--clay-ink);
 
-	--theme-blog-post-header-width: 1200px;
+	--theme-surface-3:    var(--moss);
+	--theme-on-surface-3: var(--paper);
 
-	/* Theme Fonts */
-	--theme-font-family-serif: 'Roboto Serif', Georgia, Cambria, 'Times New Roman',
-		Times, serif;
-	--theme-font-family-sans: 'Lato', -apple-system, BlinkMacSystemFont,
-		sans-serif;
+	--theme-outline:      var(--line);
+	--theme-error:        oklch(52% 0.18 28);
+
+	/* === Shape ===================================================== */
+	--radius-xs:  0.25rem;
+	--radius-sm:  0.5rem;
+	--radius-md:  0.875rem;
+	--radius-lg:  1.25rem;
+	--radius-pill: 999px;
+
+	--theme-shape-radius: var(--radius-md);
+	--theme-button-border-radius: var(--radius-sm);
+
+	/* === Motion ==================================================== */
+	--ease-out-expo:  cubic-bezier(0.16, 1, 0.3, 1);
+	--ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+	--ease-out-soft:  cubic-bezier(0.33, 1, 0.68, 1);
+	--theme-transition: 220ms var(--ease-out-quart);
+
+	/* === Layout ==================================================== */
+	--w-prose:   38rem;
+	--w-narrow:  56rem;
+	--w-wide:    76rem;
+	--w-page:    86rem;
+
+	--gap-section-sm: clamp(2rem, 5vw, 3.5rem);
+	--gap-section:    clamp(3.5rem, 8vw, 6rem);
+	--gap-section-lg: clamp(5rem, 12vw, 9rem);
+
+	--section-margin:    var(--gap-section);
+	--theme-grid-gap:    clamp(1rem, 2vw, 1.5rem);
+	--container-max-width:        var(--w-page);
+	--container-max-width-narrow: var(--w-narrow);
+	--container-padding: 0 clamp(1.25rem, 4vw, 2.5rem);
+
+	--navbar-height: 6.5rem;
+	--theme-blog-post-header-width: var(--w-wide);
+
+	/* === Fonts ===================================================== */
+	--font-display: 'Fraunces', 'Roboto Serif', Georgia, Cambria, 'Times New Roman', Times, serif;
+	--font-body:    'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+
+	/* Legacy aliases */
+	--theme-font-family-serif: var(--font-display);
+	--theme-font-family-sans:  var(--font-body);
+
+	color-scheme: light;
 }
 
 [data-theme='default'] {
 	color-scheme: light;
-	/* Theme Colors */
-	--theme-primary: #5f6762;
-	--theme-primary-rgb: 95, 103, 98;
-	--theme-primary-hover: #39443e;
-	--theme-on-primary: #fff;
-
-	--theme-bg: #f6f1e8;
-
-	--theme-surface-1: #fffaf2;
-	--theme-on-surface-1: #303632;
-
-	--theme-surface-2: #d9a58f;
-	--theme-on-surface-2: #303632;
-
-      /* --theme-bg: linear-gradient(315deg,#A7727D 40%,#F9F5E7 100%); */
-	--theme-on-bg: #202321;
-
-	/* Theme Shape */
-	/* Set this to 0 if you want all of the rounded cards, images, etc to be straight edges */
-	--theme-shape-radius: 0.875rem;
-	--theme-button-border-radius: 3rem;
-
-	/* Theme Transition */
-	--theme-transition: 0.2s ease-in-out;
-
-	/* Theme Layout */
-	--section-margin: clamp(2.5rem, 6vw, 5rem);
-	--theme-grid-gap: clamp(1rem, 2vw, 1.5rem);
-	--container-max-width: 1440px;
-	--container-max-width-narrow: 960px;
-	--container-padding: 0 clamp(1rem, 4vw, 2rem);
-
-	--theme-blog-post-header-width: 1200px;
 }
 
+/* Theme switcher is disabled in production; preserved for parity. */
 [data-theme='dark'] {
 	color-scheme: dark;
-	/* Theme Colors */
-	--theme-primary: hsl(0, 0%, 100%);
-	--theme-primary-rgb: 255, 255, 255;
-	--theme-primary-hover: hsl(0, 0%, 90%);
-	--theme-on-primary: hsl(0, 0%, 0%);
-
-	--theme-bg: hsl(0, 0%, 2%);
-	--theme-on-bg: hsl(0, 0%, 100%);
-
-	--theme-surface-1: hsl(0, 0%, 20%);
-	--theme-on-surface-1: hsl(0, 0%, 100%);
-
-	--theme-surface-2: #203422;
-	--theme-on-surface-2: #ffffff;
-
-	--theme-shape-radius: 0;
-
-	--form-field-input-color: var(--theme-on-bg);
+	--paper:       oklch(18% 0.015 60);
+	--paper-2:     oklch(22% 0.018 55);
+	--paper-3:     oklch(24% 0.018 55);
+	--line:        oklch(38% 0.018 60);
+	--ink:         oklch(94% 0.012 75);
+	--ink-muted:   oklch(78% 0.018 70);
+	--ink-faint:   oklch(60% 0.02 65);
+	--clay-soft:   oklch(34% 0.06 35);
+	--moss-soft:   oklch(30% 0.04 145);
 }
 
-[data-theme='earth'] {
-	/* Theme Colors */
-	--theme-primary: #2c3e2d;
-	--theme-primary-rgb: 44, 62, 45;
-	--theme-primary-hover: #395a3b;
-	--theme-on-primary: hsl(0, 0%, 100%);
-
-	--theme-bg: #eeeff1;
-    /* --theme-bg: linear-gradient(315deg,#A7727D 40%,#F9F5E7 100%); */
-	--theme-on-bg: #272f27;
-
-	--theme-surface-1: #e6e4e0;
-	--theme-on-surface-1: #272f27;
-
-	--theme-surface-2: #E8AA8C;
-	--theme-on-surface-2: #000;
-
-	--theme-button-border-radius: 0.5rem;
-}
-
-[data-theme='ocean'] {
-	/* Theme Colors */
-	/* Theme Colors */
-	--theme-primary: #1556ac;
-	--theme-primary-rgb: 21, 86, 172;
-	--theme-primary-hover: #2569c3;
-	--theme-on-primary: hsl(0, 0%, 100%);
-
-	--theme-bg: #fafafa;
-	--theme-on-bg: #0c0d0d;
-
-	--theme-surface-1: #eef1f3;
-	--theme-on-surface-1: #0c0d0d;
-
-	--theme-surface-2: #072650;
-	--theme-on-surface-2: #ffffff;
-}
-
-[data-theme='sand'] {
-	/* Theme Colors */
-	/* Theme Colors */
-	--theme-primary: #e38a20;
-	--theme-primary-rgb: 227, 138, 32;
-	--theme-primary-hover: #eb870f;
-	--theme-on-primary: hsl(0, 0%, 100%);
-
-	--theme-bg: #fffffe;
-	--theme-on-bg: #5e4536;
-
-	--theme-surface-1: #ffecd9;
-	--theme-on-surface-1: #5e4536;
-
-	--theme-surface-2: #6a4d34;
-	--theme-on-surface-2: #ffffff;
-
-	--theme-button-border-radius: 0.5rem;
+@media (prefers-reduced-motion: reduce) {
+	:root {
+		--theme-transition: 0ms;
+	}
 }

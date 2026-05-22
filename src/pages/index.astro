@@ -11,10 +11,10 @@ import CtaGeneral from '../components/CtaGeneral.astro';
 import CtaNewClients from '../components/CtaNewClients.astro';
 
 const seo = {
-	title: 'Empowered Healing Counseling - Meaghan Trezza, LMHC',
-	description: 'Empowered Healing Counseling is a private practice Tacoma Washington, specializing in depression, anxiety, and trauma. Empowered Healing Counseling - Meaghan Trezza, LMHC',
+	title: 'Empowered Healing Counseling — Meaghan Trezza, LMHC',
+	description:
+		'A licensed mental health counselor in Tacoma, WA. Somatic Experiencing, trauma, anxiety, couples, and play therapy. Queer- and neurodivergent-affirming.',
 };
-
 ---
 
 <Layout seo={seo}>
@@ -32,271 +32,268 @@ const seo = {
 				height="800"
 				id="about-me-home"
 				src="/assets/images/home-portrait.webp"
-				alt="Empowered Healing Counseling Depression Anxiety Therapy"
-                />
+				alt="Portrait of Meaghan Trezza"
+			/>
 		</picture>
-		<div slot="text-container" class="intro-content">
-			<h2 class="intro-title">{homeContent.introTitle}</h2>
-			<div class="intro-description">
-				{homeContent.introDescription.split('\n\n').map(paragraph => 
-					<p>{paragraph}</p>
-				)}
-			</div>
-			<div class="intro-button">
-				<Button href="/about">About Me</Button>
+		<div slot="text-container" class="intro">
+			<span class="eyebrow">A note from Meaghan</span>
+			<h2 class="intro__title">{homeContent.introTitle}</h2>
+			{homeContent.introDescription.split('\n\n').map((paragraph) => (
+				<p>{paragraph}</p>
+			))}
+			<div class="intro__btn">
+				<Button href="/about" outlined>More about me</Button>
 			</div>
 		</div>
 	</StickyTextImageSection>
 
-    <CtaNewClients />
+	<CtaNewClients />
 
-    <Container>
-        <div class="services-section">
-            <div class="service-item">
-                <div class="service-content">
-                    <h3>Telehealth Counseling</h3>
-                    <div class="service-description">
-                        {homeContent.telehealth.split('\n\n').map(paragraph => 
-                            <p>{paragraph}</p>
-                        )}
-                    </div>
-                </div>
-            </div>
-
-            <div class="service-item">
-                <div class="service-content">
-                    <h3>In-Person Counseling</h3>
-                    <div class="service-description">
-                        {homeContent.inPerson.split('\n\n').map(paragraph => 
-                            <p>{paragraph}</p>
-                        )}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </Container>
-
-	<Container>
-		<section class="feature-card__section">
-			<div class="explore-header">
-				<h2 class="explore-title">Explore Services</h2>
-				<p class="explore-subtitle">Learn more about my approach to healing and wellness</p>
+	<section class="services">
+		<Container>
+			<div class="services__header">
+				<span class="eyebrow">How sessions happen</span>
+				<h2 class="services__title">In-person in Tacoma. Telehealth across Washington.</h2>
 			</div>
-			<div class="feature-card__grid">
-				<FeatureCard
-					href="/rates-and-insurance"
-					title="Rates & Insurance"
-					imgSrc="/assets/images/rates-and-insurance-home"
-				/>
+			<div class="services__grid">
+				<article class="services__item">
+					<h3>Telehealth</h3>
+					{homeContent.telehealth.split('\n\n').map((paragraph) => (
+						<p>{paragraph}</p>
+					))}
+				</article>
+				<article class="services__item">
+					<h3>In-person</h3>
+					{homeContent.inPerson.split('\n\n').map((paragraph) => (
+						<p>{paragraph}</p>
+					))}
+				</article>
+			</div>
+		</Container>
+	</section>
+
+	<section class="explore">
+		<Container>
+			<div class="explore__header">
+				<span class="eyebrow">Explore the practice</span>
+				<h2 class="explore__title">A few places to start.</h2>
+			</div>
+			<div class="explore__grid">
 				<FeatureCard
 					href="/somatic-experiencing"
 					title="Somatic Experiencing"
+					eyebrow="Modality"
 					imgSrc="/assets/images/somatic-experiencing-home"
-				/>
-				<FeatureCard
-					href="/play-therapy"
-					title="Play Therapy"
-					imgSrc="/assets/images/playTherapy"
 				/>
 				<FeatureCard
 					href="/couples-counseling"
 					title="Couples Counseling"
+					eyebrow="Service"
 					imgSrc="/assets/images/couples-counseling-hero"
 				/>
-                <FeatureCard
-					href="/resources"
-					title="Resources"
-					imgSrc="/assets/images/resources-home"
+				<FeatureCard
+					href="/play-therapy"
+					title="Play Therapy"
+					eyebrow="Service"
+					imgSrc="/assets/images/playTherapy"
 				/>
-                <FeatureCard
-					href="/about"
-					title="About Me"
-					imgSrc="/assets/images/about-home"
+				<FeatureCard
+					href="/rates-and-insurance"
+					title="Rates &amp; Insurance"
+					eyebrow="Logistics"
+					imgSrc="/assets/images/rates-and-insurance-home"
 				/>
 			</div>
-		</section>
-	</Container>
+
+			<ul class="explore__secondary">
+				<li>
+					<a href="/about">
+						<span>About Meaghan</span>
+						<span class="explore__arrow" aria-hidden="true">&rarr;</span>
+					</a>
+				</li>
+				<li>
+					<a href="/resources">
+						<span>Resources &amp; reading</span>
+						<span class="explore__arrow" aria-hidden="true">&rarr;</span>
+					</a>
+				</li>
+				<li>
+					<a href="/contact">
+						<span>Contact &amp; consult</span>
+						<span class="explore__arrow" aria-hidden="true">&rarr;</span>
+					</a>
+				</li>
+			</ul>
+		</Container>
+	</section>
 
 	<CtaGeneral />
 </Layout>
 
 <style>
-	/* Intro Section Styles */
-	.intro-content {
+	.intro {
 		display: flex;
 		flex-direction: column;
-		gap: 1.5rem;
+		gap: 0.6rem;
 	}
 
-	.intro-title {
-		font-size: 2.25rem;
-		font-weight: 600;
-		color: var(--theme-primary);
+	.intro__title {
+		font-size: var(--step-4);
+		margin: 0.25rem 0 0.5rem;
+		font-weight: 500;
+	}
+
+	.intro p {
+		font-size: var(--step-1);
+		line-height: 1.6;
+		margin: 0 0 0.9rem;
+	}
+
+	.intro__btn {
+		margin-top: 1.25rem;
+	}
+
+	.services {
+		margin: var(--gap-section) auto;
+	}
+
+	.services__header {
+		max-width: 38rem;
+		margin: 0 0 2.5rem;
+	}
+
+	.services__title {
+		font-size: var(--step-4);
 		margin: 0;
-		line-height: 1.2;
+		font-weight: 500;
+		text-wrap: balance;
 	}
 
-	.intro-description {
+	.services__grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: clamp(2rem, 6vw, 4rem);
+		border-top: 1px solid var(--line);
+		padding-top: 2.5rem;
+	}
+
+	.services__item h3 {
+		font-size: var(--step-3);
+		margin: 0 0 1rem;
+		font-weight: 500;
+	}
+
+	.services__item h3::after {
+		content: '';
+		display: block;
+		width: 2rem;
+		height: 2px;
+		background: var(--clay);
+		margin-top: 0.9rem;
+	}
+
+	.services__item p {
+		font-size: var(--step-0);
+		line-height: 1.65;
+		color: var(--ink);
+		margin: 0 0 1rem;
+	}
+
+	.explore {
+		margin: var(--gap-section-lg) auto var(--gap-section);
+	}
+
+	.explore__header {
 		display: flex;
 		flex-direction: column;
+		gap: 0.4rem;
+		margin-bottom: 2.5rem;
+		max-width: 32rem;
+	}
+
+	.explore__title {
+		font-size: var(--step-4);
+		margin: 0;
+		font-weight: 500;
+	}
+
+	.explore__grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: clamp(1.5rem, 3vw, 2.5rem);
+	}
+
+	.explore__secondary {
+		margin: 3.5rem 0 0;
+		padding: 0;
+		list-style: none;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 0;
+		border-top: 1px solid var(--line);
+	}
+
+	.explore__secondary li {
+		border-bottom: 1px solid var(--line);
+	}
+
+	.explore__secondary li + li {
+		border-left: 1px solid var(--line);
+	}
+
+	.explore__secondary a {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
 		gap: 1rem;
+		padding: 1.4rem 1rem;
+		text-decoration: none;
+		color: var(--ink);
+		font-family: var(--font-display);
+		font-size: var(--step-2);
+		font-weight: 500;
+		letter-spacing: -0.015em;
+		transition: color var(--theme-transition),
+			background-color var(--theme-transition);
 	}
 
-	.intro-description p {
-		margin: 0;
-		line-height: 1.7;
-		font-size: 1.1rem;
-		color: var(--theme-on-surface-1);
+	.explore__secondary a:hover {
+		color: var(--clay-deep);
+		background-color: oklch(0% 0 0 / 0.02);
 	}
 
-	.intro-button {
-		margin-top: 1rem;
+	.explore__secondary a:hover .explore__arrow {
+		transform: translateX(4px);
 	}
 
-	/* Services Section Styles */
-	.services-section {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: 3rem;
-		margin: 4rem 0;
+	.explore__arrow {
+		color: var(--clay);
+		transition: transform var(--theme-transition);
 	}
 
-	.service-item {
-		padding: 2.5rem;
-		background-color: var(--theme-surface-1);
-		border-radius: var(--theme-shape-radius);
-		box-shadow: 0 8px 24px rgba(32, 35, 33, 0.06);
-		transition: all 0.3s ease;
-		border: 1px solid rgba(32, 35, 33, 0.08);
-	}
+	@media (max-width: 960px) {
+		.services__grid {
+			grid-template-columns: 1fr;
+			gap: 2.5rem;
+		}
 
-	.service-item:hover {
-		transform: translateY(-2px);
-		box-shadow: 0 12px 28px rgba(32, 35, 33, 0.1);
-	}
-
-	.service-content {
-		width: 100%;
-	}
-
-	.service-content h3 {
-		margin: 0 0 1rem 0;
-		font-size: 1.5rem;
-		font-weight: 600;
-		color: var(--theme-primary);
-	}
-
-	.service-description {
-		display: flex;
-		flex-direction: column;
-		gap: 0.75rem;
-	}
-
-	.service-description p {
-		margin: 0;
-		line-height: 1.6;
-		color: var(--theme-on-surface-1);
-	}
-
-	/* Feature Cards Section Styles */
-	.feature-card__section {
-		margin: 4rem auto;
-		max-width: var(--container-max-width-narrow);
-	}
-
-	.explore-header {
-		text-align: center;
-		margin-bottom: 3.5rem;
-	}
-
-	.explore-title {
-		font-size: clamp(2rem, 4vw, 2.75rem);
-		font-weight: 700;
-		color: var(--theme-primary);
-		margin: 0 0 1rem 0;
-		letter-spacing: -0.02em;
-	}
-
-	.explore-subtitle {
-		font-size: 1.25rem;
-		color: var(--theme-on-surface-1);
-		opacity: 0.85;
-		margin: 0;
-		max-width: 600px;
-		margin-left: auto;
-		margin-right: auto;
-		line-height: 1.6;
-	}
-
-	.feature-card__grid {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		gap: 2.5rem;
-	}
-
-	/* Responsive Design */
-	@media (max-width: 1024px) {
-		.services-section {
-			gap: 2rem;
+		.explore__grid {
+			grid-template-columns: repeat(2, 1fr);
 		}
 	}
 
-	@media (max-width: 768px) {
-		.intro-title {
-			font-size: 1.875rem;
-		}
-
-		.intro-description p {
-			font-size: 1rem;
-		}
-
-		.intro-button {
-			display: flex;
-			justify-content: center;
-		}
-
-		.services-section {
-			gap: 1.5rem;
-			margin: 2rem 0;
-		}
-
-		.service-item {
-			flex-direction: column;
-			text-align: left;
-			padding: 2rem;
-		}
-
-		.explore-title {
-			font-size: 2rem;
-		}
-
-		.explore-subtitle {
-			font-size: 1.1rem;
-		}
-
-		.feature-card__grid {
+	@media (max-width: 640px) {
+		.explore__grid {
 			grid-template-columns: 1fr;
 		}
 
-		.feature-card__section {
-			margin: var(--section-margin) auto;
-			margin-left: 0;
-			margin-right: 0;
-		}
-	}
-
-	@media (max-width: 480px) {
-		.service-item {
-			padding: 1rem;
+		.explore__secondary {
+			grid-template-columns: 1fr;
 		}
 
-		.service-icon {
-			width: 56px;
-			height: 56px;
-		}
-
-		.service-content h3 {
-			font-size: 1.25rem;
+		.explore__secondary li + li {
+			border-left: none;
 		}
 	}
 </style>
