@@ -1,21 +1,38 @@
 ---
-const {narrow, hidden} = Astro.props;
----
-{ hidden ? null 
-         : <div class={`content__container ${narrow ? `content__container--narrow` : ``}`}>
-            <slot></slot>
-           </div>
-        
-}
+const { narrow, wide, prose, hidden, as = 'div', class: className = '' } = Astro.props;
+const Tag = as;
 
+const variant = prose
+	? 'content__container--prose'
+	: narrow
+		? 'content__container--narrow'
+		: wide
+			? 'content__container--wide'
+			: '';
+---
+
+{hidden ? null : (
+	<Tag class={`content__container ${variant} ${className}`.trim()}>
+		<slot />
+	</Tag>
+)}
 
 <style>
-  .content__container {
-    margin: 0 auto;
-    max-width: var(--container-max-width);
-    padding: var(--container-padding);
-  }
-  .content__container--narrow {
-    max-width: var(--container-max-width-narrow);
-  }
+	.content__container {
+		margin: 0 auto;
+		max-width: var(--container-max-width);
+		padding: var(--container-padding);
+	}
+
+	.content__container--narrow {
+		max-width: var(--container-max-width-narrow);
+	}
+
+	.content__container--wide {
+		max-width: var(--w-wide);
+	}
+
+	.content__container--prose {
+		max-width: var(--w-prose);
+	}
 </style>

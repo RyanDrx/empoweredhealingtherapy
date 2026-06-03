@@ -1,19 +1,49 @@
 ---
 import Container from '../Container.astro';
-
-const {surfaceNumber = 1} = Astro.props;
 ---
 
-<section class="constrained-text-hero__section" style={`background-color: var(--theme-surface-${surfaceNumber});`}>
-  <Container narrow>
-    <slot></slot>
-  </Container>
+<section class="text-card">
+	<Container narrow>
+		<div class="text-card__inner">
+			<slot />
+		</div>
+	</Container>
 </section>
 
 <style>
-.constrained-text-hero__section {
-  margin: var(--section-margin) auto;
-  padding: clamp(10vh, 12vh, 18vh) 2rem;
-  /* border-radius: var(--theme-shape-radius); */
-}
+	.text-card {
+		margin: var(--gap-section) auto;
+	}
+
+	.text-card__inner {
+		padding: clamp(2rem, 5vw, 3.5rem) clamp(1.5rem, 4vw, 2.5rem);
+		border-top: 1px solid var(--line);
+		border-bottom: 1px solid var(--line);
+		max-width: 42rem;
+		margin: 0 auto;
+	}
+
+	.text-card__inner :global(h1),
+	.text-card__inner :global(h2) {
+		font-size: var(--step-4);
+		font-weight: 500;
+		color: var(--ink);
+		margin: 0 0 1rem;
+	}
+
+	.text-card__inner :global(h2)::after {
+		content: '';
+		display: block;
+		width: 2rem;
+		height: 2px;
+		background: var(--clay);
+		margin-top: 1rem;
+	}
+
+	.text-card__inner :global(p) {
+		font-size: var(--step-1);
+		line-height: 1.65;
+		color: var(--ink);
+		margin: 0 0 1rem;
+	}
 </style>

@@ -4,55 +4,94 @@ import Container from '../Container.astro';
 const { reversed } = Astro.props;
 ---
 
-<Container>
-	<section
-		class={`text-and-image__section ${
-			reversed && `text-and-image__section--reversed`
-		}`}
-	>
-		<div class="text-and-image__text">
-			<slot name="text-container" />
-			<div class="text-and-image__btns">
-				<slot name="btns-container" />
+<section class="text-image-hero">
+	<Container>
+		<div class={`text-image-hero__grid ${reversed ? 'text-image-hero__grid--reversed' : ''}`}>
+			<div class="text-image-hero__text">
+				<slot name="text-container" />
+				<div class="text-image-hero__btns">
+					<slot name="btns-container" />
+				</div>
+			</div>
+			<div class="text-image-hero__media">
+				<slot name="image-container" />
 			</div>
 		</div>
-		<div class="text-and-image__image">
-			<slot name="image-container" />
-		</div>
-	</section>
-</Container>
+	</Container>
+</section>
 
 <style>
-	.text-and-image__section {
-		margin: var(--section-margin) auto;
-		min-height: clamp(90vh, 100vw, calc(100vh - var(--navbar-height)));
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		align-items: center;
-		gap: 1rem;
+	.text-image-hero {
+		padding: clamp(2.5rem, 6vw, 5rem) 0 var(--gap-section);
 	}
-	.text-and-image__section--reversed .text-and-image__text {
+
+	.text-image-hero__grid {
+		display: grid;
+		grid-template-columns: 6fr 5fr;
+		gap: clamp(2rem, 6vw, 5rem);
+		align-items: center;
+	}
+
+	.text-image-hero__grid--reversed {
+		grid-template-columns: 5fr 6fr;
+	}
+
+	.text-image-hero__grid--reversed .text-image-hero__text {
 		order: 2;
 	}
-	.text-and-image__text {
-		padding: 2rem 0;
-		justify-self: center;
-		max-width: 25rem;
+
+	.text-image-hero__text :global(h1) {
+		font-size: var(--step-5);
+		font-weight: 500;
+		line-height: 1.02;
+		margin: 0 0 1rem;
+		text-wrap: balance;
 	}
-	.text-and-image__image :global(img) {
+
+	.text-image-hero__text :global(h1)::after {
+		content: '';
+		display: block;
+		width: 2.5rem;
+		height: 3px;
+		background: var(--clay);
+		margin-top: 1.25rem;
+	}
+
+	.text-image-hero__text :global(p) {
+		font-size: var(--step-1);
+		line-height: 1.55;
+		color: var(--ink-muted);
+		max-width: 38ch;
+	}
+
+	.text-image-hero__btns {
+		margin-top: 1.5rem;
+		display: flex;
+		gap: 1rem;
+	}
+
+	.text-image-hero__media :global(img) {
 		width: 100%;
-		height: 100%;
-		max-height: 80vh;
+		aspect-ratio: 4 / 5;
+		max-height: 38rem;
 		object-fit: cover;
-		border-radius: var(--theme-shape-radius);
+		border-radius: var(--radius-md);
+		display: block;
 	}
-	@media (max-width: 768px) {
-		.text-and-image__section {
-			margin: 2rem auto 0 auto;
+
+	@media (max-width: 960px) {
+		.text-image-hero__grid,
+		.text-image-hero__grid--reversed {
 			grid-template-columns: 1fr;
+			gap: 2rem;
 		}
-		.text-and-image__text {
-			padding: 2rem 0;
+
+		.text-image-hero__grid--reversed .text-image-hero__text {
+			order: 1;
+		}
+
+		.text-image-hero__media :global(img) {
+			aspect-ratio: 5 / 4;
 		}
 	}
 </style>

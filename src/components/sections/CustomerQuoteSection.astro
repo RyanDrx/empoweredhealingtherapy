@@ -1,36 +1,62 @@
 ---
 import Container from '../Container.astro';
 
-const {quoteText, customerName} = Astro.props;
+const { quoteText, customerName } = Astro.props;
 ---
 
-<section class="customer-quote__section">
-  <Container narrow>
-    <blockquote>"{quoteText}"</blockquote>
-    <p>&mdash; {customerName}</p>
-  </Container>
+<section class="quote-section">
+	<Container narrow>
+		<div class="quote-section__inner">
+			<span class="quote-section__mark" aria-hidden="true">&ldquo;</span>
+			<blockquote class="quote-section__quote">{quoteText}</blockquote>
+			<p class="quote-section__attr">— {customerName}</p>
+		</div>
+	</Container>
 </section>
 
-  <style>
-.customer-quote__section {
-  margin: var(--section-margin) auto;
-  padding: clamp(2rem, 6vw, 4rem) 1rem;
-  background-color: var(--theme-surface-1);
-  text-align: center;
-  border-block: 1px solid rgba(32, 35, 33, 0.08);
-}
-.customer-quote__section blockquote {
-  padding: 0;
-  border: none;
-  font-size: clamp(1.2rem, 3vw, var(--font-size-md));
-  font-weight: 400;
-  font-style: italic;
-  line-height: 1.65;
-  color: var(--theme-on-bg);
-}
+<style>
+	.quote-section {
+		margin: var(--gap-section) auto;
+		padding: clamp(2rem, 5vw, 4rem) 0;
+	}
 
-.customer-quote__section p {
-  color: var(--theme-primary);
-  font-weight: 700;
-}
+	.quote-section__inner {
+		text-align: center;
+		max-width: 38rem;
+		margin: 0 auto;
+		position: relative;
+	}
+
+	.quote-section__mark {
+		display: block;
+		font-family: var(--font-display);
+		font-style: italic;
+		font-size: 6rem;
+		line-height: 0.6;
+		color: var(--clay);
+		margin-bottom: 0.5rem;
+		font-variation-settings: 'opsz' 144, 'SOFT' 100;
+	}
+
+	.quote-section__quote {
+		font-family: var(--font-display);
+		font-style: italic;
+		font-size: var(--step-3);
+		font-weight: 400;
+		line-height: 1.35;
+		color: var(--ink);
+		margin: 0 auto 1.25rem;
+		max-width: none;
+		font-variation-settings: 'opsz' 60, 'SOFT' 50;
+	}
+
+	.quote-section__attr {
+		font-family: var(--font-body);
+		font-size: var(--step-0);
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: var(--clay-deep);
+		font-weight: 500;
+		margin: 0;
+	}
 </style>

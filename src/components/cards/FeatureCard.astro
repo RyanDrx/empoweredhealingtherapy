@@ -1,166 +1,104 @@
 ---
-const { href, imgSrc, title } = Astro.props;
+const { href, imgSrc, title, eyebrow } = Astro.props;
 ---
 
-<div class="feature-card">
-	<a class="feature-card__link" href={href}>
-		<div class="feature-card__image-wrapper">
-			<img
-				width="702"
-				height="527"
-				class="feature-card__img"
-				src={`${imgSrc}.webp`}
-				alt={title}
-				loading="lazy"
-				decoding="async"
-			/>
-			<div class="feature-card__overlay"></div>
-		</div>
-		<div class="feature-card__content">
-			<h3 class="feature-card__title">{title}</h3>
-			<span class="feature-card__cta">Learn More →</span>
-		</div>
-	</a>
-</div>
+<a class="feature-card" href={href}>
+	<div class="feature-card__media">
+		<img
+			width="702"
+			height="527"
+			src={`${imgSrc}.webp`}
+			alt={title}
+			loading="lazy"
+			decoding="async"
+		/>
+	</div>
+	<div class="feature-card__body">
+		{eyebrow && <span class="feature-card__eyebrow">{eyebrow}</span>}
+		<h3 class="feature-card__title">{title}</h3>
+		<span class="feature-card__cta" aria-hidden="true">Read more &nbsp;&rarr;</span>
+	</div>
+</a>
 
 <style>
 	.feature-card {
-		background-color: var(--theme-surface-1);
-		color: var(--theme-on-surface-1);
-		border-radius: var(--theme-shape-radius);
-		overflow: hidden;
-		transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-		position: relative;
-		height: 100%;
 		display: flex;
 		flex-direction: column;
-		border: 1px solid rgba(32, 35, 33, 0.08);
-		min-height: 21rem;
-		box-shadow: 0 8px 24px rgba(32, 35, 33, 0.06);
-	}
-
-	.feature-card:hover {
-		transform: translateY(-2px);
-		box-shadow: 0 16px 34px rgba(32, 35, 33, 0.1);
-		border-color: rgba(var(--theme-primary-rgb), 0.24);
-	}
-
-	.feature-card__link {
-		display: flex;
-		flex-direction: column;
-		height: 100%;
+		gap: 1rem;
 		text-decoration: none;
 		color: inherit;
+		border-radius: var(--radius-md);
 	}
 
-	.feature-card__image-wrapper {
-		position: relative;
-		height: clamp(12rem, 28vw, 15rem);
+	.feature-card__media {
+		aspect-ratio: 5 / 4;
 		overflow: hidden;
-		background-color: var(--theme-surface-2);
-		z-index: 0;
-        flex-shrink: 0;
+		border-radius: var(--radius-md);
+		background: var(--paper-2);
 	}
 
-	.feature-card__img {
+	.feature-card__media img {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-		object-position: center;
-		transition: transform 0.45s ease;
-		opacity: 1;
+		transition: transform 600ms var(--ease-out-expo),
+			filter 600ms var(--ease-out-expo);
 	}
 
-	.feature-card:hover .feature-card__img {
-		transform: scale(1.025);
+	.feature-card:hover .feature-card__media img,
+	.feature-card:focus-visible .feature-card__media img {
+		transform: scale(1.04);
 	}
 
-	.feature-card__overlay {
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		height: 50%;
-		background: linear-gradient(
-			to bottom,
-			transparent 0%,
-			rgba(255, 250, 242, 0.72) 70%,
-			rgb(255, 250, 242) 100%
-		);
-		opacity: 1;
-		pointer-events: none;
-		z-index: 1;
-	}
-
-	.feature-card__content {
-		padding: 2rem 1.5rem 1.5rem;
+	.feature-card__body {
 		display: flex;
 		flex-direction: column;
-		justify-content: flex-start;
-		flex-grow: 1;
-		text-align: left;
-		position: relative;
-		z-index: 2;
-		background: var(--theme-surface-1);
+		gap: 0.35rem;
+		padding: 0 0.15rem;
+	}
+
+	.feature-card__eyebrow {
+		font-size: var(--step--1);
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--ink-faint);
+		font-weight: 500;
 	}
 
 	.feature-card__title {
-		font-family: var(--theme-font-family-serif);
-		font-size: clamp(1.2rem, 2.5vw, 1.35rem);
-		font-weight: 600;
-		margin: 0 0 0.5rem 0;
+		font-family: var(--font-display);
+		font-size: var(--step-2);
+		font-weight: 500;
+		color: var(--ink);
+		margin: 0;
 		line-height: 1.2;
-		color: var(--theme-primary);
-        transition: color 0.3s ease;
+		letter-spacing: -0.015em;
 	}
-    
-    .feature-card:hover .feature-card__title {
-        color: var(--theme-primary-hover);
-    }
 
 	.feature-card__cta {
-		font-size: 0.95rem;
+		font-size: var(--step--1);
 		font-weight: 600;
-		color: var(--theme-on-surface-1);
-		opacity: 0.7;
-		transition: all 0.3s ease;
-		margin-top: auto;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
+		color: var(--clay-deep);
+		margin-top: 0.25rem;
+		transition: transform var(--theme-transition);
 	}
 
 	.feature-card:hover .feature-card__cta {
-		opacity: 1;
-		color: var(--theme-primary);
-		transform: translateX(2px);
+		transform: translateX(4px);
 	}
 
-	/* Ensure accessibility */
-	.feature-card__link:focus {
-		outline: 2px solid var(--theme-primary);
-		outline-offset: 2px;
-	}
-
-	@media (max-width: 768px) {
-		.feature-card__content {
-			padding: 1.5rem;
-		}
-		
-		.feature-card__title {
-			font-size: 1.25rem;
-		}
+	.feature-card:focus-visible {
+		outline: 2px solid var(--clay);
+		outline-offset: 6px;
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		.feature-card,
-		.feature-card__img,
+		.feature-card__media img,
 		.feature-card__cta {
 			transition: none;
 		}
 
-		.feature-card:hover,
-		.feature-card:hover .feature-card__img,
+		.feature-card:hover .feature-card__media img,
 		.feature-card:hover .feature-card__cta {
 			transform: none;
 		}

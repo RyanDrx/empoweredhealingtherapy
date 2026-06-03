@@ -2,73 +2,138 @@
 import Icon from './Icon.astro';
 ---
 
-<div class="contact-hero__text-section">
-	<h1>Contact</h1>
-	<p>
-        <strong> Accepting new clients!</strong>
-        <br />
-    </p>
-    <p>
-		Get in touch for new client intake, inquiries, scheduling, or concerns.
-		<br />
+<div class="contact-hero">
+	<span class="contact-hero__status">
+		<span class="contact-hero__dot" aria-hidden="true"></span>
+		Accepting new clients
+	</span>
+	<h1>Let&rsquo;s talk.</h1>
+	<p class="contact-hero__lead">
+		Get in touch for new client intake, scheduling, or questions. I usually reply within one business day.
 	</p>
-	<div>
-		<p>
-			<em>
-				<Icon name="line-md:phone-filled" />
-				<a href="tel:3602075773"> (360) 207-5773</a>
-			</em>
-			<br />
-			<em>
-				<Icon name="line-md:email" />
-				<a class="email" href="mailto:Meaghan@EmpoweredHealingWA.com">
+
+	<dl class="contact-hero__details">
+		<div class="contact-hero__detail">
+			<dt>
+				<Icon name="line-md:phone-filled" width="20" height="20" />
+				Phone
+			</dt>
+			<dd><a href="tel:3602075773">(360) 207-5773</a></dd>
+		</div>
+		<div class="contact-hero__detail">
+			<dt>
+				<Icon name="line-md:email" width="20" height="20" />
+				Email
+			</dt>
+			<dd>
+				<a href="mailto:Meaghan@EmpoweredHealingWA.com">
 					Meaghan@EmpoweredHealingWA.com
 				</a>
-			</em>
-		</p>
-	</div>
+			</dd>
+		</div>
+		<div class="contact-hero__detail">
+			<dt>
+				<Icon name="line-md:map-marker" width="20" height="20" />
+				Office
+			</dt>
+			<dd>
+				1310 South Union Avenue<br />
+				Suite A #302<br />
+				Tacoma, WA 98405
+			</dd>
+		</div>
+	</dl>
 </div>
 
 <style>
-	.email {
-		text-decoration: none;
-		color: var(--theme-text-1);
-		font-size: 0.7rem;
+	.contact-hero {
+		max-width: 28rem;
+		padding-right: 1rem;
 	}
 
-	[astro-icon] {
-		height: 1rem;
-		transform: translateY(3px);
+	.contact-hero h1 {
+		font-size: var(--step-5);
+		font-weight: 500;
+		margin: 0 0 1rem;
 	}
 
-	.contact-hero__text-section {
-		padding: 2rem;
+	.contact-hero h1::after {
+		content: '';
+		display: block;
+		width: 2.5rem;
+		height: 3px;
+		background: var(--clay);
+		margin-top: 1.25rem;
+	}
+
+	.contact-hero__lead {
+		font-size: var(--step-1);
+		line-height: 1.55;
+		color: var(--ink-muted);
+		max-width: 36ch;
+		margin: 0 0 2rem;
+	}
+
+	.contact-hero__status {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-size: var(--step--1);
+		font-weight: 600;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--moss);
+		margin-bottom: 1.25rem;
+	}
+
+	.contact-hero__dot {
+		width: 0.5rem;
+		height: 0.5rem;
+		border-radius: var(--radius-pill);
+		background: var(--moss);
+		box-shadow: 0 0 0 4px oklch(89% 0.025 145 / 0.7);
+	}
+
+	.contact-hero__details {
+		margin: 0;
+		padding: 1.5rem 0 0;
+		border-top: 1px solid var(--line);
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
-		background-color: var(--theme-surface-1);
-		border-radius: var(--theme-shape-radius);
-		position: relative;
-		overflow: hidden;
+		gap: 1.25rem;
 	}
 
-	.contact-hero__text-section::before {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		background-image: url('/assets/images/mountainforest.webp');
-		background-size: cover;
-		background-position: center;
-		opacity: 0.08;
-		z-index: 0;
-		pointer-events: none;
+	.contact-hero__detail dt {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-size: var(--step--1);
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		font-weight: 600;
+		color: var(--ink-muted);
+		margin: 0 0 0.35rem;
 	}
 
-	.contact-hero__text-section > * {
-		position: relative;
-		z-index: 1;
+	.contact-hero__detail dt :global(iconify-icon) {
+		color: var(--clay-deep);
+	}
+
+	.contact-hero__detail dd {
+		margin: 0;
+		font-size: var(--step-0);
+		line-height: 1.55;
+		color: var(--ink);
+	}
+
+	.contact-hero__detail dd a {
+		color: var(--ink);
+		text-decoration: none;
+	}
+
+	.contact-hero__detail dd a:hover {
+		color: var(--clay-deep);
+		text-decoration: underline;
+		text-underline-offset: 0.25em;
 	}
 </style>

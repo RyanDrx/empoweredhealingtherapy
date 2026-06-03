@@ -5,39 +5,41 @@ import Container from '../components/Container.astro';
 import ContactHero from '../components/ContactHero.astro';
 
 const seo = {
-	title: 'Contact | Empowered Healing Counseling - Meaghan Trezza, LMHC',
-	description: 'Contact Page for Empowered Healing Counseling, Meaghan Trezza, LMHC. Telehealth counseling services.',
+	title: 'Contact | Empowered Healing Counseling — Meaghan Trezza, LMHC',
+	description:
+		'Contact Empowered Healing Counseling, Meaghan Trezza, LMHC. Telehealth and in-person therapy in Tacoma, WA.',
 };
 ---
 
 <Layout {seo}>
-	<Container>
-		<section class="contact-hero__section">
-			<ContactHero />
-			<div class="col-2__container">
-				<ContactForm />
+	<section class="contact-page">
+		<Container>
+			<div class="contact-page__grid">
+				<ContactHero />
+				<div class="contact-page__form">
+					<ContactForm />
+				</div>
 			</div>
-		</section>
-	</Container>
+		</Container>
+	</section>
 </Layout>
 
 <style>
-	.contact-hero__section {
-		margin: var(--section-margin) auto;
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		min-height: calc(90vh - var(--navbar-height));
-		gap: 3rem;
+	.contact-page {
+		padding: clamp(2.5rem, 6vw, 5rem) 0 var(--gap-section);
 	}
 
-	.col-2__container {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
+	.contact-page__grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: clamp(2rem, 6vw, 4.5rem);
+		align-items: start;
 	}
-	@media (max-width: 768px) {
-		.contact-hero__section {
+
+	@media (max-width: 900px) {
+		.contact-page__grid {
 			grid-template-columns: 1fr;
+			gap: 2.5rem;
 		}
 	}
 </style>
